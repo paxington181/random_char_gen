@@ -1,5 +1,4 @@
 import random
-import time
 
 base_species: str = ["aasimar", "dragonborn", "dwarf", "elf", "gnome", "goliath", "halfling", "human", "orc", "tiefling"]
 eberron_species: str = ["changling", "kalashtar", "khoravar", "shifter", "warforged"]

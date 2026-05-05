@@ -1,12 +1,10 @@
 import random
-import time
 
 def main():
     four_rolls = []
     for i in range(0, 4):
         four_rolls.append(random.randrange(1, 7))
         i += 1
-        time.sleep(1)
     print(four_rolls)
 
     four_sorted = sorted(four_rolls)
