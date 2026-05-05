@@ -37,4 +37,5 @@ def main():
     random_background = selected_background[random.randrange(0, (len(selected_background) - 1))]
     print(f"Background selected: {random_background.title()}")
 
+
 main()
