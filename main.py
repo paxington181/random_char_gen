@@ -26,15 +26,15 @@ def main():
     
     selected_species = base_species + eberron_species + mythozoology_species
     random_species = selected_species[(random.randrange(0, (len(selected_species) - 1 )))]
-    print(random_species)
+    print(f"Species selected: {random_species.title()}")
 
 
     selected_classes = base_classes + eberron_classes
     random_class = selected_classes[random.randrange(0, (len(selected_classes) - 1))]
-    print(random_class)
+    print(f"Class selected: {random_class.title()}")
     
     selected_background = base_background + eberron_background
     random_background = selected_background[random.randrange(0, (len(selected_background) - 1))]
-    print(random_background)
+    print(f"Background selected: {random_background.title()}")
 
 main()
