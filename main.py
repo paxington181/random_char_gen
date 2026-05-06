@@ -22,6 +22,19 @@ eberron_background: str = ["aberrant heir", "archaeologist", "house agent", "hou
 
 
 
+def stat_roll():
+    four_rolls = []
+    for i in range(0, 4):
+        four_rolls.append(random.randrange(1, 7))
+        i += 1
+    four_sorted = sorted(four_rolls)
+    four_flipped = four_sorted[::-1]
+    three_rolls = four_flipped[:3]
+    print(three_rolls)
+    rolls_sum = sum(three_rolls)
+    print(rolls_sum)
+
+
 def main():
     
     selected_species = base_species + eberron_species + mythozoology_species
