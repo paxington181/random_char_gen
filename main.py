@@ -33,6 +33,7 @@ def stat_roll():
     print(three_rolls)
     rolls_sum = sum(three_rolls)
     print(rolls_sum)
+    return rolls_sum
 
 
 def main():
@@ -50,5 +51,16 @@ def main():
     random_background = selected_background[random.randrange(0, len(selected_background))]
     print(f"Background selected: {random_background.title()}")
 
+    stats_sum: int = []
+    for i in range(0, 6):
+        stats_sum.append(stat_roll())
+        i += 1
+
+    sum_stats = sum(stats_sum)
+    sum_rounded:float = round((sum_stats / 72), 2)
+        
+
+    print(f"The sum of your stats: {sum(stats_sum)}")
+    print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
 
 main()
