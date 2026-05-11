@@ -38,9 +38,16 @@ def stat_roll():
 
 def main():
     
-    selected_species = base_species + eberron_species + mythozoology_species
+    selected_species = base_species #+ eberron_species + mythozoology_species
     random_species = selected_species[(random.randrange(0, len(selected_species)))]
-    print(f"Species selected: {random_species.title()}")
+    if random_species == "dragonborn":
+        print(f"Species selected: Dragonborn, {dragonborn_sub[random.randrange(0, len(dragonborn_sub))].title()} dragon ancestry")
+    elif random_species == "elf":
+        print(f"Species selected: {elf_sub[random.randrange(0, len(elf_sub))].title()}")
+    elif random_species == "gnome":
+        print(f"Species selected: {gnome_sub[random.randrange(0, len(gnome_sub))].title()}")
+    else:
+        print(f"Species selected: {random_species.title()}")
 
 
     selected_classes = base_classes + eberron_classes
