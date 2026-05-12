@@ -20,7 +20,7 @@ eberron_classes: str = ["artificer"]
 base_background: str = ["acolyte", "artisan", "charlatan", "criminal", "entertainer", "farmer", "guard", "guide", "hermit", "merchant", "noble", "sage", "sailor", "scribe", "soldier", "wayfarer"]
 eberron_background: str = ["aberrant heir", "archaeologist", "house agent", "house cannith heir", "house deneith heir", "house ghallanda heir", "house jorasco heir", "house kundarak heir", "house lyrandar heir", "house medani heir", "house orien heir", "house phiarlan heir", "house sivis heir", "house tharashk heir", "house vadalis heir", "inquisitive"]
 
-
+alignment: str = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 
 def stat_roll():
     four_rolls = []
@@ -38,7 +38,7 @@ def stat_roll():
 
 def main():
     
-    selected_species = base_species #+ eberron_species + mythozoology_species
+    selected_species = base_species + eberron_species + mythozoology_species
     random_species = selected_species[(random.randrange(0, len(selected_species)))]
     if random_species == "dragonborn":
         print(f"Species selected: Dragonborn, {dragonborn_sub[random.randrange(0, len(dragonborn_sub))].title()} dragon ancestry")
@@ -46,6 +46,14 @@ def main():
         print(f"Species selected: {elf_sub[random.randrange(0, len(elf_sub))].title()}")
     elif random_species == "gnome":
         print(f"Species selected: {gnome_sub[random.randrange(0, len(gnome_sub))].title()}")
+    elif random_species == "goliath":
+        print(f"Species selected: Goliath, {goliath_sub[random.randrange(0, len(goliath_sub))].title()} Giant ancestry")
+    elif random_species == "tiefling":
+        print(f"Species selected: {tiefling_sub[random.randrange(0, len(tiefling_sub))].title()} descent Tiefling")
+    elif random_species == "hoofborn":
+        print(f"Species selected: {hoofborn_sub[random.randrange(0, len(hoofborn_sub))].title()} Hoofborn")
+    elif random_species == "kappa":
+        print(f"Species selected: {kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa")
     else:
         print(f"Species selected: {random_species.title()}")
 
@@ -69,5 +77,8 @@ def main():
 
     print(f"The sum of your stats: {sum(stats_sum)}")
     print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
+    
+    random_alignment = alignment[random.randrange(0, len(alignment))]
+    print(f"Alignment selected: {random_alignment}")
 
 main()
