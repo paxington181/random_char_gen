@@ -23,15 +23,15 @@ eberron_background: str = ["aberrant heir", "archaeologist", "house agent", "hou
 alignment: str = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 
 def stat_roll():
-    four_rolls = []
+    four_rolls: int = []
     for i in range(0, 4):
         four_rolls.append(random.randrange(1, 7))
         i += 1
-    four_sorted = sorted(four_rolls)
-    four_flipped = four_sorted[::-1]
-    three_rolls = four_flipped[:3]
+    four_sorted: int = sorted(four_rolls)
+    four_flipped: int = four_sorted[::-1]
+    three_rolls: int = four_flipped[:3]
     print(three_rolls)
-    rolls_sum = sum(three_rolls)
+    rolls_sum: int = sum(three_rolls)
     print(rolls_sum)
     return rolls_sum
 
@@ -71,7 +71,7 @@ def main():
         stats_sum.append(stat_roll())
         i += 1
 
-    sum_stats = sum(stats_sum)
+    sum_stats: int = sum(stats_sum)
     sum_rounded:float = round((sum_stats / 72), 2)
         
 
