@@ -1,7 +1,12 @@
 import random
 
-base_races: str = []
+base_races: str = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome"]
 
+dwarf_sub: str = ["mountain dwarf", "hill dwarf"]
+elf_sub: str = ["drow", "high elf", "wood elf"]
+halfling_sub: str = ["stout", "lightfoot"]
+dragonborn_sub: str = ["black", "blue", "brass", "bronze", "copper", "gold", "green", "red", "silver", "white"]
+gnome_sub: str = ["forest", "rock"]
 
 base_classes: str = []
 
