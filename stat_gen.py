@@ -1,7 +1,7 @@
 import random
 
 def standard_set():
-    return [8, 10, 12, 13, 14, 15]
+    return [15, 14, 13, 12, 10, 8]
 
 def fdsix_roll():
     fds_list: int = []
@@ -17,18 +17,19 @@ def fdsix_roll():
     return fds_sum
 
 def fdssix_stats():
-    stats_sum: int = []
+    fdssix_list: int = []
     for i in range(0, 6):
-        stats_sum.append(fdsix_roll())
+        fdssix_list.append(tdsix_roll())
         i += 1
 
-    print(stats_sum)
-    sum_stats: int = sum(stats_sum)
-    sum_rounded: float = round((sum_stats / 72), 2)
-        
-
-    print(f"The sum of your stats: {sum(stats_sum)}")
-    print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
+    fdssix_sorted: int = sorted(fdssix_list)    
+    fdssix_flipped: int = fdssix_sorted[::-1]
+    fdssix_sum: int = sum(fdssix_list)
+    fdssix_rounded: float = round((fdssix_sum / 72), 2)
+    
+    print(f"Your stats are {fdssix_flipped}")
+    print(f"The sum of your stats: {fdssix_sum}")
+    print(f"The sum of rolled stats are {int(fdssix_rounded * 100)}% of the sum of the standard array.")
     
 def tdsix_roll():
     tds_list: int = []
@@ -60,6 +61,6 @@ def tdssix_stats():
 
 def main():
 
-    tdssix_stats()
+    fdssix_stats()
 
 main()
