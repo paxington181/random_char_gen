@@ -4,17 +4,17 @@ def standard_set():
     return [8, 10, 12, 13, 14, 15]
 
 def fdsix_roll():
-    four_rolls: int = []
+    fds_list: int = []
     for i in range(0, 4):
-        four_rolls.append(random.randrange(1, 7))
+        fds_list.append(random.randrange(1, 7))
         i += 1
-    four_sorted: int = sorted(four_rolls)
-    four_flipped: int = four_sorted[::-1]
-    three_rolls: int = four_flipped[:3]
-    print(three_rolls)
-    rolls_sum: int = sum(three_rolls)
-    print(rolls_sum)
-    return rolls_sum
+    fds_sorted: int = sorted(fds_list)
+    fds_flipped: int = fds_sorted[::-1]
+    fds_three: int = fds_flipped[:3]
+    print(fds_three)
+    fds_sum: int = sum(fds_three)
+    print(fds_sum)
+    return fds_sum
 
 def fdssix_stats():
     stats_sum: int = []
@@ -24,16 +24,41 @@ def fdssix_stats():
 
     print(stats_sum)
     sum_stats: int = sum(stats_sum)
-    sum_rounded:float = round((sum_stats / 72), 2)
+    sum_rounded: float = round((sum_stats / 72), 2)
         
 
     print(f"The sum of your stats: {sum(stats_sum)}")
     print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
     
+def tdsix_roll():
+    tds_list: int = []
+    for i in range(0, 3):
+        tds_list.append(random.randrange(1, 7))
+        i += 1
+    tds_sorted: int = sorted(tds_list)
+    tds_flipped: int = tds_sorted[::-1]
+    print(tds_flipped)
+    tds_sum = sum(tds_flipped)
+    print(tds_sum)
+    return tds_sum
+
+def tdssix_stats():
+    stats_sum: int = []
+    for i in range(0, 6):
+        stats_sum.append(tdsix_roll())
+        i += 1
+
+    print(stats_sum)
+    sum_stats: int = sum(stats_sum)
+    sum_rounded: float = round((sum_stats / 72), 2)
+        
+
+    print(f"The sum of your stats: {sum(stats_sum)}")
+    print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
+
 
 def main():
 
-    stat_set = fdssix_stats()
-    print(stat_set)
+    tdssix_stats()
 
 main()

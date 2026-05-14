@@ -6,6 +6,8 @@ base_races: str = []
 base_classes: str = []
 
 
+alignment: str = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+
 def stat_roll():
     four_rolls: int = []
     for i in range(0, 4):
@@ -22,7 +24,20 @@ def stat_roll():
 
 def main():
 
+    stats_sum: int = []
+    for i in range(0, 6):
+        stats_sum.append(stat_roll())
+        i += 1
+
+    sum_stats: int = sum(stats_sum)
+    sum_rounded:float = round((sum_stats / 72), 2)
+        
+
+    print(f"The sum of your stats: {sum(stats_sum)}")
+    print(f"The sum of rolled stats are {int(sum_rounded * 100)}% of the sum of the standard array.")
+    
+    random_alignment = alignment[random.randrange(0, len(alignment))]
+    print(f"Alignment selected: {random_alignment}")
 
 
-
-    main()
+main()
