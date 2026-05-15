@@ -19,7 +19,7 @@ def fdsix_roll():
 def fdssix_stats():
     fdssix_list: int = []
     for i in range(0, 6):
-        fdssix_list.append(tdsix_roll())
+        fdssix_list.append(fdsix_roll())
         i += 1
 
     fdssix_sorted: int = sorted(fdssix_list)    
@@ -58,9 +58,29 @@ def tdssix_stats():
     print(f"The sum of your stats: {tdssix_sum}")
     print(f"The sum of rolled stats are {int(tdssix_rounded * 100)}% of the sum of the standard array.")
 
+def mixdsix_stats():
+    
+    mixdsix_list: int = []
+    for i in range(0, 3):
+        mixdsix_list.append(tdsix_roll())
+        i += 1
+    for i in range(0, 3):
+        mixdsix_list.append(fdsix_roll())
+        i += 1
+    
+
+    mixdsix_sorted: int = sorted(mixdsix_list)    
+    mixdsix_flipped: int = mixdsix_sorted[::-1]
+    mixdsix_sum: int = sum(mixdsix_list)
+    mixdsix_rounded: float = round((mixdsix_sum / 72), 2)
+    
+    print(f"Your stats are {mixdsix_flipped}")
+    print(f"The sum of your stats: {mixdsix_sum}")
+    print(f"The sum of rolled stats are {int(mixdsix_rounded * 100)}% of the sum of the standard array.")
+
 
 def main():
 
-    fdssix_stats()
+    mixdsix_stats()
 
 main()
