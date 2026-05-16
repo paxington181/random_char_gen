@@ -1,6 +1,11 @@
 import random
+import tkinter as tk
+from tkinter import ttk
 
-def main():
-    pass
 
-main()
+
+maincycle = tk.Tk()
+
+ttk.Label(maincycle, text = 'Press Me').pack()
+
+maincycle.mainloop()
