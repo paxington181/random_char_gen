@@ -1,6 +1,6 @@
 import random
 
-base_races: str = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome"]
+base_races: str = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome", "half-elf", "half-orc", "tiefling"]
 
 dwarf_sub: str = ["mountain dwarf", "hill dwarf"]
 elf_sub: str = ["drow", "high elf", "wood elf"]
@@ -8,7 +8,7 @@ halfling_sub: str = ["stout", "lightfoot"]
 dragonborn_sub: str = ["black", "blue", "brass", "bronze", "copper", "gold", "green", "red", "silver", "white"]
 gnome_sub: str = ["forest", "rock"]
 
-base_classes: str = []
+base_classes: str = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
 
 
 alignment: str = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
