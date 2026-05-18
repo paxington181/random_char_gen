@@ -12,9 +12,24 @@ goliath_sub: str = ["cloud", "fire", "frost", "hill", "stone", "storm"]
 tiefling_sub: str = ["abyssal", "chthonic", "infernal"]
 hoofborn_sub: str = ["tidehoof"]
 kappa_sub: str = ["wrangler", "tideweaver"]
+shifter_sub: str = ["beasthide", "longtooth", "swiftstride", "wildhunt"]
 
 base_classes: str = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
 eberron_classes: str = ["artificer"]
+
+barb_sub: str = []
+bard_sub: str = []
+cler_sub: str = []
+drui_sub: str = []
+figh_sub: str = []
+monk_sub: str = []
+pala_sub: str = []
+rang_sub: str = []
+rogu_sub: str = []
+sorc_sub: str = []
+warl_sub: str = []
+wiza_sub: str = []
+arti_sub: str = []
 
 
 base_background: str = ["acolyte", "artisan", "charlatan", "criminal", "entertainer", "farmer", "guard", "guide", "hermit", "merchant", "noble", "sage", "sailor", "scribe", "soldier", "wayfarer"]
@@ -54,6 +69,8 @@ def main():
         print(f"Species selected: {hoofborn_sub[random.randrange(0, len(hoofborn_sub))].title()} Hoofborn")
     elif random_species == "kappa":
         print(f"Species selected: {kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa")
+    elif random_species == "shifter":
+        print(f"Species selected: {shifter_sub[random.randrage(0, len(shifter_sub))].title()} Shifter")
     else:
         print(f"Species selected: {random_species.title()}")
 
