@@ -20,35 +20,37 @@ ttk.Label(main, text = "'Sub Class'").grid(row = 1, column = 1)
 
 ttk.Label(main, text = "Dice Rolling Method").grid(row = 0, column = 4)
 
-ttk.Label(main, text = "Strength").grid(row = 2, column = 0)
+stat_frame = tk.Frame(main).grid(row = 2, column = 0, rowspan = 6, columnspan = 2)
+
+ttk.Label(stat_frame, text = "Strength").grid(row = 2, column = 0)
 str_entry:int = tk.IntVar()
 str_entry.set(3)
-ttk.Entry(main, textvariable = str_entry).grid(row = 2, column = 1)
+ttk.Entry(stat_frame, textvariable = str_entry).grid(row = 2, column = 1)
 
-ttk.Label(main, text = "Dexterity").grid(row = 3, column = 0)
+ttk.Label(stat_frame, text = "Dexterity").grid(row = 3, column = 0)
 dex_entry:int  = tk.IntVar()
 dex_entry.set(3)
-ttk.Entry(main, textvariable = dex_entry).grid(row = 3, column = 1)
+ttk.Entry(stat_frame, textvariable = dex_entry).grid(row = 3, column = 1)
 
-ttk.Label(main, text = "Constitution").grid(row = 4, column = 0)
+ttk.Label(stat_frame, text = "Constitution").grid(row = 4, column = 0)
 con_entry:int = tk.IntVar()
 con_entry.set(3)
-ttk.Entry(main, textvariable = con_entry).grid(row = 4, column = 1)
+ttk.Entry(stat_frame, textvariable = con_entry).grid(row = 4, column = 1)
 
-ttk.Label(main, text = "Intellegence").grid(row = 5, column = 0)
+ttk.Label(stat_frame, text = "Intellegence").grid(row = 5, column = 0)
 int_entry:int = tk.IntVar()
 int_entry.set(3)
-ttk.Entry(main, textvariable = int_entry).grid(row = 5, column = 1)
+ttk.Entry(stat_frame, textvariable = int_entry).grid(row = 5, column = 1)
 
-ttk.Label(main, text = "Wisdom").grid(row = 6, column = 0)
+ttk.Label(stat_frame, text = "Wisdom").grid(row = 6, column = 0)
 wis_entry:int = tk.IntVar()
 wis_entry.set(3)
-ttk.Entry(main, textvariable = wis_entry).grid(row = 6, column = 1)
+ttk.Entry(stat_frame, textvariable = wis_entry).grid(row = 6, column = 1)
 
-ttk.Label(main, text = "Charisma").grid(row = 7, column = 0)
+ttk.Label(stat_frame, text = "Charisma").grid(row = 7, column = 0)
 cha_entry:int = tk.IntVar()
 cha_entry.set(3)
-ttk.Entry(main, textvariable = cha_entry).grid(row = 7, column = 1)
+ttk.Entry(stat_frame, textvariable = cha_entry).grid(row = 7, column = 1)
 
 ttk.Label(main, text = "Picture placeholder").grid(row = 2, column = 3)
 
