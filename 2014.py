@@ -10,7 +10,20 @@ gnome_sub: str = ["forest", "rock"]
 
 base_classes: str = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
 
+base_barb_sub: str = []
+base_bard_sub: str = []
+base_cler_sub: str = []
+base_drui_sub: str = []
+base_figh_sub: str = []
+base_monk_sub: str = []
+base_pala_sub: str = []
+base_rang_sub: str = []
+base_rogu_sub: str = []
+base_sorc_sub: str = []
+base_warl_sub: str = []
+base_wiza_sub: str = []
 
+base_backgrounds: str = []
 
 alignment: str = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
 
