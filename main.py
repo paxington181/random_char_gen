@@ -26,6 +26,11 @@ background_label = ttk.Label(main, text = "Background")
 background_random_selection = ttk.Button(main, text = "Background Source Options")
 background_randomized = ttk.Label(main, text = "")
 
+stat_gen_label = ttk.Label(main, text = "Stat Generation Selection")
+stat_gen_selector = ttk.Button(main)
+stat_gen_method = ttk.Label(main, text = "")
+stats_to_assign = ttk.Label(main, text = "")
+
 
 str_label = ttk.Label(main, text = "Str")
 str_stat = ttk.Entry(main)
