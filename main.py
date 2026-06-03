@@ -61,10 +61,11 @@ cha_label = ttk.Label(main, text = "Cha")
 cha_stat = ttk.Entry(main)
 cha_modifier = ttk.Label(main, text = "+0")
 
-image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art")
+image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
 
 randomize_button = ttk.Button(main, text = "Randomize")
 reset_button = ttk.Button(main, text = "Reset Options")
+reroll_stats_button = ttk.Button(main, text = "Reroll Stats")
 
 #widget placement
 
@@ -108,7 +109,10 @@ cha_label.grid(row = 9, column = 0, sticky = "nwe")
 cha_stat.grid(row = 9, column = 1, sticky = "nwe")
 cha_modifier.grid(row = 9, column = 2, sticky = "nwe")
 
-randomize_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
+randomize_button.grid(row = 10, column = 6,  columnspan = 2, sticky = "nwe")
+reroll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
 reset_button.grid(row = 10, column = 10,  columnspan = 2, sticky = "nwe")
+
+image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
 
 main.mainloop()
