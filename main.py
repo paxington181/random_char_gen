@@ -3,22 +3,42 @@ import tkinter as tk
 from tkinter import ttk
 
 def tdsix():
-    tds_list: int = []
+    tds_list = []
     for i in range(0, 3):
         tds_list.append(random.randrange(1, 7))
         i += 1
-    tds_sorted: int = sorted(tds_list)
-    tds_flipped: int = tds_sorted[::-1]
+    tds_sorted = sorted(tds_list)
+    tds_flipped = tds_sorted[::-1]
     return tds_flipped
 
 def fdsix():
-    fds_list: int = []
+    fds_list = []
     for i in range(0, 4):
         fds_list.append(random.randrange(1, 7))
         i += 1
-    fds_sorted: int = sorted(fds_list)
-    fds_flipped: int = fds_sorted[::-1]
+    fds_sorted = sorted(fds_list)
+    fds_flipped = fds_sorted[::-1]
     return fds_flipped[:3]
+
+def reroll_stats():
+    dice_rolls_one = fdsix()
+    stats_rolls_one.configure(text = f"{dice_rolls_one}")
+    stats_sum_one.configure(text = f"{sum(dice_rolls_one)}")
+    dice_rolls_two = fdsix()
+    stats_rolls_two.configure(text = f"{dice_rolls_two}")
+    stats_sum_two.configure(text = f"{sum(dice_rolls_two)}")
+    dice_rolls_three = fdsix()
+    stats_rolls_three.configure(text = f"{dice_rolls_three}")
+    stats_sum_three.configure(text = f"{sum(dice_rolls_three)}")
+    dice_rolls_four = fdsix()
+    stats_rolls_four.configure(text = f"{dice_rolls_four}")
+    stats_sum_four.configure(text = f"{sum(dice_rolls_four)}")
+    dice_rolls_five = fdsix()
+    stats_rolls_five.configure(text = f"{dice_rolls_five}")
+    stats_sum_five.configure(text = f"{sum(dice_rolls_five)}")
+    dice_rolls_six = fdsix()
+    stats_rolls_six.configure(text = f"{dice_rolls_six}")
+    stats_sum_six.configure(text = f"{sum(dice_rolls_six)}")
 
 dice_rolls_one = fdsix()
 dice_rolls_two = fdsix()
@@ -113,7 +133,7 @@ image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", b
 
 randomize_button = ttk.Button(main, text = "Randomize")
 reset_button = ttk.Button(main, text = "Reset Options")
-reroll_stats_button = ttk.Button(main, text = "Reroll Stats")
+reroll_stats_button = ttk.Button(main, text = "Reroll Stats", command = reroll_stats)
 
 #widget placement
 

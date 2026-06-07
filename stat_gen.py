@@ -4,14 +4,15 @@ def standard_set():
     return [15, 14, 13, 12, 10, 8]
 
 def fdsix_roll():
-    fds_list: int = []
+    fds_list: list[int] = []
     for i in range(0, 4):
         fds_list.append(random.randrange(1, 7))
         i += 1
-    fds_sorted: int = sorted(fds_list)
-    fds_flipped: int = fds_sorted[::-1]
+    fds_sorted: list[int] = sorted(fds_list)
+    fds_flipped: list[int] = fds_sorted[::-1]
+    fds_three: list[int] = fds_flipped[:3]
     print(fds_three)
-    fds_sum: int = sum(fds_three)
+    fds_sum: list[int] = sum(fds_three)
     print(fds_sum)
     return fds_sum
 
@@ -20,6 +21,7 @@ def fdssix_stats():
     for i in range(0, 6):
         fdssix_list.append(fdsix_roll())
         i += 1
+
     fdssix_sorted: int = sorted(fdssix_list)    
     fdssix_flipped: int = fdssix_sorted[::-1]
     fdssix_sum: int = sum(fdssix_list)
