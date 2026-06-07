@@ -1,7 +1,31 @@
+import random
 import tkinter as tk
 from tkinter import ttk
 
+def tdsix():
+    tds_list: int = []
+    for i in range(0, 3):
+        tds_list.append(random.randrange(1, 7))
+        i += 1
+    tds_sorted: int = sorted(tds_list)
+    tds_flipped: int = tds_sorted[::-1]
+    return tds_flipped
 
+def fdsix():
+    fds_list: int = []
+    for i in range(0, 4):
+        fds_list.append(random.randrange(1, 7))
+        i += 1
+    fds_sorted: int = sorted(fds_list)
+    fds_flipped: int = fds_sorted[::-1]
+    return fds_flipped[:3]
+
+dice_rolls_one = fdsix()
+dice_rolls_two = fdsix()
+dice_rolls_three = fdsix()
+dice_rolls_four = fdsix()
+dice_rolls_five = fdsix()
+dice_rolls_six = fdsix()
 
 #main window organization
 main = tk.Tk()
@@ -37,23 +61,23 @@ stats_gen_selector = ttk.Button(main, text = "Replace with Radio?")
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "center")
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "center")
 
-stats_rolls_one = ttk.Label(main, text = "One", anchor = "center")
-stats_sum_one = ttk.Label(main, text = "Sum One", anchor = "center")
+stats_rolls_one = ttk.Label(main, text = f"{dice_rolls_one}", anchor = "center")
+stats_sum_one = ttk.Label(main, text = f"{sum(dice_rolls_one)}", anchor = "center")
 
-stats_rolls_two = ttk.Label(main, text = "Two", anchor = "center")
-stats_sum_two = ttk.Label(main, text = "Sum Two", anchor = "center")
+stats_rolls_two = ttk.Label(main, text = f"{dice_rolls_two}", anchor = "center")
+stats_sum_two = ttk.Label(main, text = f"{sum(dice_rolls_two)}", anchor = "center")
 
-stats_rolls_three = ttk.Label(main, text = "Three", anchor = "center")
-stats_sum_three = ttk.Label(main, text = "Sum Three", anchor = "center")
+stats_rolls_three = ttk.Label(main, text = f"{dice_rolls_three}", anchor = "center")
+stats_sum_three = ttk.Label(main, text = f"{sum(dice_rolls_three)}", anchor = "center")
 
-stats_rolls_four = ttk.Label(main, text = "Four", anchor = "center")
-stats_sum_four = ttk.Label(main, text = "Sum Four", anchor = "center")
+stats_rolls_four = ttk.Label(main, text = f"{dice_rolls_four}", anchor = "center")
+stats_sum_four = ttk.Label(main, text = f"{sum(dice_rolls_four)}", anchor = "center")
 
-stats_rolls_five = ttk.Label(main, text = "Five", anchor = "center")
-stats_sum_five = ttk.Label(main, text = "Sum Five", anchor = "center")
+stats_rolls_five = ttk.Label(main, text = f"{dice_rolls_five}", anchor = "center")
+stats_sum_five = ttk.Label(main, text = f"{sum(dice_rolls_five)}", anchor = "center")
 
-stats_rolls_six = ttk.Label(main, text = "Six", anchor = "center")
-stats_sum_six = ttk.Label(main, text = "Sum Six", anchor = "center")
+stats_rolls_six = ttk.Label(main, text = f"{dice_rolls_six}", anchor = "center")
+stats_sum_six = ttk.Label(main, text = f"{sum(dice_rolls_six)}", anchor = "center")
 
 stats_total = ttk.Label(main, text = "stats_total", anchor = "w")
 stats_total_label = ttk.Label(main, text = "Sum of stats", anchor = "e")

@@ -10,7 +10,6 @@ def fdsix_roll():
         i += 1
     fds_sorted: int = sorted(fds_list)
     fds_flipped: int = fds_sorted[::-1]
-    fds_three: int = fds_flipped[:3]
     print(fds_three)
     fds_sum: int = sum(fds_three)
     print(fds_sum)
@@ -21,7 +20,6 @@ def fdssix_stats():
     for i in range(0, 6):
         fdssix_list.append(fdsix_roll())
         i += 1
-
     fdssix_sorted: int = sorted(fdssix_list)    
     fdssix_flipped: int = fdssix_sorted[::-1]
     fdssix_sum: int = sum(fdssix_list)
