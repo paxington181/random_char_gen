@@ -40,12 +40,17 @@ def reroll_stats():
     stats_rolls_six.configure(text = f"{dice_rolls_six}")
     stats_sum_six.configure(text = f"{sum(dice_rolls_six)}")
 
-dice_rolls_one = fdsix()
-dice_rolls_two = fdsix()
-dice_rolls_three = fdsix()
-dice_rolls_four = fdsix()
-dice_rolls_five = fdsix()
-dice_rolls_six = fdsix()
+dice = fdsix()
+
+def roll_method(dice):
+    return dice
+
+dice_rolls_one = dice
+dice_rolls_two = dice
+dice_rolls_three = dice
+dice_rolls_four = dice
+dice_rolls_five = dice
+dice_rolls_six = dice
 
 #main window organization
 main = tk.Tk()
