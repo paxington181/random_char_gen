@@ -1,6 +1,7 @@
 import random
 import tkinter as tk
 from tkinter import ttk
+from stat_rolling import 
 
 def tdsix():
     tds_list = []
