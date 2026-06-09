@@ -23,23 +23,28 @@ def fdsix():
     fds_flipped: list[int] = fds_sorted[::-1]
     return fds_flipped
 
-def standard_set():
-    return [15, 14, 13, 12, 10, 8]
-
 def tdsix_set():
     tdsix_set_list: list[list[int]] = []
+    sum = 0
     for i in range(0, 6):
-        tdsix_set_list.append(tdsix())
+        roll = tdsix()
+        tdsix_set_list.append(roll)
+        sum += roll[0]
         i +=1
     tds_set_sorted = sorted(tdsix_set_list)
     tds_set_flipped = tds_set_sorted[::-1]
+    tds_set_flipped.append(sum)
     return tds_set_flipped
 
 def fdsix_set():
     fdsix_set_list: list[list[int]] = []
+    sum = 0
     for i in range(0, 6):
-        fdsix_set_list.append(fdsix())
+        roll = fdsix
+        fdsix_set_list.append(roll)
+        sum += roll[0]
         i +=1
     fds_set_sorted = sorted(fdsix_set_list)
     fds_set_flipped = fds_set_sorted[::-1]
+    fds_set_flipped.append(sum)
     return fds_set_flipped

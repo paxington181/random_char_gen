@@ -1,24 +1,58 @@
 import random
 import tkinter as tk
 from tkinter import ttk
-from stat_rolling import tdsix_set, fdsix_set, standard_set
+from stat_rolling import tdsix_set, fdsix_set
 
-dice_rolls_one = ""
-dice_sum_one = ""
-dice_rolls_two = ""
-dice_sum_two = ""
-dice_rolls_three = ""
-dice_sum_three = ""
-dice_rolls_four = ""
-dice_sum_four = ""
-dice_rolls_five = ""
-dice_sum_five = ""
-dice_rolls_six = ""
-dice_sum_six = ""
+def roll_stats_standard():
+    current_stats = [15, 14, 13, 12, 10, 8]
+    stats_rolls_one.configure(text = f"{current_stats[0]}")
+    stats_sum_one.configure(text = f"{current_stats[0]}")
+    stats_rolls_two.configure(text = f"{current_stats[1]}")
+    stats_sum_two.configure(text = f"{current_stats[1]}")
+    stats_rolls_three.configure(text = f"{current_stats[2]}")
+    stats_sum_three.configure(text = f"{current_stats[2]}")
+    stats_rolls_four.configure(text = f"{current_stats[3]}")
+    stats_sum_four.configure(text = f"{current_stats[3]}")
+    stats_rolls_five.configure(text = f"{current_stats[4]}")
+    stats_sum_five.configure(text = f"{current_stats[4]}")
+    stats_rolls_six.configure(text = f"{current_stats[5]}")
+    stats_sum_six.configure(text = f"{current_stats[5]}")
+    stats_total.configure(text = f" {sum(current_stats)}")
+    stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
 
-def roll_stats():
-    pass
+def roll_stats_tdsix():
+    current_stats = tdsix_set()
+    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
+    stats_sum_one.configure(text = f"{current_stats[0][0]}")
+    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
+    stats_sum_two.configure(text = f"{current_stats[1][0]}")
+    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
+    stats_sum_three.configure(text = f"{current_stats[2][0]}")
+    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
+    stats_sum_four.configure(text = f"{current_stats[3][0]}")
+    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
+    stats_sum_five.configure(text = f"{current_stats[4][0]}")
+    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
+    stats_sum_six.configure(text = f"{current_stats[5][0]}")
+    stats_total.configure(text = f" {current_stats[6]}")
+    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
+def roll_stats_fdsix():
+    current_stats = fdsix_set()
+    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
+    stats_sum_one.configure(text = f"{current_stats[0][0]}")
+    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
+    stats_sum_two.configure(text = f"{current_stats[1][0]}")
+    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
+    stats_sum_three.configure(text = f"{current_stats[2][0]}")
+    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
+    stats_sum_four.configure(text = f"{current_stats[3][0]}")
+    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
+    stats_sum_five.configure(text = f"{current_stats[4][0]}")
+    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
+    stats_sum_six.configure(text = f"{current_stats[5][0]}")
+    stats_total.configure(text = f" {current_stats[6]}")
+    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
 #main window organization
 main = tk.Tk()
@@ -54,23 +88,23 @@ stats_gen_selector = ttk.Button(main, text = "Replace with Radio?")
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "center")
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "center")
 
-stats_rolls_one = ttk.Label(main, text = f"{dice_rolls_one}", anchor = "center")
-stats_sum_one = ttk.Label(main, text = f"{dice_sum_one}", anchor = "center")
+stats_rolls_one = ttk.Label(main, text = "", anchor = "center")
+stats_sum_one = ttk.Label(main, text = "", anchor = "center")
 
-stats_rolls_two = ttk.Label(main, text = f"{dice_rolls_two}", anchor = "center")
-stats_sum_two = ttk.Label(main, text = f"{dice_sum_two}", anchor = "center")
+stats_rolls_two = ttk.Label(main, text = "", anchor = "center")
+stats_sum_two = ttk.Label(main, text = "", anchor = "center")
 
-stats_rolls_three = ttk.Label(main, text = f"{dice_rolls_three}", anchor = "center")
-stats_sum_three = ttk.Label(main, text = f"{dice_sum_three}", anchor = "center")
+stats_rolls_three = ttk.Label(main, text = "", anchor = "center")
+stats_sum_three = ttk.Label(main, text = "", anchor = "center")
 
-stats_rolls_four = ttk.Label(main, text = f"{dice_rolls_four}", anchor = "center")
-stats_sum_four = ttk.Label(main, text = f"{dice_sum_four}", anchor = "center")
+stats_rolls_four = ttk.Label(main, text = "", anchor = "center")
+stats_sum_four = ttk.Label(main, text = "", anchor = "center")
 
-stats_rolls_five = ttk.Label(main, text = f"{dice_rolls_five}", anchor = "center")
-stats_sum_five = ttk.Label(main, text = f"{dice_sum_five}", anchor = "center")
+stats_rolls_five = ttk.Label(main, text = "", anchor = "center")
+stats_sum_five = ttk.Label(main, text = "", anchor = "center")
 
-stats_rolls_six = ttk.Label(main, text = f"{dice_rolls_six}", anchor = "center")
-stats_sum_six = ttk.Label(main, text = f"{dice_sum_six}", anchor = "center")
+stats_rolls_six = ttk.Label(main, text = "", anchor = "center")
+stats_sum_six = ttk.Label(main, text = "", anchor = "center")
 
 stats_total = ttk.Label(main, text = "stats_total", anchor = "w")
 stats_total_label = ttk.Label(main, text = "Sum of stats", anchor = "e")
@@ -106,7 +140,7 @@ image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", b
 
 randomize_button = ttk.Button(main, text = "Randomize")
 reset_button = ttk.Button(main, text = "Reset Options")
-roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats)
+roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_tdsix)
 
 #widget placement
 
