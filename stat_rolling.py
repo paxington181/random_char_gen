@@ -31,4 +31,15 @@ def tdsix_set():
     for i in range(0, 6):
         tdsix_set_list.append(tdsix())
         i +=1
-    
+    tds_set_sorted = sorted(tdsix_set_list)
+    tds_set_flipped = tds_set_sorted[::-1]
+    return tds_set_flipped
+
+def fdsix_set():
+    fdsix_set_list: list[list[int]] = []
+    for i in range(0, 6):
+        fdsix_set_list.append(fdsix())
+        i +=1
+    fds_set_sorted = sorted(fdsix_set_list)
+    fds_set_flipped = fds_set_sorted[::-1]
+    return fds_set_flipped

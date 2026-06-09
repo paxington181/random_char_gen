@@ -1,7 +1,7 @@
 import random
 import tkinter as tk
 from tkinter import ttk
-from stat_rolling import 
+
 
 def tdsix():
     tds_list = []
@@ -21,10 +21,10 @@ def fdsix():
     fds_flipped = fds_sorted[::-1]
     return fds_flipped[:3]
 
-def reroll_stats():
+def roll_stats():
     dice_rolls_one = fdsix()
     stats_rolls_one.configure(text = f"{dice_rolls_one}")
-    stats_sum_one.configure(text = f"{sum(dice_rolls_one)}")
+    stats_sum_one.configure(text = f"{dice_sum_one}")
     dice_rolls_two = fdsix()
     stats_rolls_two.configure(text = f"{dice_rolls_two}")
     stats_sum_two.configure(text = f"{sum(dice_rolls_two)}")
@@ -46,12 +46,18 @@ dice = fdsix()
 def roll_method(dice):
     return dice
 
-dice_rolls_one = dice
-dice_rolls_two = dice
-dice_rolls_three = dice
-dice_rolls_four = dice
-dice_rolls_five = dice
-dice_rolls_six = dice
+dice_rolls_one = ""
+dice_sum_one = ""
+dice_rolls_two = ""
+dice_sum_two = ""
+dice_rolls_three = ""
+dice_sum_three = ""
+dice_rolls_four = ""
+dice_sum_four = ""
+dice_rolls_five = ""
+dice_sum_five = ""
+dice_rolls_six = ""
+dice_sum_six = ""
 
 #main window organization
 main = tk.Tk()
@@ -139,7 +145,7 @@ image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", b
 
 randomize_button = ttk.Button(main, text = "Randomize")
 reset_button = ttk.Button(main, text = "Reset Options")
-reroll_stats_button = ttk.Button(main, text = "Reroll Stats", command = reroll_stats)
+roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats)
 
 #widget placement
 
