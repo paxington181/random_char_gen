@@ -1,50 +1,7 @@
 import random
 import tkinter as tk
 from tkinter import ttk
-
-
-def tdsix():
-    tds_list = []
-    for i in range(0, 3):
-        tds_list.append(random.randrange(1, 7))
-        i += 1
-    tds_sorted = sorted(tds_list)
-    tds_flipped = tds_sorted[::-1]
-    return tds_flipped
-
-def fdsix():
-    fds_list = []
-    for i in range(0, 4):
-        fds_list.append(random.randrange(1, 7))
-        i += 1
-    fds_sorted = sorted(fds_list)
-    fds_flipped = fds_sorted[::-1]
-    return fds_flipped[:3]
-
-def roll_stats():
-    dice_rolls_one = fdsix()
-    stats_rolls_one.configure(text = f"{dice_rolls_one}")
-    stats_sum_one.configure(text = f"{dice_sum_one}")
-    dice_rolls_two = fdsix()
-    stats_rolls_two.configure(text = f"{dice_rolls_two}")
-    stats_sum_two.configure(text = f"{sum(dice_rolls_two)}")
-    dice_rolls_three = fdsix()
-    stats_rolls_three.configure(text = f"{dice_rolls_three}")
-    stats_sum_three.configure(text = f"{sum(dice_rolls_three)}")
-    dice_rolls_four = fdsix()
-    stats_rolls_four.configure(text = f"{dice_rolls_four}")
-    stats_sum_four.configure(text = f"{sum(dice_rolls_four)}")
-    dice_rolls_five = fdsix()
-    stats_rolls_five.configure(text = f"{dice_rolls_five}")
-    stats_sum_five.configure(text = f"{sum(dice_rolls_five)}")
-    dice_rolls_six = fdsix()
-    stats_rolls_six.configure(text = f"{dice_rolls_six}")
-    stats_sum_six.configure(text = f"{sum(dice_rolls_six)}")
-
-dice = fdsix()
-
-def roll_method(dice):
-    return dice
+from stat_rolling import tdsix_set, fdsix_set, standard_set
 
 dice_rolls_one = ""
 dice_sum_one = ""
@@ -58,6 +15,10 @@ dice_rolls_five = ""
 dice_sum_five = ""
 dice_rolls_six = ""
 dice_sum_six = ""
+
+def roll_stats():
+    pass
+
 
 #main window organization
 main = tk.Tk()
@@ -94,22 +55,22 @@ stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "center")
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "center")
 
 stats_rolls_one = ttk.Label(main, text = f"{dice_rolls_one}", anchor = "center")
-stats_sum_one = ttk.Label(main, text = f"{sum(dice_rolls_one)}", anchor = "center")
+stats_sum_one = ttk.Label(main, text = f"{dice_sum_one}", anchor = "center")
 
 stats_rolls_two = ttk.Label(main, text = f"{dice_rolls_two}", anchor = "center")
-stats_sum_two = ttk.Label(main, text = f"{sum(dice_rolls_two)}", anchor = "center")
+stats_sum_two = ttk.Label(main, text = f"{dice_sum_two}", anchor = "center")
 
 stats_rolls_three = ttk.Label(main, text = f"{dice_rolls_three}", anchor = "center")
-stats_sum_three = ttk.Label(main, text = f"{sum(dice_rolls_three)}", anchor = "center")
+stats_sum_three = ttk.Label(main, text = f"{dice_sum_three}", anchor = "center")
 
 stats_rolls_four = ttk.Label(main, text = f"{dice_rolls_four}", anchor = "center")
-stats_sum_four = ttk.Label(main, text = f"{sum(dice_rolls_four)}", anchor = "center")
+stats_sum_four = ttk.Label(main, text = f"{dice_sum_four}", anchor = "center")
 
 stats_rolls_five = ttk.Label(main, text = f"{dice_rolls_five}", anchor = "center")
-stats_sum_five = ttk.Label(main, text = f"{sum(dice_rolls_five)}", anchor = "center")
+stats_sum_five = ttk.Label(main, text = f"{dice_sum_five}", anchor = "center")
 
 stats_rolls_six = ttk.Label(main, text = f"{dice_rolls_six}", anchor = "center")
-stats_sum_six = ttk.Label(main, text = f"{sum(dice_rolls_six)}", anchor = "center")
+stats_sum_six = ttk.Label(main, text = f"{dice_sum_six}", anchor = "center")
 
 stats_total = ttk.Label(main, text = "stats_total", anchor = "w")
 stats_total_label = ttk.Label(main, text = "Sum of stats", anchor = "e")
@@ -220,7 +181,7 @@ stats_percent_label.grid(row = 14, column = 0, columnspan = 2, sticky = "nswe")
 stats_percent.grid(row = 14, column = 2, sticky = "nswe")
 
 randomize_button.grid(row = 10, column = 10,  columnspan = 2, sticky = "nwe")
-reroll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
+roll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
 reset_button.grid(row = 14, column = 10,  columnspan = 2, sticky = "nwe")
 
 image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
