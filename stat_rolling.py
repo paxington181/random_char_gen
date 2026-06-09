@@ -40,7 +40,7 @@ def fdsix_set():
     fdsix_set_list: list[list[int]] = []
     sum = 0
     for i in range(0, 6):
-        roll = fdsix
+        roll = fdsix()
         fdsix_set_list.append(roll)
         sum += roll[0]
         i +=1

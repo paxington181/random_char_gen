@@ -54,6 +54,16 @@ def roll_stats_fdsix():
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
+def roll_method_change(event):
+    selection = stats_gen_selector.get()
+    match selection.strip():
+        case "Standard":
+            roll_stats_button.configure(command = roll_stats_standard)
+        case "3d6":
+            roll_stats_button.configure(command = roll_stats_tdsix)
+        case "4d6":
+            roll_stats_button.configure(command = roll_stats_fdsix)
+
 #main window organization
 main = tk.Tk()
 main.title("D&D Character Randomizer")
@@ -83,7 +93,8 @@ background_label = ttk.Label(main, text = "Background", anchor = "center")
 background_random_selection = ttk.Button(main, text = "Background Source Options")
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center")
-stats_gen_selector = ttk.Button(main, text = "Replace with Radio?")
+stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6"], state = "readonly")
+stats_gen_selector.set("Standard")
 
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "center")
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "center")
@@ -140,7 +151,7 @@ image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", b
 
 randomize_button = ttk.Button(main, text = "Randomize")
 reset_button = ttk.Button(main, text = "Reset Options")
-roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_tdsix)
+roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_standard)
 
 #widget placement
 
@@ -219,5 +230,8 @@ roll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
 reset_button.grid(row = 14, column = 10,  columnspan = 2, sticky = "nwe")
 
 image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
+
+#binds
+stats_gen_selector.bind("<<ComboboxSelected>>", roll_method_change)
 
 main.mainloop()
