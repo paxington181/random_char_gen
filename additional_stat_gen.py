@@ -22,32 +22,6 @@ def fdsix():
     fds_flipped: list[int] = fds_sorted[::-1]
     return fds_flipped
 
-def tdsix_set():
-    tdsix_set_list: list[list[int]] = []
-    sum = 0
-    for i in range(0, 6):
-        roll = tdsix()
-        tdsix_set_list.append(roll)
-        sum += roll[0]
-        i +=1
-    tds_set_sorted = sorted(tdsix_set_list)
-    tds_set_flipped = tds_set_sorted[::-1]
-    tds_set_flipped.append(sum)
-    return tds_set_flipped
-
-def fdsix_set():
-    fdsix_set_list: list[list[int]] = []
-    sum = 0
-    for i in range(0, 6):
-        roll = fdsix()
-        fdsix_set_list.append(roll)
-        sum += roll[0]
-        i +=1
-    fds_set_sorted = sorted(fdsix_set_list)
-    fds_set_flipped = fds_set_sorted[::-1]
-    fds_set_flipped.append(sum)
-    return fds_set_flipped
-
 def mdsix_set():
     mdsix_set_list: list[list[int]] = []
     sum = 0
@@ -65,3 +39,11 @@ def mdsix_set():
     mds_set_flipped = mds_set_sorted[::-1]
     mds_set_flipped.append(sum)
     return mds_set_flipped
+
+
+
+def main():
+    print(mdsix_set())
+    
+
+main()

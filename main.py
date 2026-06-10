@@ -1,7 +1,7 @@
 import random
 import tkinter as tk
 from tkinter import ttk
-from stat_rolling import tdsix_set, fdsix_set
+from stat_rolling import tdsix_set, fdsix_set, mdsix_set
 
 def roll_stats_standard():
     current_stats = [15, 14, 13, 12, 10, 8]
@@ -54,6 +54,23 @@ def roll_stats_fdsix():
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
+def roll_stats_mdsix():
+    current_stats = mdsix_set()
+    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
+    stats_sum_one.configure(text = f"{current_stats[0][0]}")
+    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
+    stats_sum_two.configure(text = f"{current_stats[1][0]}")
+    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
+    stats_sum_three.configure(text = f"{current_stats[2][0]}")
+    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
+    stats_sum_four.configure(text = f"{current_stats[3][0]}")
+    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
+    stats_sum_five.configure(text = f"{current_stats[4][0]}")
+    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
+    stats_sum_six.configure(text = f"{current_stats[5][0]}")
+    stats_total.configure(text = f" {current_stats[6]}")
+    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+
 def roll_method_change(event):
     selection = stats_gen_selector.get()
     match selection.strip():
@@ -63,6 +80,8 @@ def roll_method_change(event):
             roll_stats_button.configure(command = roll_stats_tdsix)
         case "4d6":
             roll_stats_button.configure(command = roll_stats_fdsix)
+        case "Mix d6":
+            roll_stats_button.configure(command = roll_stats_mdsix)
 
 #main window organization
 main = tk.Tk()
@@ -93,11 +112,11 @@ background_label = ttk.Label(main, text = "Background", anchor = "center")
 background_random_selection = ttk.Button(main, text = "Background Source Options")
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center")
-stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6"], state = "readonly")
+stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left")
 stats_gen_selector.set("Standard")
 
-stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "center")
-stats_to_assign = ttk.Label(main, text = "Stats", anchor = "center")
+stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e")
+stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e")
 
 stats_rolls_one = ttk.Label(main, text = "", anchor = "center")
 stats_sum_one = ttk.Label(main, text = "", anchor = "center")
@@ -117,11 +136,11 @@ stats_sum_five = ttk.Label(main, text = "", anchor = "center")
 stats_rolls_six = ttk.Label(main, text = "", anchor = "center")
 stats_sum_six = ttk.Label(main, text = "", anchor = "center")
 
-stats_total = ttk.Label(main, text = "stats_total", anchor = "w")
-stats_total_label = ttk.Label(main, text = "Sum of stats", anchor = "e")
+stats_total = ttk.Label(main, text = "", anchor = "w")
+stats_total_label = ttk.Label(main, text = "Total", anchor = "e")
 
-stats_percent = ttk.Label(main, text = "stats percent", anchor = "w")
-stats_percent_label = ttk.Label(main, text = "Percent of standard", anchor = "e")
+stats_percent = ttk.Label(main, text = "%", anchor = "center")
+stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w")
 
 str_label = ttk.Label(main, text = "Str", anchor = "center")
 str_stat = ttk.Entry(main, justify = "right")
@@ -219,11 +238,11 @@ stats_sum_five.grid(row = 12, column = 5, sticky = "nswe")
 stats_rolls_six.grid(row = 11, column = 6, sticky = "nswe")
 stats_sum_six.grid(row = 12, column = 6, sticky = "nswe")
 
-stats_total_label.grid(row = 13, column = 0, columnspan = 2, sticky = "nswe")
-stats_total.grid(row = 13, column = 2, sticky = "nswe")
+stats_total_label.grid(row = 13, column = 0, sticky = "nswe")
+stats_total.grid(row = 13, column = 1, sticky = "nswe")
 
-stats_percent_label.grid(row = 14, column = 0, columnspan = 2, sticky = "nswe")
-stats_percent.grid(row = 14, column = 2, sticky = "nswe")
+stats_percent_label.grid(row = 14, column = 1, columnspan = 2, sticky = "nswe")
+stats_percent.grid(row = 14, column = 0, sticky = "nswe")
 
 randomize_button.grid(row = 10, column = 10,  columnspan = 2, sticky = "nwe")
 roll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
