@@ -33,3 +33,29 @@ eberron_arti_sub: str = ["alchemist", "armorer", "artillerist", "battle smith", 
 base_background: str = ["acolyte", "artisan", "charlatan", "criminal", "entertainer", "farmer", "guard", "guide", "hermit", "merchant", "noble", "sage", "sailor", "scribe", "soldier", "wayfarer"]
 eberron_background: str = ["aberrant heir", "archaeologist", "house agent", "house cannith heir", "house deneith heir", "house ghallanda heir", "house jorasco heir", "house kundarak heir", "house lyrandar heir", "house medani heir", "house orien heir", "house phiarlan heir", "house sivis heir", "house tharashk heir", "house vadalis heir", "inquisitive"]
 
+def class_roll():
+    selected_classes = base_classes + eberron_classes
+    random_class = selected_classes[random.randrange(0, len(selected_classes))]
+    return random_class.title()
+
+def species_roll(selected_species):
+    random_species = selected_species[(random.randrange(0, len(selected_species)))]
+    if random_species == "dragonborn":
+        return f"Dragonborn, {dragonborn_sub[random.randrange(0, len(dragonborn_sub))].title()}"
+    elif random_species == "elf":
+        return f"{elf_sub[random.randrange(0, len(elf_sub))].title()}"
+    elif random_species == "gnome":
+        return f"{gnome_sub[random.randrange(0, len(gnome_sub))].title()}"
+    elif random_species == "goliath":
+        return f"Goliath, {goliath_sub[random.randrange(0, len(goliath_sub))].title()}"
+    elif random_species == "tiefling":
+        return f"{tiefling_sub[random.randrange(0, len(tiefling_sub))].title()} Tiefling"
+    elif random_species == "hoofborn":
+        return f"{hoofborn_sub[random.randrange(0, len(hoofborn_sub))].title()} Hoofborn"
+    elif random_species == "kappa":
+        return f"{kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa"
+    elif random_species == "shifter":
+        return f"{shifter_sub[random.randrage(0, len(shifter_sub))].title()} Shifter"
+    else:
+        return f"{random_species.title()}"
+    
