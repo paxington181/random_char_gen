@@ -1,5 +1,5 @@
-import random
 import tkinter as tk
+from tkinter import PhotoImage
 from tkinter import ttk
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
 from cssb import class_roll, species_roll, background_roll
@@ -99,12 +99,15 @@ main.title("D&D Character Randomizer")
 main.geometry('900x425')
 
 #geometry control
-
-main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), uniform = "a")
+main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
-#widget creation
+#background
+background = PhotoImage(file = "wooden-floor-background.png")
+background_label = ttk.Label(main, image = background, anchor = "nw")
+background_label.grid(row = 0, column = 0, rowspan = 14, columnspan = 12)
 
+#widget creation
 class_randomized = ttk.Label(main, text = "cr", anchor = "center")
 class_label = ttk.Label(main, text = "Class", anchor = "center")
 class_random_selection = ttk.Button(main, text = "Class Source Options")
