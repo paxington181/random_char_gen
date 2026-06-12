@@ -36,9 +36,36 @@ eberron_background: str = ["aberrant heir", "archaeologist", "house agent", "hou
 def class_roll():
     selected_classes = base_classes + eberron_classes
     random_class = selected_classes[random.randrange(0, len(selected_classes))]
-    return random_class.title()
+    if random_class == "barbarian":
+        random_sub = base_barb_sub[random.randrange(0, len(base_barb_sub))]
+    if random_class == "bard":
+        random_sub = base_bard_sub[random.randrange(0, len(base_bard_sub))]
+    if random_class == "cleric":
+        random_sub = base_cler_sub[random.randrange(0, len(base_cler_sub))]
+    if random_class == "druid":
+        random_sub = base_drui_sub[random.randrange(0, len(base_drui_sub))]
+    if random_class == "fighter":
+        random_sub = base_figh_sub[random.randrange(0, len(base_figh_sub))]
+    if random_class == "monk":
+        random_sub = base_monk_sub[random.randrange(0, len(base_monk_sub))]
+    if random_class == "paladin":
+        random_sub = base_pala_sub[random.randrange(0, len(base_pala_sub))]
+    if random_class == "ranger":
+        random_sub = base_rang_sub[random.randrange(0, len(base_rang_sub))]
+    if random_class == "rogue":
+        random_sub = base_rogu_sub[random.randrange(0, len(base_rogu_sub))]
+    if random_class == "sorcerer":
+        random_sub = base_sorc_sub[random.randrange(0, len(base_sorc_sub))]
+    if random_class == "warlock":
+        random_sub = base_warl_sub[random.randrange(0, len(base_warl_sub))]
+    if random_class == "wizard":
+        random_sub = base_wiza_sub[random.randrange(0, len(base_wiza_sub))]
+    if random_class == "artificer":
+        random_sub = eberron_arti_sub[random.randrange(0, len(eberron_arti_sub))]
+    return random_class.title(), random_sub.title()
 
-def species_roll(selected_species):
+def species_roll():
+    selected_species = base_species + eberron_species + mythozoology_species
     random_species = selected_species[(random.randrange(0, len(selected_species)))]
     if random_species == "dragonborn":
         return f"Dragonborn, {dragonborn_sub[random.randrange(0, len(dragonborn_sub))].title()}"
@@ -55,7 +82,11 @@ def species_roll(selected_species):
     elif random_species == "kappa":
         return f"{kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa"
     elif random_species == "shifter":
-        return f"{shifter_sub[random.randrage(0, len(shifter_sub))].title()} Shifter"
+        return f"{shifter_sub[random.randrange(0, len(shifter_sub))].title()} Shifter"
     else:
-        return f"{random_species.title()}"
+        return random_species.title()
     
+def background_roll(): 
+    selected_background = base_background + eberron_background
+    random_background = selected_background[random.randrange(0, len(selected_background))]
+    return random_background.title()

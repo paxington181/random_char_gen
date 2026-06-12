@@ -1,7 +1,7 @@
 import random
-
+from cssb import *
 
 def main():
-    pass
+    print(species_roll())
     
 main()

@@ -2,6 +2,16 @@ import random
 import tkinter as tk
 from tkinter import ttk
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
+from cssb import class_roll, species_roll, background_roll
+
+def update_all():
+    rclass, rsub = class_roll()
+    class_randomized.configure(text = f"{rclass}")
+    subclass_randomized.configure(text = f"{rsub}")
+    rspec = species_roll()
+    species_randomized.configure(text = f"{rspec}")
+    rback = background_roll()
+    background_randomized.configure(text = f"{rback}")
 
 def roll_stats_standard():
     current_stats = [15, 14, 13, 12, 10, 8]
@@ -95,19 +105,19 @@ main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform
 
 #widget creation
 
-class_randomized = ttk.Label(main, text = "cr", background = "pink", anchor = "center")
+class_randomized = ttk.Label(main, text = "cr", anchor = "center")
 class_label = ttk.Label(main, text = "Class", anchor = "center")
 class_random_selection = ttk.Button(main, text = "Class Source Options")
 
-subclass_randomized = ttk.Label(main, text = "sr", background = "blue", anchor = "center")
+subclass_randomized = ttk.Label(main, text = "sr", anchor = "center")
 subclass_label = ttk.Label(main, text = "Subclass", anchor = "center")
 subclass_random_selection = ttk.Button(main, text = "Subclass Source Options")
 
-species_randomized = ttk.Label(main, text = "spr", background = "green", anchor = "center")
+species_randomized = ttk.Label(main, text = "spr", anchor = "center")
 species_label = ttk.Label(main, text = "Species", anchor = "center")
 species_random_selection = ttk.Button(main, text = "Species Source Options")
 
-background_randomized = ttk.Label(main, text = "bgr", background = "red", anchor = "center")
+background_randomized = ttk.Label(main, text = "bgr", anchor = "center")
 background_label = ttk.Label(main, text = "Background", anchor = "center")
 background_random_selection = ttk.Button(main, text = "Background Source Options")
 
@@ -168,7 +178,7 @@ cha_modifier = ttk.Label(main, text = "+0")
 
 image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
 
-randomize_button = ttk.Button(main, text = "Randomize")
+randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
 reset_button = ttk.Button(main, text = "Reset Options")
 roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_standard)
 
