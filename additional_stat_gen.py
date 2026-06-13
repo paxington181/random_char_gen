@@ -35,8 +35,8 @@ def mdsix_set():
         mdsix_set_list.append(roll)
         sum += roll[0]
         i +=1
-    mds_set_sorted = sorted(mdsix_set_list)
-    mds_set_flipped = mds_set_sorted[::-1]
+    mds_set_sorted: list[int] = sorted(mdsix_set_list)
+    mds_set_flipped: list[int] = mds_set_sorted[::-1]
     mds_set_flipped.append(sum)
     return mds_set_flipped
 
