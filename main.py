@@ -105,14 +105,15 @@ main.title("D&D Character Randomizer")
 main.geometry('900x500') #425 with 14 columns
 
 #geometry control
-main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), weight = 1, uniform = "a")
+main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
+main.rowconfigure(15, weight = 2, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
 #background
 #background = PhotoImage(file = "wooden-floor-background.png")
 #background_label = ttk.Label(main, image = background, anchor = "nw")
 #background_label.grid(row = 0, column = 0, rowspan = 14, columnspan = 12)
-main.configure(bg = "goldenrod3")
+main.configure(bg = "tan1")
 
 #widget creation
 class_randomized = ttk.Label(main, text = "cr", anchor = "center")
@@ -198,7 +199,7 @@ roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_s
 
 class_randomized.grid(row = 0, column = 0, columnspan = 3, sticky = "nwe")
 class_label.grid(row = 1, column = 0, columnspan = 3, sticky = "nwe")
-class_random_selection.grid(row = 15, column = 0, rowspan = 2, columnspan = 3, sticky = "nwe")
+class_random_selection.grid(row = 15, column = 0, columnspan = 3, sticky = "nwe")
 
 subclass_randomized.grid(row = 0, column = 3, columnspan = 3, sticky = "nwe")
 subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
@@ -206,11 +207,11 @@ subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
 
 species_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
 species_label.grid(row = 1, column = 6, columnspan = 3, sticky = "nwe")
-species_random_selection.grid(row = 15, column = 6, rowspan = 2, columnspan = 3, sticky = "nwe")
+species_random_selection.grid(row = 15, column = 6, columnspan = 3, sticky = "nwe")
 
 background_randomized.grid(row = 0, column = 9, columnspan = 3, sticky = "nwe")
 background_label.grid(row = 1, column = 9, columnspan = 3, sticky = "nwe")
-background_random_selection.grid(row = 15, column = 9,rowspan = 2, columnspan = 3, sticky = "nwe")
+background_random_selection.grid(row = 15, column = 9, columnspan = 3, sticky = "nwe")
 
 str_label.grid(row = 4, column = 0, sticky = "nwe")
 str_stat.grid(row = 4, column = 1, sticky = "nwe")
