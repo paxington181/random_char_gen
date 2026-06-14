@@ -33,8 +33,7 @@ eberron_arti_sub: list[str] = ["alchemist", "armorer", "artillerist", "battle sm
 base_background: list[str] = ["acolyte", "artisan", "charlatan", "criminal", "entertainer", "farmer", "guard", "guide", "hermit", "merchant", "noble", "sage", "sailor", "scribe", "soldier", "wayfarer"]
 eberron_background: list[str] = ["aberrant heir", "archaeologist", "house agent", "house cannith heir", "house deneith heir", "house ghallanda heir", "house jorasco heir", "house kundarak heir", "house lyrandar heir", "house medani heir", "house orien heir", "house phiarlan heir", "house sivis heir", "house tharashk heir", "house vadalis heir", "inquisitive"]
 
-def class_roll():
-    selected_classes = base_classes + eberron_classes
+def class_roll(selected_classes):
     random_class = selected_classes[random.randrange(0, len(selected_classes))]
     if random_class == "barbarian":
         random_sub = base_barb_sub[random.randrange(0, len(base_barb_sub))]
@@ -64,8 +63,7 @@ def class_roll():
         random_sub = eberron_arti_sub[random.randrange(0, len(eberron_arti_sub))]
     return random_class.title(), random_sub.title()
 
-def species_roll():
-    selected_species = base_species + eberron_species + mythozoology_species
+def species_roll(selected_species):
     random_species = selected_species[(random.randrange(0, len(selected_species)))]
     if random_species == "dragonborn":
         return f"Dragonborn, {dragonborn_sub[random.randrange(0, len(dragonborn_sub))].title()} Heritage"
@@ -86,7 +84,6 @@ def species_roll():
     else:
         return random_species.title()
     
-def background_roll(): 
-    selected_background = base_background + eberron_background
+def background_roll(selected_background): 
     random_background = selected_background[random.randrange(0, len(selected_background))]
     return random_background.title()

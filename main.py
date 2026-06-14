@@ -1,16 +1,22 @@
 import tkinter as tk
+from tkinter import Listbox
 from tkinter import PhotoImage
 from tkinter import ttk
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
-from cssb import class_roll, species_roll, background_roll
+from cssb import *
+
+selected_classes = base_classes
+selected_species = base_species
+selected_backgrounds = base_background
+
 
 def update_all():
-    rclass, rsub = class_roll()
+    rclass, rsub = class_roll(selected_classes)
     class_randomized.configure(text = f"{rclass}")
     subclass_randomized.configure(text = f"{rsub}")
-    rspec = species_roll()
+    rspec = species_roll(selected_species)
     species_randomized.configure(text = f"{rspec}")
-    rback = background_roll()
+    rback = background_roll(selected_backgrounds)
     background_randomized.configure(text = f"{rback}")
 
 def roll_stats_standard():
@@ -110,19 +116,21 @@ background_label.grid(row = 0, column = 0, rowspan = 14, columnspan = 12)
 #widget creation
 class_randomized = ttk.Label(main, text = "cr", anchor = "center")
 class_label = ttk.Label(main, text = "Class", anchor = "center")
-class_random_selection = ttk.Button(main, text = "Class Source Options")
+class_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+class_random_selection.insert(0, "2024 PHB")
+class_random_selection.insert(1, "Eberron")
 
 subclass_randomized = ttk.Label(main, text = "sr", anchor = "center")
 subclass_label = ttk.Label(main, text = "Subclass", anchor = "center")
-subclass_random_selection = ttk.Button(main, text = "Subclass Source Options")
+#subclass_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 
 species_randomized = ttk.Label(main, text = "spr", anchor = "center")
 species_label = ttk.Label(main, text = "Species", anchor = "center")
-species_random_selection = ttk.Button(main, text = "Species Source Options")
+species_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 
 background_randomized = ttk.Label(main, text = "bgr", anchor = "center")
 background_label = ttk.Label(main, text = "Background", anchor = "center")
-background_random_selection = ttk.Button(main, text = "Background Source Options")
+background_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center")
 stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left")
@@ -193,7 +201,7 @@ class_random_selection.grid(row = 2, column = 0, columnspan = 3, sticky = "nwe")
 
 subclass_randomized.grid(row = 0, column = 3, columnspan = 3, sticky = "nwe")
 subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
-subclass_random_selection.grid(row = 2, column = 3, columnspan=3, sticky = "nwe")
+#subclass_random_selection.grid(row = 2, column = 3, columnspan=3, sticky = "nwe")
 
 species_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
 species_label.grid(row = 1, column = 6, columnspan = 3, sticky = "nwe")
