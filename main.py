@@ -113,7 +113,7 @@ main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform
 #background = PhotoImage(file = "wooden-floor-background.png")
 #background_label = ttk.Label(main, image = background, anchor = "nw")
 #background_label.grid(row = 0, column = 0, rowspan = 14, columnspan = 12)
-main.configure(bg = "tan1")
+main.configure(bg = "navajo white")
 
 #widget creation
 class_randomized = ttk.Label(main, text = "cr", anchor = "center")
@@ -129,10 +129,15 @@ subclass_label = ttk.Label(main, text = "Subclass", anchor = "center")
 species_randomized = ttk.Label(main, text = "spr", anchor = "center")
 species_label = ttk.Label(main, text = "Species", anchor = "center")
 species_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+species_random_selection.insert(0, "2024 PHB")
+species_random_selection.insert(1, "Eberron")
+species_random_selection.insert(2, "Mythozoology")
 
 background_randomized = ttk.Label(main, text = "bgr", anchor = "center")
 background_label = ttk.Label(main, text = "Background", anchor = "center")
 background_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+background_random_selection.insert(0, "2024 PHB")
+background_random_selection.insert(1, "Eberron")
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center")
 stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left")
