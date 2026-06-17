@@ -197,7 +197,7 @@ cha_modifier = ttk.Label(main, text = "+0")
 image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
 
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
-reset_button = ttk.Button(main, text = "Reset Options")
+#roll_both_button = ttk.Button(main, text = "Rando and Roll", command = (update_all, roll_stats_standard))
 roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_standard)
 
 #widget placement
@@ -274,7 +274,7 @@ stats_percent.grid(row = 14, column = 0, sticky = "nswe")
 
 randomize_button.grid(row = 10, column = 10,  columnspan = 2, sticky = "nwe")
 roll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
-reset_button.grid(row = 13, column = 10,  columnspan = 2, sticky = "nwe")
+#roll_both_button.grid(row = 11, column = 10,  columnspan = 2, sticky = "nwe")
 
 image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
 
