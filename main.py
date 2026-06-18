@@ -5,6 +5,8 @@ from tkinter.ttk import *
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
 from cssb import *
 
+background_color = "black"
+foreground_color = "light grey"
 selected_classes = base_classes
 selected_species = base_species
 selected_backgrounds = base_background
@@ -103,7 +105,7 @@ def roll_method_change(event):
 main = tk.Tk()
 main.title("D&D Character Randomizer")
 main.geometry('900x500') #425 with 14 columns
-main.configure(bg = "black")
+main.configure(bg = background_color)
 
 #geometry control
 main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
@@ -111,85 +113,85 @@ main.rowconfigure(15, weight = 2, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
 #widget creation
-class_randomized = ttk.Label(main, text = "cr", anchor = "center", background = "black", foreground = "light grey")
-class_label = ttk.Label(main, text = "Class", anchor = "center", background = "black", foreground = "light grey")
+class_randomized = ttk.Label(main, text = "cr", anchor = "center", background = background_color, foreground = foreground_color)
+class_label = ttk.Label(main, text = "Class", anchor = "center", background = background_color, foreground = foreground_color)
 #class_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 #class_random_selection.insert(0, "2024 PHB")
 #class_random_selection.insert(1, "Eberron")
 
-subclass_randomized = ttk.Label(main, text = "sr", anchor = "center", background = "black", foreground = "light grey")
-subclass_label = ttk.Label(main, text = "Subclass", anchor = "center", background = "black", foreground = "light grey")
+subclass_randomized = ttk.Label(main, text = "sr", anchor = "center", background = background_color, foreground = foreground_color)
+subclass_label = ttk.Label(main, text = "Subclass", anchor = "center", background = background_color, foreground = foreground_color)
 #subclass_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 
-species_randomized = ttk.Label(main, text = "spr", anchor = "center", background = "black", foreground = "light grey")
-species_label = ttk.Label(main, text = "Species", anchor = "center", background = "black", foreground = "light grey")
+species_randomized = ttk.Label(main, text = "spr", anchor = "center", background = background_color, foreground = foreground_color)
+species_label = ttk.Label(main, text = "Species", anchor = "center", background = background_color, foreground = foreground_color)
 #species_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 #species_random_selection.insert(0, "2024 PHB")
 #species_random_selection.insert(1, "Eberron")
 #species_random_selection.insert(2, "Mythozoology")
 
-background_randomized = ttk.Label(main, text = "bgr", anchor = "center", background = "black", foreground = "light grey")
-background_label = ttk.Label(main, text = "Background", anchor = "center", background = "black", foreground = "light grey")
+background_randomized = ttk.Label(main, text = "bgr", anchor = "center", background = background_color, foreground = foreground_color)
+background_label = ttk.Label(main, text = "Background", anchor = "center", background = background_color, foreground = foreground_color)
 #background_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 #background_random_selection.insert(0, "2024 PHB")
 #background_random_selection.insert(1, "Eberron")
 
-stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = "black", foreground = "light grey")
-stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left", background = "black", foreground = "black")
+stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = background_color, foreground = foreground_color)
+stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left", background = background_color, foreground = background_color)
 stats_gen_selector.set("Standard")
 
-stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = "black", foreground = "light grey")
-stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = "black", foreground = "light grey")
+stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = background_color, foreground = foreground_color)
+stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = background_color, foreground = foreground_color)
 
-stats_rolls_one = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_one = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_one = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_one = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_two = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_two = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_two = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_two = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_three = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_three = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_three = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_three = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_four = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_four = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_four = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_four = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_five = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_five = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_five = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_five = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_six = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
-stats_sum_six = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_rolls_six = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_six = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_total = ttk.Label(main, text = "", anchor = "w", background = "black", foreground = "light grey")
-stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = "black", foreground = "light grey")
+stats_total = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
+stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = background_color, foreground = foreground_color)
 
-stats_percent = ttk.Label(main, text = "%", anchor = "center", background = "black", foreground = "light grey")
-stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", background = "black", foreground = "light grey")
+stats_percent = ttk.Label(main, text = "%", anchor = "center", background = background_color, foreground = foreground_color)
+stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", background = background_color, foreground = foreground_color)
 
-str_label = ttk.Label(main, text = "Str", anchor = "center", background = "black", foreground = "light grey")
-str_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-str_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+str_label = ttk.Label(main, text = "Str", anchor = "center", background = background_color, foreground = foreground_color)
+str_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-dex_label = ttk.Label(main, text = "Dex", anchor = "center", background = "black", foreground = "light grey")
-dex_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-dex_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+dex_label = ttk.Label(main, text = "Dex", anchor = "center", background = background_color, foreground = foreground_color)
+dex_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+dex_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-con_label = ttk.Label(main, text = "Con", anchor = "center", background = "black", foreground = "light grey")
-con_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-con_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+con_label = ttk.Label(main, text = "Con", anchor = "center", background = background_color, foreground = foreground_color)
+con_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+con_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-int_label = ttk.Label(main, text = "Int", anchor = "center", background = "black", foreground = "light grey")
-int_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-int_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+int_label = ttk.Label(main, text = "Int", anchor = "center", background = background_color, foreground = foreground_color)
+int_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+int_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-wis_label = ttk.Label(main, text = "Wis", anchor = "center", background = "black", foreground = "light grey")
-wis_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-wis_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+wis_label = ttk.Label(main, text = "Wis", anchor = "center", background = background_color, foreground = foreground_color)
+wis_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+wis_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-cha_label = ttk.Label(main, text = "Cha", anchor = "center", background = "black", foreground = "light grey")
-cha_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
-cha_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
+cha_label = ttk.Label(main, text = "Cha", anchor = "center", background = background_color, foreground = foreground_color)
+cha_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+cha_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-#image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
+#image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = background_color)
 
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
 #roll_both_button = ttk.Button(main, text = "Rando and Roll", command = (update_all, roll_stats_standard))
