@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import Listbox
-from tkinter import PhotoImage
+from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import *
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
 from cssb import *
 
@@ -103,98 +103,93 @@ def roll_method_change(event):
 main = tk.Tk()
 main.title("D&D Character Randomizer")
 main.geometry('900x500') #425 with 14 columns
+main.configure(bg = "black")
 
 #geometry control
 main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
 main.rowconfigure(15, weight = 2, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
-#background
-#background = PhotoImage(file = "wooden-floor-background.png")
-#background_label = ttk.Label(main, image = background, anchor = "nw")
-#background_label.grid(row = 0, column = 0, rowspan = 14, columnspan = 12)
-main.configure(bg = "navajo white")
-
 #widget creation
-class_randomized = ttk.Label(main, text = "cr", anchor = "center")
-class_label = ttk.Label(main, text = "Class", anchor = "center")
-class_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
-class_random_selection.insert(0, "2024 PHB")
-class_random_selection.insert(1, "Eberron")
+class_randomized = ttk.Label(main, text = "cr", anchor = "center", background = "black", foreground = "light grey")
+class_label = ttk.Label(main, text = "Class", anchor = "center", background = "black", foreground = "light grey")
+#class_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+#class_random_selection.insert(0, "2024 PHB")
+#class_random_selection.insert(1, "Eberron")
 
-subclass_randomized = ttk.Label(main, text = "sr", anchor = "center")
-subclass_label = ttk.Label(main, text = "Subclass", anchor = "center")
+subclass_randomized = ttk.Label(main, text = "sr", anchor = "center", background = "black", foreground = "light grey")
+subclass_label = ttk.Label(main, text = "Subclass", anchor = "center", background = "black", foreground = "light grey")
 #subclass_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
 
-species_randomized = ttk.Label(main, text = "spr", anchor = "center")
-species_label = ttk.Label(main, text = "Species", anchor = "center")
-species_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
-species_random_selection.insert(0, "2024 PHB")
-species_random_selection.insert(1, "Eberron")
-species_random_selection.insert(2, "Mythozoology")
+species_randomized = ttk.Label(main, text = "spr", anchor = "center", background = "black", foreground = "light grey")
+species_label = ttk.Label(main, text = "Species", anchor = "center", background = "black", foreground = "light grey")
+#species_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+#species_random_selection.insert(0, "2024 PHB")
+#species_random_selection.insert(1, "Eberron")
+#species_random_selection.insert(2, "Mythozoology")
 
-background_randomized = ttk.Label(main, text = "bgr", anchor = "center")
-background_label = ttk.Label(main, text = "Background", anchor = "center")
-background_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
-background_random_selection.insert(0, "2024 PHB")
-background_random_selection.insert(1, "Eberron")
+background_randomized = ttk.Label(main, text = "bgr", anchor = "center", background = "black", foreground = "light grey")
+background_label = ttk.Label(main, text = "Background", anchor = "center", background = "black", foreground = "light grey")
+#background_random_selection = Listbox(main, selectmode = tk.MULTIPLE)
+#background_random_selection.insert(0, "2024 PHB")
+#background_random_selection.insert(1, "Eberron")
 
-stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center")
-stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left")
+stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = "black", foreground = "light grey")
+stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left", background = "black", foreground = "black")
 stats_gen_selector.set("Standard")
 
-stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e")
-stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e")
+stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = "black", foreground = "light grey")
+stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = "black", foreground = "light grey")
 
-stats_rolls_one = ttk.Label(main, text = "", anchor = "center")
-stats_sum_one = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_one = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_one = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_rolls_two = ttk.Label(main, text = "", anchor = "center")
-stats_sum_two = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_two = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_two = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_rolls_three = ttk.Label(main, text = "", anchor = "center")
-stats_sum_three = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_three = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_three = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_rolls_four = ttk.Label(main, text = "", anchor = "center")
-stats_sum_four = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_four = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_four = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_rolls_five = ttk.Label(main, text = "", anchor = "center")
-stats_sum_five = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_five = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_five = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_rolls_six = ttk.Label(main, text = "", anchor = "center")
-stats_sum_six = ttk.Label(main, text = "", anchor = "center")
+stats_rolls_six = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
+stats_sum_six = ttk.Label(main, text = "", anchor = "center", background = "black", foreground = "light grey")
 
-stats_total = ttk.Label(main, text = "", anchor = "w")
-stats_total_label = ttk.Label(main, text = "Total", anchor = "e")
+stats_total = ttk.Label(main, text = "", anchor = "w", background = "black", foreground = "light grey")
+stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = "black", foreground = "light grey")
 
-stats_percent = ttk.Label(main, text = "%", anchor = "center")
-stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w")
+stats_percent = ttk.Label(main, text = "%", anchor = "center", background = "black", foreground = "light grey")
+stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", background = "black", foreground = "light grey")
 
-str_label = ttk.Label(main, text = "Str", anchor = "center")
-str_stat = ttk.Entry(main, justify = "right")
-str_modifier = ttk.Label(main, text = "+0")
+str_label = ttk.Label(main, text = "Str", anchor = "center", background = "black", foreground = "light grey")
+str_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+str_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-dex_label = ttk.Label(main, text = "Dex", anchor = "center")
-dex_stat = ttk.Entry(main, justify = "right")
-dex_modifier = ttk.Label(main, text = "+0")
+dex_label = ttk.Label(main, text = "Dex", anchor = "center", background = "black", foreground = "light grey")
+dex_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+dex_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-con_label = ttk.Label(main, text = "Con", anchor = "center")
-con_stat = ttk.Entry(main, justify = "right")
-con_modifier = ttk.Label(main, text = "+0")
+con_label = ttk.Label(main, text = "Con", anchor = "center", background = "black", foreground = "light grey")
+con_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+con_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-int_label = ttk.Label(main, text = "Int", anchor = "center")
-int_stat = ttk.Entry(main, justify = "right")
-int_modifier = ttk.Label(main, text = "+0")
+int_label = ttk.Label(main, text = "Int", anchor = "center", background = "black", foreground = "light grey")
+int_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+int_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-wis_label = ttk.Label(main, text = "Wis", anchor = "center")
-wis_stat = ttk.Entry(main, justify = "right")
-wis_modifier = ttk.Label(main, text = "+0")
+wis_label = ttk.Label(main, text = "Wis", anchor = "center", background = "black", foreground = "light grey")
+wis_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+wis_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-cha_label = ttk.Label(main, text = "Cha", anchor = "center")
-cha_stat = ttk.Entry(main, justify = "right")
-cha_modifier = ttk.Label(main, text = "+0")
+cha_label = ttk.Label(main, text = "Cha", anchor = "center", background = "black", foreground = "light grey")
+cha_stat = ttk.Entry(main, justify = "right", background = "black", foreground = "light grey")
+cha_modifier = ttk.Label(main, text = "+0", background = "black", foreground = "light grey")
 
-image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
+#image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = "black")
 
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
 #roll_both_button = ttk.Button(main, text = "Rando and Roll", command = (update_all, roll_stats_standard))
@@ -204,7 +199,7 @@ roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_s
 
 class_randomized.grid(row = 0, column = 0, columnspan = 3, sticky = "nwe")
 class_label.grid(row = 1, column = 0, columnspan = 3, sticky = "nwe")
-class_random_selection.grid(row = 15, column = 0, columnspan = 3, sticky = "nwe")
+#class_random_selection.grid(row = 15, column = 0, columnspan = 3, sticky = "nwe")
 
 subclass_randomized.grid(row = 0, column = 3, columnspan = 3, sticky = "nwe")
 subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
@@ -212,11 +207,11 @@ subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
 
 species_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
 species_label.grid(row = 1, column = 6, columnspan = 3, sticky = "nwe")
-species_random_selection.grid(row = 15, column = 6, columnspan = 3, sticky = "nwe")
+#species_random_selection.grid(row = 15, column = 6, columnspan = 3, sticky = "nwe")
 
 background_randomized.grid(row = 0, column = 9, columnspan = 3, sticky = "nwe")
 background_label.grid(row = 1, column = 9, columnspan = 3, sticky = "nwe")
-background_random_selection.grid(row = 15, column = 9, columnspan = 3, sticky = "nwe")
+#background_random_selection.grid(row = 15, column = 9, columnspan = 3, sticky = "nwe")
 
 str_label.grid(row = 4, column = 0, sticky = "nwe")
 str_stat.grid(row = 4, column = 1, sticky = "nwe")
@@ -276,7 +271,7 @@ randomize_button.grid(row = 10, column = 10,  columnspan = 2, sticky = "nwe")
 roll_stats_button.grid(row = 10, column = 8,  columnspan = 2, sticky = "nwe")
 #roll_both_button.grid(row = 11, column = 10,  columnspan = 2, sticky = "nwe")
 
-image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
+#image_placeholder.grid(row = 4, column =6 , rowspan = 6, columnspan = 6, sticky = "nsew")
 
 #binds
 stats_gen_selector.bind("<<ComboboxSelected>>", roll_method_change)
