@@ -5,8 +5,8 @@ from tkinter.ttk import *
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set
 from cssb import *
 
-background_color = "black"
-foreground_color = "light grey"
+background_color = "gray27"
+foreground_color = "gray69"
 selected_classes = base_classes
 selected_species = base_species
 selected_backgrounds = base_background
@@ -167,28 +167,28 @@ stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = b
 stats_percent = ttk.Label(main, text = "%", anchor = "center", background = background_color, foreground = foreground_color)
 stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", background = background_color, foreground = foreground_color)
 
-str_label = ttk.Label(main, text = "Str", anchor = "center", background = background_color, foreground = foreground_color)
-str_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+str_label = ttk.Label(main, text = "Str", anchor = "e", background = background_color, foreground = foreground_color)
+str_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-dex_label = ttk.Label(main, text = "Dex", anchor = "center", background = background_color, foreground = foreground_color)
-dex_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+dex_label = ttk.Label(main, text = "Dex", anchor = "e", background = background_color, foreground = foreground_color)
+dex_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 dex_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-con_label = ttk.Label(main, text = "Con", anchor = "center", background = background_color, foreground = foreground_color)
-con_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+con_label = ttk.Label(main, text = "Con", anchor = "e", background = background_color, foreground = foreground_color)
+con_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 con_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-int_label = ttk.Label(main, text = "Int", anchor = "center", background = background_color, foreground = foreground_color)
-int_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+int_label = ttk.Label(main, text = "Int", anchor = "e", background = background_color, foreground = foreground_color)
+int_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 int_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-wis_label = ttk.Label(main, text = "Wis", anchor = "center", background = background_color, foreground = foreground_color)
-wis_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+wis_label = ttk.Label(main, text = "Wis", anchor = "e", background = background_color, foreground = foreground_color)
+wis_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 wis_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-cha_label = ttk.Label(main, text = "Cha", anchor = "center", background = background_color, foreground = foreground_color)
-cha_stat = ttk.Entry(main, justify = "right", background = background_color, foreground = foreground_color)
+cha_label = ttk.Label(main, text = "Cha", anchor = "e", background = background_color, foreground = foreground_color)
+cha_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 cha_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
 #image_placeholder = ttk.Label(main, text = "Replace with Character Pixel Art", background = background_color)
