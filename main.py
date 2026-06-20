@@ -7,9 +7,9 @@ from cssb import *
 
 background_color = "gray27"
 foreground_color = "gray69"
-selected_classes = base_classes
-selected_species = base_species
-selected_backgrounds = base_background
+selected_classes = base_classes + eberron_classes
+selected_species = base_species + eberron_species + ravenloft_species + mythozoology_species
+selected_backgrounds = base_background + eberron_background + ravenloft_background
 
 
 def update_all():
