@@ -65,3 +65,53 @@ def mdsix_set():
     mds_set_flipped = mds_set_sorted[::-1]
     mds_set_flipped.append(sum)
     return mds_set_flipped
+
+def mdsix_set_shuffle():
+    rolling_methods: list[function] = [tdsix(), fdsix()]
+    mdsix_set_list: list[list[int]] = []
+    sum = 0
+    for i in range(0, 6):
+        dice = rolling_methods[random.randrange(0, len(rolling_methods))]
+        roll = dice
+        mdsix_set_list.append(roll)
+        sum += roll[0]
+        i += 1
+    mds_set_sorted = sorted(mdsix_set_list)
+    mds_set_flipped = mds_set_sorted[::-1]
+    mds_set_flipped.append(sum)
+    return mds_set_flipped
+
+def hc_tdsix_set():
+    hc_tdsix_set_list : list[list[int]] = []
+    sum = 0
+    for i in range(0, 6):
+        roll = tdsix()
+        hc_tdsix_set_list.append(roll)
+        sum += roll[0]
+        i += 1
+    hc_tdsix_set_list.append(sum)
+    return hc_tdsix_set_list
+
+def hc_fdsix_set():
+    hc_fdsix_set_list : list[list[int]] = []
+    sum = 0
+    for i in range(0, 6):
+        roll = fdsix()
+        hc_fdsix_set_list.append(roll)
+        sum += roll[0]
+        i += 1
+    hc_fdsix_set_list.append(sum)
+    return hc_fdsix_set_list
+
+def hc_mdsix_set():
+    rolling_methods: list[function] = [tdsix(), fdsix()]
+    hc_mdsix_set_list: list[list[int]] = []
+    sum = 0
+    for i in range(0, 6):
+        dice = rolling_methods[random.randrange(0, len(rolling_methods))]
+        roll = dice
+        hc_mdsix_set_list.append(roll)
+        sum += roll[0]
+        i += 1
+    hc_mdsix_set_list.append(sum)
+    return hc_mdsix_set_list

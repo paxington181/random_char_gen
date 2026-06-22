@@ -1,7 +1,8 @@
 import random
-from cssb import *
+from stat_rolling import *
+
 
 def main():
-    print(species_roll())
+    print(mdsix_set_shuffle())
     
 main()

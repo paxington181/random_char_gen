@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import *
-from stat_rolling import tdsix_set, fdsix_set, mdsix_set
+from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
 from cssb import *
 
 background_color = "gray27"
@@ -88,6 +88,15 @@ def roll_stats_mdsix():
     stats_sum_six.configure(text = f"{current_stats[5][0]}")
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+
+def roll_stats_hc_tdsix():
+    pass
+
+def roll_stats_hc_fdsix():
+    pass
+
+def roll_stats_hc_mdsix():
+    pass
 
 def roll_method_change(event):
     selection = stats_gen_selector.get()
