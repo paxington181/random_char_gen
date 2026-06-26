@@ -6,6 +6,7 @@ personality: list[str] = []
 bond: list[str] = []
 flaw: list[str] = []
 family: list[str] = []
+mentor: list[str] = []
 
 tier1_events: list[str] = []
 tier2_events: list[str] = []
