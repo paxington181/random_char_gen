@@ -7,7 +7,7 @@ bond: list[str] = ["self", "familial", "organizational", "community", "region", 
 flaw: list[str] = ["prideful", "greedy", "wrathful", "envious", "lustful", "gluttonous", "slothful"]
 family: list[str] = ["child", "children", "sister", "brother", "multiple siblings", ]
 mentor: list[str] = ["relative", "wandering stranger", "school", ""]
-mentor_attitude: list[str] = ["obliging", "friendly", "neutral", "hostile", "enemy"]
+mentor_attitude: list[str] = ["friendly", "neutral", "hostile"]
 
 tier1_events: list[str] = []
 tier2_events: list[str] = []
