@@ -88,7 +88,7 @@ def roll_stats_mdsix():
     stats_update(current_stats)
 
 def roll_stats_mdsix_shuffle():
-    current_stats = mdsix_set()
+    current_stats = mdsix_set_shuffle()
     stats_update(current_stats)
 
 def roll_stats_hc_tdsix():

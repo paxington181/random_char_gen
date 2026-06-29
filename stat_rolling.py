@@ -67,10 +67,10 @@ def mdsix_set():
     return mds_set_flipped
 
 def mdsix_set_shuffle():
-    rolling_methods: list[function] = [tdsix(), fdsix()]
     mdsix_set_list: list[list[int]] = []
     sum = 0
     for i in range(0, 6):
+        rolling_methods: list[function] = [tdsix(), fdsix()]
         dice = rolling_methods[random.randrange(0, len(rolling_methods))]
         roll = dice
         mdsix_set_list.append(roll)
@@ -104,10 +104,10 @@ def hc_fdsix_set():
     return hc_fdsix_set_list
 
 def hc_mdsix_set():
-    rolling_methods: list[function] = [tdsix(), fdsix()]
     hc_mdsix_set_list: list[list[int]] = []
     sum = 0
     for i in range(0, 6):
+        rolling_methods: list[function] = [tdsix(), fdsix()]
         dice = rolling_methods[random.randrange(0, len(rolling_methods))]
         roll = dice
         hc_mdsix_set_list.append(roll)
