@@ -1,3 +1,4 @@
+import math
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
@@ -11,6 +12,12 @@ selected_classes = base_classes + eberron_classes
 selected_species = base_species + eberron_species + ravenloft_species + mythozoology_species
 selected_backgrounds = base_background + eberron_background + ravenloft_background
 
+def modifier_update(current_stat):
+    mod = int( math.floor((current_stat - 10) / 2))
+    if mod >= 0:
+        return f"+{mod}"
+    return f"{mod}"
+
 
 def update_all():
     rclass, rsub = class_roll(selected_classes)
@@ -20,6 +27,36 @@ def update_all():
     species_randomized.configure(text = f"{rspec}")
     rback = background_roll(selected_backgrounds)
     background_randomized.configure(text = f"{rback}")
+
+def stats_update(current_stats):
+    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
+    stats_sum_one.configure(text = f"{current_stats[0][0]}")
+    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
+    stats_sum_two.configure(text = f"{current_stats[1][0]}")
+    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
+    stats_sum_three.configure(text = f"{current_stats[2][0]}")
+    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
+    stats_sum_four.configure(text = f"{current_stats[3][0]}")
+    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
+    stats_sum_five.configure(text = f"{current_stats[4][0]}")
+    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
+    stats_sum_six.configure(text = f"{current_stats[5][0]}")
+    stats_total.configure(text = f" {current_stats[6]}")
+    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+
+def hc_stat_update(current_stats):
+    str_stat.configure(text = f"{current_stats[0][0]}")
+    str_modifier.configure(text = f"{modifier_update(current_stats[0][0])}")
+    dex_stat.configure(text = f"{current_stats[1][0]}")
+    dex_modifier.configure(text = f"{modifier_update(current_stats[1][0])}")
+    con_stat.configure(text = f"{current_stats[2][0]}")
+    con_modifier.configure(text = f"{modifier_update(current_stats[2][0])}")
+    int_stat.configure(text = f"{current_stats[3][0]}")
+    int_modifier.configure(text = f"{modifier_update(current_stats[3][0])}")
+    wis_stat.configure(text = f"{current_stats[4][0]}")
+    wis_modifier.configure(text = f"{modifier_update(current_stats[4][0])}")
+    cha_stat.configure(text = f"{current_stats[5][0]}")
+    cha_modifier.configure(text = f"{modifier_update(current_stats[5][0])}")
 
 def roll_stats_standard():
     current_stats = [15, 14, 13, 12, 10, 8]
@@ -40,63 +77,34 @@ def roll_stats_standard():
 
 def roll_stats_tdsix():
     current_stats = tdsix_set()
-    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
-    stats_sum_one.configure(text = f"{current_stats[0][0]}")
-    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
-    stats_sum_two.configure(text = f"{current_stats[1][0]}")
-    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
-    stats_sum_three.configure(text = f"{current_stats[2][0]}")
-    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
-    stats_sum_four.configure(text = f"{current_stats[3][0]}")
-    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
-    stats_sum_five.configure(text = f"{current_stats[4][0]}")
-    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
-    stats_sum_six.configure(text = f"{current_stats[5][0]}")
-    stats_total.configure(text = f" {current_stats[6]}")
-    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+    stats_update(current_stats)
 
 def roll_stats_fdsix():
     current_stats = fdsix_set()
-    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
-    stats_sum_one.configure(text = f"{current_stats[0][0]}")
-    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
-    stats_sum_two.configure(text = f"{current_stats[1][0]}")
-    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
-    stats_sum_three.configure(text = f"{current_stats[2][0]}")
-    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
-    stats_sum_four.configure(text = f"{current_stats[3][0]}")
-    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
-    stats_sum_five.configure(text = f"{current_stats[4][0]}")
-    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
-    stats_sum_six.configure(text = f"{current_stats[5][0]}")
-    stats_total.configure(text = f" {current_stats[6]}")
-    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+    stats_update(current_stats)
 
 def roll_stats_mdsix():
     current_stats = mdsix_set()
-    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
-    stats_sum_one.configure(text = f"{current_stats[0][0]}")
-    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
-    stats_sum_two.configure(text = f"{current_stats[1][0]}")
-    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
-    stats_sum_three.configure(text = f"{current_stats[2][0]}")
-    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
-    stats_sum_four.configure(text = f"{current_stats[3][0]}")
-    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
-    stats_sum_five.configure(text = f"{current_stats[4][0]}")
-    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
-    stats_sum_six.configure(text = f"{current_stats[5][0]}")
-    stats_total.configure(text = f" {current_stats[6]}")
-    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+    stats_update(current_stats)
+
+def roll_stats_mdsix_shuffle():
+    current_stats = mdsix_set()
+    stats_update(current_stats)
 
 def roll_stats_hc_tdsix():
-    pass
+    current_stats = hc_tdsix_set()
+    stats_update(current_stats)
+    hc_stat_update(current_stats)
 
 def roll_stats_hc_fdsix():
-    pass
+    current_stats = hc_fdsix_set()
+    stats_update(current_stats)
+    hc_stat_update(current_stats)
 
 def roll_stats_hc_mdsix():
-    pass
+    current_stats = hc_mdsix_set()
+    stats_update(current_stats)
+    hc_stat_update(current_stats)
 
 def roll_method_change(event):
     selection = stats_gen_selector.get()
@@ -109,6 +117,15 @@ def roll_method_change(event):
             roll_stats_button.configure(command = roll_stats_fdsix)
         case "Mix d6":
             roll_stats_button.configure(command = roll_stats_mdsix)
+        case "Mix d6 Shuffle":
+            roll_stats_button.configure(command = roll_stats_mdsix_shuffle)
+        case "Hardcore 3d6":
+            roll_stats_button.configure(command = roll_stats_hc_tdsix)
+        case "Hardcore 4d6":
+            roll_stats_button.configure(command = roll_stats_hc_fdsix)
+        case "Hardcore Mix":
+            roll_stats_button.configure(command = roll_stats_hc_mdsix)
+    
 
 #main window organization
 main = tk.Tk()
@@ -146,7 +163,7 @@ background_label = ttk.Label(main, text = "Background", anchor = "center", backg
 #background_random_selection.insert(1, "Eberron")
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = background_color, foreground = foreground_color)
-stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6"], state = "readonly", justify = "left", background = background_color, foreground = background_color)
+stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "Mix d6", "Mix d6 Shuffle", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Mix"], state = "readonly", justify = "left", background = background_color, foreground = background_color)
 stats_gen_selector.set("Standard")
 
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = background_color, foreground = foreground_color)

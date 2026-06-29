@@ -1,8 +1,10 @@
 import random
 from stat_rolling import *
+import math
 
+score = 12
 
 def main():
-    print(mdsix_set_shuffle())
+    print(int(math.floor((score-10)/2)))
     
 main()
