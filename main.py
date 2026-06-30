@@ -85,9 +85,9 @@ def reset_stats():
     int_update(10)
     wis_update(10)
     cha_update(10)
+    stats_gen_selector.set("Standard")
 
 def roll_stats_standard():
-    reset_stats()
     current_stats = [15, 14, 13, 12, 10, 8]
     stats_rolls_one.configure(text = f"{current_stats[0]}")
     stats_sum_one.configure(text = f"{current_stats[0]}")
@@ -105,22 +105,18 @@ def roll_stats_standard():
     stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
 
 def roll_stats_tdsix():
-    reset_stats()
     current_stats = tdsix_set()
     stats_update(current_stats)
 
 def roll_stats_fdsix():
-    reset_stats()
     current_stats = fdsix_set()
     stats_update(current_stats)
 
 def roll_stats_mdsix():
-    reset_stats()
     current_stats = mdsix_set()
     stats_update(current_stats)
 
 def roll_stats_mdsix_shuffle():
-    reset_stats()
     current_stats = mdsix_set_shuffle()
     stats_update(current_stats)
 
@@ -275,6 +271,7 @@ cha_button_4 = ttk.Button(main, text = "")
 cha_button_5 = ttk.Button(main, text = "")
 cha_button_6 = ttk.Button(main, text = "")
 
+stat_reset = tk.Button(main, text = "Reset Stats", command = reset_stats)
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
 roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_standard)
 
@@ -384,6 +381,7 @@ stats_percent.grid(row = 13, column = 0, sticky = "nswe")
 
 randomize_button.grid(row = 9, column = 10,  columnspan = 2, sticky = "nwe")
 roll_stats_button.grid(row = 9, column = 8,  columnspan = 2, sticky = "nwe")
+stat_reset.grid(row = 11, column = 8, columnspan = 2, sticky = "nwe")
 
 #binds
 stats_gen_selector.bind("<<ComboboxSelected>>", roll_method_change)
