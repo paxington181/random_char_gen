@@ -18,6 +18,32 @@ def modifier_update(current_stat):
         return f"+{mod}"
     return f"{mod}"
 
+def str_update(current_stat):
+    str_stat.configure(text = f"{current_stat}")
+    str_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def dex_update(current_stat):
+    dex_stat.configure(text = f"{current_stat}")
+    dex_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def con_update(current_stat):
+    con_stat.configure(text = f"{current_stat}")
+    con_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def int_update(current_stat):
+    int_stat.configure(text = f"{current_stat}")
+    int_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def wis_update(current_stat):
+    wis_stat.configure(text = f"{current_stat}")
+    wis_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def cha_update(current_stat):
+    cha_stat.configure(text = f"{current_stat}")
+    cha_modifier.configure(text = f"{modifier_update(current_stat)}")
+
+def stat_buttons(current_stats):
+    pass
 
 def update_all():
     rclass, rsub = class_roll(selected_classes)
@@ -45,20 +71,23 @@ def stats_update(current_stats):
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
 def hc_stat_update(current_stats):
-    str_stat.configure(text = f"{current_stats[0][0]}")
-    str_modifier.configure(text = f"{modifier_update(current_stats[0][0])}")
-    dex_stat.configure(text = f"{current_stats[1][0]}")
-    dex_modifier.configure(text = f"{modifier_update(current_stats[1][0])}")
-    con_stat.configure(text = f"{current_stats[2][0]}")
-    con_modifier.configure(text = f"{modifier_update(current_stats[2][0])}")
-    int_stat.configure(text = f"{current_stats[3][0]}")
-    int_modifier.configure(text = f"{modifier_update(current_stats[3][0])}")
-    wis_stat.configure(text = f"{current_stats[4][0]}")
-    wis_modifier.configure(text = f"{modifier_update(current_stats[4][0])}")
-    cha_stat.configure(text = f"{current_stats[5][0]}")
-    cha_modifier.configure(text = f"{modifier_update(current_stats[5][0])}")
+    str_update(current_stats[0][0])
+    dex_update(current_stats[1][0])
+    con_update(current_stats[2][0])
+    int_update(current_stats[3][0])
+    wis_update(current_stats[4][0])
+    cha_update(current_stats[5][0])
+
+def reset_stats():
+    str_update(10)
+    dex_update(10)
+    con_update(10)
+    int_update(10)
+    wis_update(10)
+    cha_update(10)
 
 def roll_stats_standard():
+    reset_stats()
     current_stats = [15, 14, 13, 12, 10, 8]
     stats_rolls_one.configure(text = f"{current_stats[0]}")
     stats_sum_one.configure(text = f"{current_stats[0]}")
@@ -76,18 +105,22 @@ def roll_stats_standard():
     stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
 
 def roll_stats_tdsix():
+    reset_stats()
     current_stats = tdsix_set()
     stats_update(current_stats)
 
 def roll_stats_fdsix():
+    reset_stats()
     current_stats = fdsix_set()
     stats_update(current_stats)
 
 def roll_stats_mdsix():
+    reset_stats()
     current_stats = mdsix_set()
     stats_update(current_stats)
 
 def roll_stats_mdsix_shuffle():
+    reset_stats()
     current_stats = mdsix_set_shuffle()
     stats_update(current_stats)
 
