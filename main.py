@@ -13,10 +13,13 @@ selected_species = base_species + eberron_species + ravenloft_species + mythozoo
 selected_backgrounds = base_background + eberron_background + ravenloft_background
 
 def modifier_update(current_stat):
-    mod = int( math.floor((current_stat - 10) / 2))
-    if mod >= 0:
-        return f"+{mod}"
-    return f"{mod}"
+    if current_stat != "":
+        current_stat = int(current_stat)
+        mod = int( math.floor((current_stat - 10) / 2))
+        if mod >= 0:
+            return f"+{mod}"
+        return f"{mod}"
+    return "+0"
 
 def str_update(current_stat):
     str_stat.configure(text = f"{current_stat}")
@@ -137,52 +140,52 @@ def roll_stats_hc_mdsix():
     hc_stat_update(current_stats)
 
 def str_button_config(value1, value2, value3, value4, value5, value6):
-    str_button_1.configure(text = f"{(value1)}")
-    str_button_2.configure(text = f"{(value2)}")
-    str_button_3.configure(text = f"{(value3)}")
-    str_button_4.configure(text = f"{(value4)}")
-    str_button_5.configure(text = f"{(value5)}")
-    str_button_6.configure(text = f"{(value6)}")
+    str_button_1.configure(text = f"{(value1)}", command = str_update(value1))
+    str_button_2.configure(text = f"{(value2)}", command = str_update(value2))
+    str_button_3.configure(text = f"{(value3)}", command = str_update(value3))
+    str_button_4.configure(text = f"{(value4)}", command = str_update(value4))
+    str_button_5.configure(text = f"{(value5)}", command = str_update(value5))
+    str_button_6.configure(text = f"{(value6)}", command = str_update(value6))
 
 def dex_button_config(value1, value2, value3, value4, value5, value6):
-    dex_button_1.configure(text = f"{(value1)}")
-    dex_button_2.configure(text = f"{(value2)}")
-    dex_button_3.configure(text = f"{(value3)}")
-    dex_button_4.configure(text = f"{(value4)}")
-    dex_button_5.configure(text = f"{(value5)}")
-    dex_button_6.configure(text = f"{(value6)}")
+    dex_button_1.configure(text = f"{(value1)}", command = dex_update(value1))
+    dex_button_2.configure(text = f"{(value2)}", command = dex_update(value2))
+    dex_button_3.configure(text = f"{(value3)}", command = dex_update(value3))
+    dex_button_4.configure(text = f"{(value4)}", command = dex_update(value4))
+    dex_button_5.configure(text = f"{(value5)}", command = dex_update(value5))
+    dex_button_6.configure(text = f"{(value6)}", command = dex_update(value6))
 
 def con_button_config(value1, value2, value3, value4, value5, value6):
-    con_button_1.configure(text = f"{(value1)}")
-    con_button_2.configure(text = f"{(value2)}")
-    con_button_3.configure(text = f"{(value3)}")
-    con_button_4.configure(text = f"{(value4)}")
-    con_button_5.configure(text = f"{(value5)}")
-    con_button_6.configure(text = f"{(value6)}")
+    con_button_1.configure(text = f"{(value1)}", command = con_update(value1))
+    con_button_2.configure(text = f"{(value2)}", command = con_update(value2))
+    con_button_3.configure(text = f"{(value3)}", command = con_update(value3))
+    con_button_4.configure(text = f"{(value4)}", command = con_update(value4))
+    con_button_5.configure(text = f"{(value5)}", command = con_update(value5))
+    con_button_6.configure(text = f"{(value6)}", command = con_update(value6))
 
 def int_button_config(value1, value2, value3, value4, value5, value6):
-    int_button_1.configure(text = f"{(value1)}")
-    int_button_2.configure(text = f"{(value2)}")
-    int_button_3.configure(text = f"{(value3)}")
-    int_button_4.configure(text = f"{(value4)}")
-    int_button_5.configure(text = f"{(value5)}")
-    int_button_6.configure(text = f"{(value6)}")
+    int_button_1.configure(text = f"{(value1)}", command = int_update(value1))
+    int_button_2.configure(text = f"{(value2)}", command = int_update(value2))
+    int_button_3.configure(text = f"{(value3)}", command = int_update(value3))
+    int_button_4.configure(text = f"{(value4)}", command = int_update(value4))
+    int_button_5.configure(text = f"{(value5)}", command = int_update(value5))
+    int_button_6.configure(text = f"{(value6)}", command = int_update(value6))
 
 def wis_button_config(value1, value2, value3, value4, value5, value6):
-    wis_button_1.configure(text = f"{(value1)}")
-    wis_button_2.configure(text = f"{(value2)}")
-    wis_button_3.configure(text = f"{(value3)}")
-    wis_button_4.configure(text = f"{(value4)}")
-    wis_button_5.configure(text = f"{(value5)}")
-    wis_button_6.configure(text = f"{(value6)}")
+    wis_button_1.configure(text = f"{(value1)}", command = wis_update(value1))
+    wis_button_2.configure(text = f"{(value2)}", command = wis_update(value2))
+    wis_button_3.configure(text = f"{(value3)}", command = wis_update(value3))
+    wis_button_4.configure(text = f"{(value4)}", command = wis_update(value4))
+    wis_button_5.configure(text = f"{(value5)}", command = wis_update(value5))
+    wis_button_6.configure(text = f"{(value6)}", command = wis_update(value6))
 
 def cha_button_config(value1, value2, value3, value4, value5, value6):
-    cha_button_1.configure(text = f"{(value1)}")
-    cha_button_2.configure(text = f"{(value2)}")
-    cha_button_3.configure(text = f"{(value3)}")
-    cha_button_4.configure(text = f"{(value4)}")
-    cha_button_5.configure(text = f"{(value5)}")
-    cha_button_6.configure(text = f"{(value6)}")
+    cha_button_1.configure(text = f"{(value1)}", command = cha_update(value1))
+    cha_button_2.configure(text = f"{(value2)}", command = cha_update(value2))
+    cha_button_3.configure(text = f"{(value3)}", command = cha_update(value3))
+    cha_button_4.configure(text = f"{(value4)}", command = cha_update(value4))
+    cha_button_5.configure(text = f"{(value5)}", command = cha_update(value5))
+    cha_button_6.configure(text = f"{(value6)}", command = cha_update(value6))
 
 def mass_stat_button(value1, value2, value3, value4, value5, value6):
     str_button_config(value1, value2, value3, value4, value5, value6)
