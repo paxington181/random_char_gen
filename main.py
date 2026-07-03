@@ -72,6 +72,7 @@ def stats_update(current_stats):
     stats_sum_six.configure(text = f"{current_stats[5][0]}")
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
+    mass_stat_button(current_stats[0][0], current_stats[1][0], current_stats[2][0], current_stats[3][0], current_stats[4][0], current_stats[5][0])
 
 def hc_stat_update(current_stats):
     str_update(current_stats[0][0])
@@ -80,6 +81,8 @@ def hc_stat_update(current_stats):
     int_update(current_stats[3][0])
     wis_update(current_stats[4][0])
     cha_update(current_stats[5][0])
+    mass_stat_button("", "", "", "", "", "")
+
 
 def reset_stats():
     str_update(10)
@@ -107,6 +110,7 @@ def roll_stats_standard():
     stats_sum_six.configure(text = f"{current_stats[5]}")
     stats_total.configure(text = f" {sum(current_stats)}")
     stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
+    mass_stat_button(15, 14, 13, 12, 10, 8)
 
 def roll_stats_tdsix():
     current_stats = tdsix_set()
