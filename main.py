@@ -23,6 +23,7 @@ def modifier_update(current_stat):
 
 def str_update(current_stat):
     str_stat.configure(text = f"{current_stat}")
+    print(current_stat)
     str_modifier.configure(text = f"{modifier_update(current_stat)}")
 
 def dex_update(current_stat):
@@ -45,7 +46,7 @@ def cha_update(current_stat):
     cha_stat.configure(text = f"{current_stat}")
     cha_modifier.configure(text = f"{modifier_update(current_stat)}")
 
-def stat_buttons(current_stats):
+def stat_buttons():
     pass
 
 def update_all():
@@ -72,16 +73,17 @@ def stats_update(current_stats):
     stats_sum_six.configure(text = f"{current_stats[5][0]}")
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
-    mass_stat_button(current_stats[0][0], current_stats[1][0], current_stats[2][0], current_stats[3][0], current_stats[4][0], current_stats[5][0])
+    #mass_stat_button(current_stats[0][0], current_stats[1][0], current_stats[2][0], current_stats[3][0], current_stats[4][0], current_stats[5][0])
 
 def hc_stat_update(current_stats):
     str_update(current_stats[0][0])
+    print(current_stats[0][0])
     dex_update(current_stats[1][0])
     con_update(current_stats[2][0])
     int_update(current_stats[3][0])
     wis_update(current_stats[4][0])
     cha_update(current_stats[5][0])
-    mass_stat_button("", "", "", "", "", "")
+    #mass_stat_button("", "", "", "", "", "")
 
 
 def reset_stats():
@@ -92,7 +94,7 @@ def reset_stats():
     wis_update(10)
     cha_update(10)
     stats_gen_selector.set("Standard")
-    mass_stat_button("", "", "", "", "", "")
+    #mass_stat_button("", "", "", "", "", "")
 
 def roll_stats_standard():
     current_stats = [15, 14, 13, 12, 10, 8]
@@ -278,7 +280,7 @@ stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", ba
 str_label = ttk.Label(main, text = "Str", anchor = "e", background = background_color, foreground = foreground_color)
 str_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-str_button_1 = ttk.Button(main, text = "")
+str_button_1 = ttk.Button(main, text = "", command = stat_buttons)
 str_button_2 = ttk.Button(main, text = "")
 str_button_3 = ttk.Button(main, text = "")
 str_button_4 = ttk.Button(main, text = "")
