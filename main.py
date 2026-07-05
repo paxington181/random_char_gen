@@ -13,18 +13,11 @@ selected_species = base_species + eberron_species + ravenloft_species + mythozoo
 selected_backgrounds = base_background + eberron_background + ravenloft_background
 
 def modifier_update(current_stat):
-    if current_stat != "":
-        current_stat = int(current_stat)
-        mod = int( math.floor((current_stat - 10) / 2))
-        if mod >= 0:
-            return f"+{mod}"
-        return f"{mod}"
-    return "+0"
-
-
-
-def stat_buttons():
-    pass
+    current_stat = int(current_stat)
+    mod = int( math.floor((current_stat - 10) / 2))
+    if mod >= 0:
+        return f"+{mod}"
+    return f"{mod}"
 
 def update_all():
     rclass, rsub = class_roll(selected_classes)
@@ -50,7 +43,6 @@ def stats_update(current_stats):
     stats_sum_six.configure(text = f"{current_stats[5][0]}")
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
-    #mass_stat_button(current_stats[0][0], current_stats[1][0], current_stats[2][0], current_stats[3][0], current_stats[4][0], current_stats[5][0])
 
 def roll_stats_standard():
     current_stats = [15, 14, 13, 12, 10, 8]
@@ -88,18 +80,14 @@ def roll_stats_mdsix_shuffle():
 def roll_stats_hc_tdsix():
     current_stats = hc_tdsix_set()
     stats_update(current_stats)
-    #hc_stat_update(current_stats)
 
 def roll_stats_hc_fdsix():
     current_stats = hc_fdsix_set()
     stats_update(current_stats)
-    #hc_stat_update(current_stats)
 
 def roll_stats_hc_mdsix():
     current_stats = hc_mdsix_set()
     stats_update(current_stats)
-    #hc_stat_update(current_stats)
-
 
 def roll_method_change(event):
     selection = stats_gen_selector.get()
@@ -119,8 +107,7 @@ def roll_method_change(event):
         case "Hardcore 4d6":
             roll_stats_button.configure(command = roll_stats_hc_fdsix)
         case "Hardcore Mix":
-            roll_stats_button.configure(command = roll_stats_hc_mdsix)
-    
+            roll_stats_button.configure(command = roll_stats_hc_mdsix) 
 
 #main window organization
 main = tk.Tk()
@@ -153,23 +140,23 @@ stats_gen_selector.set("Standard")
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = background_color, foreground = foreground_color)
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = background_color, foreground = foreground_color)
 
-stats_rolls_one = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_one = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_one = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_one = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_two = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_two = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_two = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_two = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_three = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_three = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_three = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_three = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_four = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_four = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_four = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_four = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_five = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_five = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_five = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_five = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_six = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_six = ttk.Label(main, text = "", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_six = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_sum_six = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
 stats_total = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
 stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = background_color, foreground = foreground_color)
@@ -181,31 +168,25 @@ str_label = ttk.Label(main, text = "Str", anchor = "e", background = background_
 str_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-
 dex_label = ttk.Label(main, text = "Dex", anchor = "e", background = background_color, foreground = foreground_color)
 dex_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 dex_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-
 
 con_label = ttk.Label(main, text = "Con", anchor = "e", background = background_color, foreground = foreground_color)
 con_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 con_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-
 int_label = ttk.Label(main, text = "Int", anchor = "e", background = background_color, foreground = foreground_color)
 int_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 int_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-
 
 wis_label = ttk.Label(main, text = "Wis", anchor = "e", background = background_color, foreground = foreground_color)
 wis_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 wis_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
 
-
 cha_label = ttk.Label(main, text = "Cha", anchor = "e", background = background_color, foreground = foreground_color)
 cha_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 cha_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-
 
 stat_reset = tk.Button(main, text = "Reset Stats", command = None)
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
@@ -229,31 +210,25 @@ str_label.grid(row = 2, column = 0, sticky = "nwe")
 str_stat.grid(row = 2, column = 1, sticky = "nwe")
 str_modifier.grid(row = 2, column = 2, sticky = "nwe")
 
-
 dex_label.grid(row = 3, column = 0, sticky = "nwe")
 dex_stat.grid(row = 3, column = 1, sticky = "nwe")
 dex_modifier.grid(row = 3, column = 2, sticky = "nwe")
-
 
 con_label.grid(row = 4, column = 0, sticky = "nwe")
 con_stat.grid(row = 4, column = 1, sticky = "nwe")
 con_modifier.grid(row = 4, column = 2, sticky = "nwe")
 
-
 int_label.grid(row = 5, column = 0, sticky = "nwe")
 int_stat.grid(row = 5, column = 1, sticky = "nwe")
 int_modifier.grid(row = 5, column = 2, sticky = "nwe")
-
 
 wis_label.grid(row = 6, column = 0, sticky = "nwe")
 wis_stat.grid(row = 6, column = 1, sticky = "nwe")
 wis_modifier.grid(row = 6, column = 2, sticky = "nwe")
 
-
 cha_label.grid(row = 7, column = 0, sticky = "nwe")
 cha_stat.grid(row = 7, column = 1, sticky = "nwe")
 cha_modifier.grid(row = 7, column = 2, sticky = "nwe")
-
 
 stats_gen_label.grid(row = 9, column = 0, columnspan = 2, sticky = "nswe")
 stats_gen_selector.grid(row = 9, column = 2, columnspan = 2, sticky = "nswe")
