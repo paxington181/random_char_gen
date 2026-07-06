@@ -2,7 +2,7 @@ import random
 
 base_species: list[str] = ["aasimar", "dragonborn", "dwarf", "elf", "gnome", "goliath", "halfling", "human", "orc", "tiefling"]
 eberron_species: list[str] = ["changling", "kalashtar", "khoravar", "shifter", "warforged"]
-mythozoology_species: list[str] = ["hoofborn", "inukin", "kappa"]
+#mythozoology_species: list[str] = ["hoofborn", "inukin", "kappa"]
 ravenloft_species: list[str] = ["dhampir", "hexblood", "lupin", "reborn"]
 
 dragonborn_sub: list[str] = ["black", "blue", "brass", "bronze", "copper", "gold", "green", "red", "silver", "white"]
@@ -10,8 +10,8 @@ elf_sub: list[str] = ["drow", "high elf", "wood elf"]
 gnome_sub: list[str] = ["forest gnome", "rock gnome"]
 goliath_sub: list[str] = ["cloud", "fire", "frost", "hill", "stone", "storm"]
 tiefling_sub: list[str] = ["abyssal", "chthonic", "infernal"]
-hoofborn_sub: list[str] = ["tidehoof"]
-kappa_sub: list[str] = ["wrangler", "tideweaver"]
+#hoofborn_sub: list[str] = ["tidehoof"]
+#kappa_sub: list[str] = ["wrangler", "tideweaver"]
 shifter_sub: list[str] = ["beasthide", "longtooth", "swiftstride", "wildhunt"]
 
 base_classes: list[str] = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
@@ -150,10 +150,10 @@ def species_roll(selected_species):
         return f"Goliath, {goliath_sub[random.randrange(0, len(goliath_sub))].title()} Heritage"
     elif random_species == "tiefling":
         return f"{tiefling_sub[random.randrange(0, len(tiefling_sub))].title()} Tiefling"
-    elif random_species == "hoofborn":
-        return f"{hoofborn_sub[random.randrange(0, len(hoofborn_sub))].title()} Hoofborn"
-    elif random_species == "kappa":
-        return f"{kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa"
+    # elif random_species == "hoofborn":
+    #     return f"{hoofborn_sub[random.randrange(0, len(hoofborn_sub))].title()} Hoofborn"
+    # elif random_species == "kappa":
+    #     return f"{kappa_sub[random.randrange(0, len(kappa_sub))].title()} Kappa"
     elif random_species == "shifter":
         return f"{shifter_sub[random.randrange(0, len(shifter_sub))].title()} Shifter"
     else:

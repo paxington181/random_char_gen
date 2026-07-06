@@ -9,7 +9,7 @@ from cssb import *
 background_color = "gray27"
 foreground_color = "gray69"
 selected_classes = base_classes + eberron_classes
-selected_species = base_species + eberron_species + ravenloft_species + mythozoology_species
+selected_species = base_species + eberron_species + ravenloft_species
 selected_backgrounds = base_background + eberron_background + ravenloft_background
 
 def modifier_update(current_stat):
@@ -119,14 +119,14 @@ main.rowconfigure(15, weight = 2, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
 #widget creation
-class_randomized = ttk.Label(main, text = "cr", anchor = "center", background = background_color, foreground = foreground_color)
-class_label = ttk.Label(main, text = "Class", anchor = "center", background = background_color, foreground = foreground_color)
+class_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
+class_label = ttk.Label(main, text = "Class:", anchor = "e", background = background_color, foreground = foreground_color)
 
-species_randomized = ttk.Label(main, text = "spr", anchor = "center", background = background_color, foreground = foreground_color)
-species_label = ttk.Label(main, text = "Species", anchor = "center", background = background_color, foreground = foreground_color)
+species_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
+species_label = ttk.Label(main, text = "Species:", anchor = "e", background = background_color, foreground = foreground_color)
 
-background_randomized = ttk.Label(main, text = "bgr", anchor = "center", background = background_color, foreground = foreground_color)
-background_label = ttk.Label(main, text = "Background", anchor = "center", background = background_color, foreground = foreground_color)
+background_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
+background_label = ttk.Label(main, text = "Background:", anchor = "e", background = background_color, foreground = foreground_color)
 
 stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = background_color, foreground = foreground_color)
 stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "3 3d6 3 4d6", "Mix d6 Shuffle", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Mix"], state = "readonly", justify = "left", background = background_color, foreground = background_color)
@@ -189,14 +189,14 @@ roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_s
 
 #widget placement
 
-class_randomized.grid(row = 0, column = 0, columnspan = 3, sticky = "nwe")
-class_label.grid(row = 1, column = 0, columnspan = 3, sticky = "nwe")
+class_randomized.grid(row = 0, column = 1, columnspan = 2, sticky = "nwe")
+class_label.grid(row = 0, column = 0, sticky = "nwe")
 
-species_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
-species_label.grid(row = 1, column = 6, columnspan = 3, sticky = "nwe")
+species_randomized.grid(row = 1, column = 1, columnspan = 2, sticky = "nwe")
+species_label.grid(row = 1, column = 0, sticky = "nwe")
 
-background_randomized.grid(row = 0, column = 9, columnspan = 3, sticky = "nwe")
-background_label.grid(row = 1, column = 9, columnspan = 3, sticky = "nwe")
+background_randomized.grid(row = 0, column = 5, columnspan = 3, sticky = "nwe")
+background_label.grid(row = 0, column = 3, columnspan = 2, sticky = "nwe")
 
 str_label.grid(row = 2, column = 0, sticky = "nwe")
 str_stat.grid(row = 2, column = 1, sticky = "nwe")
