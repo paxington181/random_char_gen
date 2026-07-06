@@ -56,35 +56,87 @@ base_background: list[str] = ["acolyte", "artisan", "charlatan", "criminal", "en
 eberron_background: list[str] = ["aberrant heir", "archaeologist", "house agent", "house cannith heir", "house deneith heir", "house ghallanda heir", "house jorasco heir", "house kundarak heir", "house lyrandar heir", "house medani heir", "house orien heir", "house phiarlan heir", "house sivis heir", "house tharashk heir", "house vadalis heir", "inquisitive"]
 ravenloft_background: list[str] = ["haunted one", "investigator", "mist wanderer", "spirit medium"]
 
+
 def class_roll(selected_classes):
     random_class = selected_classes[random.randrange(0, len(selected_classes))]
     if random_class == "barbarian":
-        random_sub = barb_sub[random.randrange(0, len(base_barb_sub))]
+        if len(barb_sub) == 0:
+            random_sub = barb_sub[random.randrange(0, len(base_barb_sub))]
+        else:
+            random_sub = barb_sub[random.randrange(0, len(barb_sub))]
+        return f"Path of the {random_sub.title()} Barbarian"
     elif random_class == "bard":
-        random_sub = bard_sub[random.randrange(0, len(base_bard_sub))]
+        if len(bard_sub) == 0:
+            random_sub = bard_sub[random.randrange(0, len(base_bard_sub))]
+        else:
+            random_sub = bard_sub[random.randrange(0, len(bard_sub))]
+        return f"College of {random_sub.title()} Bard"
     elif random_class == "cleric":
-        random_sub = cler_sub[random.randrange(0, len(base_cler_sub))]
+        if len(cler_sub) == 0:
+            random_sub = cler_sub[random.randrange(0, len(base_cler_sub))]
+        else:
+            random_sub = cler_sub[random.randrange(0, len(bard_sub))]
+        return f"{random_sub.title()} Domain Cleric"
     elif random_class == "druid":
-        random_sub = drui_sub[random.randrange(0, len(base_drui_sub))]
+        if len(drui_sub) == 0:
+            random_sub = drui_sub[random.randrange(0, len(base_drui_sub))]
+        else:
+            random_sub = drui_sub[random.randrange(0, len(drui_sub))]
+        return f"Circle of the {random_sub.title()} Druid"
     elif random_class == "fighter":
-        random_sub = figh_sub[random.randrange(0, len(base_figh_sub))]
+        if len(figh_sub == 0):
+            random_sub = figh_sub[random.randrange(0, len(base_figh_sub))]
+        else:
+            random_sub = figh_sub[random.randrange(0, len(figh_sub))]
+        return f"{random_sub.title()} Fighter"
     elif random_class == "monk":
-        random_sub = monk_sub[random.randrange(0, len(base_monk_sub))]
+        if len(monk_sub) == 0:
+            random_sub = monk_sub[random.randrange(0, len(base_monk_sub))]
+        else:
+            random_sub = monk_sub[random.randrange(0, len(monk_sub))]
+        return f"Warrior of {random_sub.title()} Monk"
     elif random_class == "paladin":
-        random_sub = pala_sub[random.randrange(0, len(base_pala_sub))]
+        if len(pala_sub) == 0:
+            random_sub = pala_sub[random.randrange(0, len(base_pala_sub))]
+        else:
+            random_sub = pala_sub[random.randrange(0, len(pala_sub))]
+        return f"Oath of {random_sub.title()} Paladin"
     elif random_class == "ranger":
-        random_sub = rang_sub[random.randrange(0, len(base_rang_sub))]
+        if len(rang_sub) == 0:
+            random_sub = rang_sub[random.randrange(0, len(base_rang_sub))]
+        else:
+            random_sub = rang_sub[random.randrange(0, len(rang_sub))]
+        return f"{random_sub.title()} Ranger"
     elif random_class == "rogue":
-        random_sub = rogu_sub[random.randrange(0, len(base_rogu_sub))]
+        if len(rogu_sub) == 0:
+            random_sub = rogu_sub[random.randrange(0, len(base_rogu_sub))]
+        else:
+            random_sub = rogu_sub[random.randrange(0, len(rogu_sub))]
+        return f"{random_sub.title()} Rogue"
     elif random_class == "sorcerer":
-        random_sub = sorc_sub[random.randrange(0, len(base_sorc_sub))]
+        if len(sorc_sub) == 0:
+            random_sub = sorc_sub[random.randrange(0, len(base_sorc_sub))]
+        else:
+            random_sub = sorc_sub[random.randrange(0, len(sorc_sub))]
+        return f"{random_sub.title()} Sorcery Sorcerer"
     elif random_class == "warlock":
-        random_sub = warl_sub[random.randrange(0, len(base_warl_sub))]
+        if len(warl_sub) == 0:
+            random_sub = warl_sub[random.randrange(0, len(base_warl_sub))]
+        else:
+            random_sub = warl_sub[random.randrange(0, len(warl_sub))]
+        return f"Pact of the {random_sub.title()} Warlock"
     elif random_class == "wizard":
-        random_sub = wiza_sub[random.randrange(0, len(base_wiza_sub))]
+        if len(wiza_sub) == 0:
+            random_sub = wiza_sub[random.randrange(0, len(base_wiza_sub))]
+        else:
+            random_sub = wiza_sub[random.randrange(0, len(wiza_sub))]
+        return f"{random_sub.title()} Wizard"
     elif random_class == "artificer":
-        random_sub = arti_sub[random.randrange(0, len(eberron_arti_sub))]
-    return random_class.title(), random_sub.title()
+        if len(arti_sub) == 0:
+            random_sub = arti_sub[random.randrange(0, len(eberron_arti_sub))]
+        else:
+            random_sub = arti_sub[random.randrange(0, len(arti_sub))]
+        return f"{random_sub.title()} Artificer"
 
 def species_roll(selected_species):
     random_species = selected_species[(random.randrange(0, len(selected_species)))]

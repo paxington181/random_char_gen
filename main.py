@@ -20,9 +20,7 @@ def modifier_update(current_stat):
     return f"{mod}"
 
 def update_all():
-    rclass, rsub = class_roll(selected_classes)
-    class_randomized.configure(text = f"{rclass}")
-    subclass_randomized.configure(text = f"{rsub}")
+    class_randomized.configure(text = f"{class_roll(selected_classes)}")
     rspec = species_roll(selected_species)
     species_randomized.configure(text = f"{rspec}")
     rback = background_roll(selected_backgrounds)
@@ -124,9 +122,6 @@ main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform
 class_randomized = ttk.Label(main, text = "cr", anchor = "center", background = background_color, foreground = foreground_color)
 class_label = ttk.Label(main, text = "Class", anchor = "center", background = background_color, foreground = foreground_color)
 
-subclass_randomized = ttk.Label(main, text = "sr", anchor = "center", background = background_color, foreground = foreground_color)
-subclass_label = ttk.Label(main, text = "Subclass", anchor = "center", background = background_color, foreground = foreground_color)
-
 species_randomized = ttk.Label(main, text = "spr", anchor = "center", background = background_color, foreground = foreground_color)
 species_label = ttk.Label(main, text = "Species", anchor = "center", background = background_color, foreground = foreground_color)
 
@@ -196,9 +191,6 @@ roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_s
 
 class_randomized.grid(row = 0, column = 0, columnspan = 3, sticky = "nwe")
 class_label.grid(row = 1, column = 0, columnspan = 3, sticky = "nwe")
-
-subclass_randomized.grid(row = 0, column = 3, columnspan = 3, sticky = "nwe")
-subclass_label.grid(row = 1, column = 3, columnspan = 3, sticky = "nwe")
 
 species_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
 species_label.grid(row = 1, column = 6, columnspan = 3, sticky = "nwe")
