@@ -140,22 +140,22 @@ stats_gen_selector.set("Standard")
 stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = background_color, foreground = foreground_color)
 stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = background_color, foreground = foreground_color)
 
-stats_rolls_one = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_one = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_one = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_two = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_two = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_two = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_three = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_three = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_three = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_four = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_four = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_four = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_five = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_five = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_five = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
-stats_rolls_six = ttk.Label(main, text = "1, 1, 1", anchor = "center", background = background_color, foreground = foreground_color)
+stats_rolls_six = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
 stats_sum_six = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
 
 stats_total = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
