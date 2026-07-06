@@ -84,7 +84,7 @@ def class_roll(selected_classes):
             random_sub = drui_sub[random.randrange(0, len(drui_sub))]
         return f"Circle of the {random_sub.title()} Druid"
     elif random_class == "fighter":
-        if len(figh_sub == 0):
+        if len(figh_sub) == 0:
             random_sub = figh_sub[random.randrange(0, len(base_figh_sub))]
         else:
             random_sub = figh_sub[random.randrange(0, len(figh_sub))]
