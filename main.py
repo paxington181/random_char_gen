@@ -12,6 +12,8 @@ selected_classes = base_classes + eberron_classes
 selected_species = base_species + eberron_species + ravenloft_species
 selected_backgrounds = base_background + eberron_background + ravenloft_background
 
+current_stats: list[str]= ["3", "3", "3", "3", "3", "3"]
+
 def modifier_update(current_stat):
     current_stat = int(current_stat)
     mod = int( math.floor((current_stat - 10) / 2))
@@ -61,11 +63,20 @@ def roll_stats_standard():
 
 def hc_update(current_stats):
     str_stat.configure(text = f"{current_stats[0][0]}")
+    str_modifier.configure(text = f"{modifier_update(current_stats[0][0])}")
     dex_stat.configure(text = f"{current_stats[1][0]}")
+    dex_modifier.configure(text = f"{modifier_update(current_stats[1][0])}")
     con_stat.configure(text = f"{current_stats[2][0]}")
+    con_modifier.configure(text = f"{modifier_update(current_stats[2][0])}")
     int_stat.configure(text = f"{current_stats[3][0]}")
+    int_modifier.configure(text = f"{modifier_update(current_stats[3][0])}")
     wis_stat.configure(text = f"{current_stats[4][0]}")
+    wis_modifier.configure(text = f"{modifier_update(current_stats[4][0])}")
     cha_stat.configure(text = f"{current_stats[5][0]}")
+    cha_modifier.configure(text = f"{modifier_update(current_stats[5][0])}")
+
+def radio_stat_buttons():
+    pass
 
 def roll_stats_tdsix():
     current_stats = tdsix_set()
@@ -121,12 +132,11 @@ def roll_method_change(event):
 #main window organization
 main = tk.Tk()
 main.title("D&D Character Randomizer")
-main.geometry('900x500') #425 with 14 columns
+main.geometry('900x425') #425 with 14 columns
 main.configure(bg = background_color)
 
 #geometry control
 main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
-main.rowconfigure(15, weight = 2, uniform = "a")
 main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
 
 #widget creation
@@ -173,26 +183,62 @@ stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", ba
 str_label = ttk.Label(main, text = "Str", anchor = "e", background = background_color, foreground = foreground_color)
 str_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+str_rad_1 = Radiobutton(main, text = "3", value = None)
+str_rad_2 = Radiobutton(main, text = "3", value = None)
+str_rad_3 = Radiobutton(main, text = "3", value = None)
+str_rad_4 = Radiobutton(main, text = "3", value = None)
+str_rad_5 = Radiobutton(main, text = "3", value = None)
+str_rad_6 = Radiobutton(main, text = "3", value = None)
 
 dex_label = ttk.Label(main, text = "Dex", anchor = "e", background = background_color, foreground = foreground_color)
 dex_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 dex_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+dex_rad_1 = Radiobutton(main, text = "3", value = None)
+dex_rad_2 = Radiobutton(main, text = "3", value = None)
+dex_rad_3 = Radiobutton(main, text = "3", value = None)
+dex_rad_4 = Radiobutton(main, text = "3", value = None)
+dex_rad_5 = Radiobutton(main, text = "3", value = None)
+dex_rad_6 = Radiobutton(main, text = "3", value = None)
 
 con_label = ttk.Label(main, text = "Con", anchor = "e", background = background_color, foreground = foreground_color)
 con_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 con_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+con_rad_1 = Radiobutton(main, text = "3", value = None)
+con_rad_2 = Radiobutton(main, text = "3", value = None)
+con_rad_3 = Radiobutton(main, text = "3", value = None)
+con_rad_4 = Radiobutton(main, text = "3", value = None)
+con_rad_5 = Radiobutton(main, text = "3", value = None)
+con_rad_6 = Radiobutton(main, text = "3", value = None)
 
 int_label = ttk.Label(main, text = "Int", anchor = "e", background = background_color, foreground = foreground_color)
 int_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 int_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+int_rad_1 = Radiobutton(main, text = "3", value = None)
+int_rad_2 = Radiobutton(main, text = "3", value = None)
+int_rad_3 = Radiobutton(main, text = "3", value = None)
+int_rad_4 = Radiobutton(main, text = "3", value = None)
+int_rad_5 = Radiobutton(main, text = "3", value = None)
+int_rad_6 = Radiobutton(main, text = "3", value = None)
 
 wis_label = ttk.Label(main, text = "Wis", anchor = "e", background = background_color, foreground = foreground_color)
 wis_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 wis_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+wis_rad_1 = Radiobutton(main, text = "3", value = None)
+wis_rad_2 = Radiobutton(main, text = "3", value = None)
+wis_rad_3 = Radiobutton(main, text = "3", value = None)
+wis_rad_4 = Radiobutton(main, text = "3", value = None)
+wis_rad_5 = Radiobutton(main, text = "3", value = None)
+wis_rad_6 = Radiobutton(main, text = "3", value = None)
 
 cha_label = ttk.Label(main, text = "Cha", anchor = "e", background = background_color, foreground = foreground_color)
 cha_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
 cha_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
+cha_rad_1 = Radiobutton(main, text = "3", value = None)
+cha_rad_2 = Radiobutton(main, text = "3", value = None)
+cha_rad_3 = Radiobutton(main, text = "3", value = None)
+cha_rad_4 = Radiobutton(main, text = "3", value = None)
+cha_rad_5 = Radiobutton(main, text = "3", value = None)
+cha_rad_6 = Radiobutton(main, text = "3", value = None)
 
 stat_reset = tk.Button(main, text = "Reset Stats", command = None)
 randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
@@ -200,38 +246,74 @@ roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_s
 
 #widget placement
 
-class_randomized.grid(row = 0, column = 1, columnspan = 2, sticky = "nwe")
+class_randomized.grid(row = 0, column = 1, columnspan = 4, sticky = "nwe")
 class_label.grid(row = 0, column = 0, sticky = "nwe")
 
-species_randomized.grid(row = 1, column = 1, columnspan = 2, sticky = "nwe")
+species_randomized.grid(row = 1, column = 1, columnspan = 3, sticky = "nwe")
 species_label.grid(row = 1, column = 0, sticky = "nwe")
 
-background_randomized.grid(row = 0, column = 5, columnspan = 3, sticky = "nwe")
-background_label.grid(row = 0, column = 3, columnspan = 2, sticky = "nwe")
+background_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
+background_label.grid(row = 0, column = 4, columnspan = 2, sticky = "nwe")
 
 str_label.grid(row = 2, column = 0, sticky = "nwe")
 str_stat.grid(row = 2, column = 1, sticky = "nwe")
 str_modifier.grid(row = 2, column = 2, sticky = "nwe")
+str_rad_1.grid(row = 2, column = 3, sticky = "we")
+str_rad_2.grid(row = 2, column = 4, sticky = "we")
+str_rad_3.grid(row = 2, column = 5, sticky = "we")
+str_rad_4.grid(row = 2, column = 6, sticky = "we")
+str_rad_5.grid(row = 2, column = 7, sticky = "we")
+str_rad_6.grid(row = 2, column = 8, sticky = "we")
 
 dex_label.grid(row = 3, column = 0, sticky = "nwe")
 dex_stat.grid(row = 3, column = 1, sticky = "nwe")
 dex_modifier.grid(row = 3, column = 2, sticky = "nwe")
+dex_rad_1.grid(row = 3, column = 3, sticky = "we")
+dex_rad_2.grid(row = 3, column = 4, sticky = "we")
+dex_rad_3.grid(row = 3, column = 5, sticky = "we")
+dex_rad_4.grid(row = 3, column = 6, sticky = "we")
+dex_rad_5.grid(row = 3, column = 7, sticky = "we")
+dex_rad_6.grid(row = 3, column = 8, sticky = "we")
 
 con_label.grid(row = 4, column = 0, sticky = "nwe")
 con_stat.grid(row = 4, column = 1, sticky = "nwe")
 con_modifier.grid(row = 4, column = 2, sticky = "nwe")
+con_rad_1.grid(row = 4, column = 3, sticky = "we")
+con_rad_2.grid(row = 4, column = 4, sticky = "we")
+con_rad_3.grid(row = 4, column = 5, sticky = "we")
+con_rad_4.grid(row = 4, column = 6, sticky = "we")
+con_rad_5.grid(row = 4, column = 7, sticky = "we")
+con_rad_6.grid(row = 4, column = 8, sticky = "we")
 
 int_label.grid(row = 5, column = 0, sticky = "nwe")
 int_stat.grid(row = 5, column = 1, sticky = "nwe")
 int_modifier.grid(row = 5, column = 2, sticky = "nwe")
+int_rad_1.grid(row = 5, column = 3, sticky = "we")
+int_rad_2.grid(row = 5, column = 4, sticky = "we")
+int_rad_3.grid(row = 5, column = 5, sticky = "we")
+int_rad_4.grid(row = 5, column = 6, sticky = "we")
+int_rad_5.grid(row = 5, column = 7, sticky = "we")
+int_rad_6.grid(row = 5, column = 8, sticky = "we")
 
 wis_label.grid(row = 6, column = 0, sticky = "nwe")
 wis_stat.grid(row = 6, column = 1, sticky = "nwe")
 wis_modifier.grid(row = 6, column = 2, sticky = "nwe")
+wis_rad_1.grid(row = 6, column = 3, sticky = "we")
+wis_rad_2.grid(row = 6, column = 4, sticky = "we")
+wis_rad_3.grid(row = 6, column = 5, sticky = "we")
+wis_rad_4.grid(row = 6, column = 6, sticky = "we")
+wis_rad_5.grid(row = 6, column = 7, sticky = "we")
+wis_rad_6.grid(row = 6, column = 8, sticky = "we")
 
 cha_label.grid(row = 7, column = 0, sticky = "nwe")
 cha_stat.grid(row = 7, column = 1, sticky = "nwe")
 cha_modifier.grid(row = 7, column = 2, sticky = "nwe")
+cha_rad_1.grid(row = 7, column = 3, sticky = "we")
+cha_rad_2.grid(row = 7, column = 4, sticky = "we")
+cha_rad_3.grid(row = 7, column = 5, sticky = "we")
+cha_rad_4.grid(row = 7, column = 6, sticky = "we")
+cha_rad_5.grid(row = 7, column = 7, sticky = "we")
+cha_rad_6.grid(row = 7, column = 8, sticky = "we")
 
 stats_gen_label.grid(row = 9, column = 0, columnspan = 2, sticky = "nswe")
 stats_gen_selector.grid(row = 9, column = 2, columnspan = 2, sticky = "nswe")
@@ -269,5 +351,6 @@ stat_reset.grid(row = 11, column = 8, columnspan = 2, sticky = "nwe")
 
 #binds
 stats_gen_selector.bind("<<ComboboxSelected>>", roll_method_change)
+
 
 main.mainloop()
