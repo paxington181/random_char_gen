@@ -6,8 +6,8 @@ from tkinter.ttk import *
 from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
 from cssb import *
 
-background_color = "gray27"
-foreground_color = "gray69"
+background_color = "black"
+foreground_color = "white"
 selected_classes = base_classes + eberron_classes
 selected_species = base_species + eberron_species + ravenloft_species
 selected_backgrounds = base_background + eberron_background + ravenloft_background
@@ -59,6 +59,14 @@ def roll_stats_standard():
     stats_total.configure(text = f" {sum(current_stats)}")
     stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
 
+def hc_update(current_stats):
+    str_stat.configure(text = f"{current_stats[0][0]}")
+    dex_stat.configure(text = f"{current_stats[1][0]}")
+    con_stat.configure(text = f"{current_stats[2][0]}")
+    int_stat.configure(text = f"{current_stats[3][0]}")
+    wis_stat.configure(text = f"{current_stats[4][0]}")
+    cha_stat.configure(text = f"{current_stats[5][0]}")
+
 def roll_stats_tdsix():
     current_stats = tdsix_set()
     stats_update(current_stats)
@@ -78,14 +86,17 @@ def roll_stats_mdsix_shuffle():
 def roll_stats_hc_tdsix():
     current_stats = hc_tdsix_set()
     stats_update(current_stats)
+    hc_update(current_stats)
 
 def roll_stats_hc_fdsix():
     current_stats = hc_fdsix_set()
     stats_update(current_stats)
+    hc_update(current_stats)
 
 def roll_stats_hc_mdsix():
     current_stats = hc_mdsix_set()
     stats_update(current_stats)
+    hc_update(current_stats)
 
 def roll_method_change(event):
     selection = stats_gen_selector.get()
