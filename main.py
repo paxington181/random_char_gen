@@ -42,23 +42,6 @@ def stats_update(current_stats):
     stats_total.configure(text = f" {current_stats[6]}")
     stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
-def roll_stats_standard():
-    current_stats = [15, 14, 13, 12, 10, 8]
-    stats_rolls_one.configure(text = f"{current_stats[0]}")
-    stats_sum_one.configure(text = f"{current_stats[0]}")
-    stats_rolls_two.configure(text = f"{current_stats[1]}")
-    stats_sum_two.configure(text = f"{current_stats[1]}")
-    stats_rolls_three.configure(text = f"{current_stats[2]}")
-    stats_sum_three.configure(text = f"{current_stats[2]}")
-    stats_rolls_four.configure(text = f"{current_stats[3]}")
-    stats_sum_four.configure(text = f"{current_stats[3]}")
-    stats_rolls_five.configure(text = f"{current_stats[4]}")
-    stats_sum_five.configure(text = f"{current_stats[4]}")
-    stats_rolls_six.configure(text = f"{current_stats[5]}")
-    stats_sum_six.configure(text = f"{current_stats[5]}")
-    stats_total.configure(text = f" {sum(current_stats)}")
-    stats_percent.configure(text = f" {int(round((sum(current_stats) / 72), 2) * 100)}%")
-
 def str_update(stat):
     str_stat.configure(text = f"{stat}")
     str_modifier.configure(text = f"{modifier_update(stat)}")
@@ -167,6 +150,10 @@ def radio_disable():
     wis_rad_6.configure(state = DISABLED)
     cha_rad_6.configure(state = DISABLED)
     
+def roll_stats_standard():
+    current_stats = [[15, 15], [14, 14], [13, 13], [12, 12], [10, 10], [8, 8], 72]
+    stats_update(current_stats)
+    radio_stat_buttons(current_stats)
 
 def roll_stats_tdsix():
     current_stats = tdsix_set()
