@@ -19,9 +19,21 @@ mentor: list[str] = ["relative", "wandering stranger", "school", "family", "mili
 mentor_attitude: list[str] = ["friendly", "neutral", "hostile"]
 
 
-tier1_events: list[str] = []
-tier2_events: list[str] = []
-tier3_events: list[str] = []
-tier4_events: list[str] = []
-tier5_events: list[str] = []
+generic_events: list[str] = ["party member death", 
+                             "near party wipe", 
+                             "player leaves group", 
+                             "class specific magic item", 
+                             "character ability saves day", 
+                             "ability proved useless", 
+                             "overshadowed by others", 
+                             "backstory plothook used", 
+                             "player changes character", 
+                             "major character injury"
+                             ]
+tier_one_events: list[str] = ["character idea doesn't fit campaign"]
+tier_two_events: list[str] = []
+tier_three_events: list[str] = ["campaign focus changed"]
+tier_four_events: list[str] = []
+tier_five_events: list[str] = []
 
+party_members: list[str] = []
