@@ -2,6 +2,8 @@ import customtkinter
 import math
 #from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
 from cssb import *
+from species import species_roll
+from backgrounds import background_roll
 
 customtkinter.set_appearance_mode("dark")
 
@@ -35,10 +37,13 @@ class char_roll(customtkinter.CTkFrame):
         self.background_books.grid(row = 0, rowspan = 4, column = 12, columnspan =2, padx = (10, 10), sticky = "ew")
 
     def randomize(self):
-        print("Class: ", self.class_books.get())
-        print("Subclass: ", self.subclass_books.get())
-        print("Species: ", self.species_books.get())
-        print("Background: ", self.background_books.get())
+        class_rand = self.class_books.get()
+        subclass_rand = self.subclass_books.get()
+        self.cha_class.configure(text = f"{class_roll(class_rand, subclass_rand)}")
+        species_rand = self.species_books.get()
+        self.cha_species.configure(text = f"{species_roll(species_rand)}")
+        background_rand = self.background_books.get()
+        self.cha_background.configure(text = f"{background_roll(background_rand)}")
 
 class BooksFrame(customtkinter.CTkFrame):
     def __init__(self, master, title, books):
