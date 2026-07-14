@@ -8,15 +8,14 @@ def background_roll(selected_books):
     selected_background = []
     for book in selected_books:
         if book == "2024 PHB":
-            for i in phb:
-                selected_background.append(i)
+            selected_background.append(phb)
         elif book == "Eberron":
-            for j in eberron:
-                selected_background.append(j)
+            selected_background.append(eberron)
         elif book == "Ravenloft":
-            for k in ravenloft:
-                selected_background.append(k)
-    if len(selected_background) == 0:
+            selected_background.append(ravenloft)
+    if len(selected_background) != 0:
+        selected_background = [string for sublist in selected_background for string in sublist]
+    else:
         selected_background = phb
     random_background = selected_background[random.randrange(0, len(selected_background))]
     return random_background.title()

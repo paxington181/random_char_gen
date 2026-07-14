@@ -4,6 +4,7 @@ import math
 from cssb import *
 from species import species_roll
 from backgrounds import background_roll
+from char_class import class_roll
 
 customtkinter.set_appearance_mode("dark")
 
@@ -14,7 +15,7 @@ class char_roll(customtkinter.CTkFrame):
         
         self.cha_class_label = customtkinter.CTkLabel(self, text = "Class: ")
         self.cha_class_label.grid(row = 0, column = 0, padx = (15, 5), sticky = "e")
-        self.cha_class = customtkinter.CTkLabel(self, text = "Snuffleupagus, friend of Big Bird of the Yellow")
+        self.cha_class = customtkinter.CTkLabel(self, text = "Snuffleupagus, friend of Large Bird the Yellow")
         self.cha_class.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
         self.cha_species_label = customtkinter.CTkLabel(self, text = "Species: ")
         self.cha_species_label.grid(row = 1, column = 0, padx = (15, 5), sticky = "e")

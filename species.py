@@ -21,15 +21,14 @@ def species_roll(selected_books):
     selected_species = []
     for book in selected_books:
         if book == "2024 PHB":
-            for i in phb:
-                selected_species.append(i)
+            selected_species.append(phb)
         elif book == "Eberron":
-            for j in eberron:
-                selected_species.append(j)
+            selected_species.append(eberron)
         elif book == "Ravenloft":
-            for k in ravenloft:
-                selected_species.append(k)
-    if len(selected_species) == 0:
+            selected_species.append(ravenloft)
+    if len(selected_species) != 0:
+        selected_species = [string for sublist in selected_species for string in sublist]
+    else:    
         selected_species = phb
     random_species = selected_species[(random.randrange(0, len(selected_species)))]
     if random_species == "dragonborn":
