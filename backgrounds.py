@@ -4,6 +4,7 @@ phb: list[str] = ["acolyte", "artisan", "charlatan", "criminal", "entertainer", 
 eberron: list[str] = ["aberrant heir", "archaeologist", "house agent", "house cannith heir", "house deneith heir", "house ghallanda heir", "house jorasco heir", "house kundarak heir", "house lyrandar heir", "house medani heir", "house orien heir", "house phiarlan heir", "house sivis heir", "house tharashk heir", "house vadalis heir", "inquisitive"]
 ravenloft: list[str] = ["haunted one", "investigator", "mist wanderer", "spirit medium"]
 
+
 def background_roll(selected_books):
     selected_background = []
     for book in selected_books:

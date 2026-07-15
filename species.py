@@ -15,8 +15,6 @@ tiefling_sub: list[str] = ["abyssal", "chthonic", "infernal"]
 shifter_sub: list[str] = ["beasthide", "longtooth", "swiftstride", "wildhunt"]
 
 
-
-
 def species_roll(selected_books):
     selected_species = []
     for book in selected_books:

@@ -1,7 +1,6 @@
 import customtkinter
 import math
 #from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
-from cssb import *
 from species import species_roll
 from backgrounds import background_roll
 from char_class import class_roll
