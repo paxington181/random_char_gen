@@ -74,12 +74,13 @@ class App(customtkinter.CTk):
 
         self.title("D&D 2024 Random Character Generator")
         self.geometry("950x425")
+        self.grid_propagate(False)
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1)
         self.grid_columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13), weight = 1)
         
         
         self.char_roll_frame = char_roll(self)
-        self.char_roll_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = "nsew")
+        self.char_roll_frame.grid(row = 0, column = 0, columnspan = 13, padx = 10, pady = 10, sticky = "nsew")
         
    
 
