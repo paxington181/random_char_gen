@@ -1,6 +1,5 @@
 import customtkinter
-import math
-#from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
+from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set, modifier_calc
 from species import species_roll
 from backgrounds import background_roll
 from char_class import class_roll
@@ -11,6 +10,7 @@ customtkinter.set_appearance_mode("dark")
 class char_roll(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
+        self.columnconfigure((0, 1, 2, 3), uniform = "a")
         
         self.cha_class_label = customtkinter.CTkLabel(self, text = "Class: ")
         self.cha_class_label.grid(row = 0, column = 0, padx = (15, 5), sticky = "e")
@@ -35,6 +35,7 @@ class char_roll(customtkinter.CTkFrame):
         self.species_books.grid(row = 0, rowspan = 4, column = 10, columnspan =2, padx = (10, 10), sticky = "ew")
         self.background_books = BooksFrame(self, "Background Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
         self.background_books.grid(row = 0, rowspan = 4, column = 12, columnspan =2, padx = (10, 10), sticky = "ew")
+
 
     def randomize(self):
         class_rand = self.class_books.get()
@@ -67,6 +68,43 @@ class BooksFrame(customtkinter.CTkFrame):
                 checked_checkboxes.append(checkbox.cget("text"))
         return checked_checkboxes
 
+class stat_roll(customtkinter.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+
+        self.str_stat = 3
+        self.str_mod = modifier_calc(self.str_stat)
+        self.dex_stat = 3
+        self.dex_mod = modifier_calc(self.dex_stat)
+        self.con_stat = 3
+        self.con_mod = modifier_calc(self.con_stat)
+        self.int_stat = 3
+        self.int_mod = modifier_calc(self.int_stat)
+        self.wis_stat = 3
+        self.wis_mod = modifier_calc(self.wis_stat)
+        self.cha_stat = 3
+        self.cha_mod = modifier_calc(self.cha_stat)
+
+        self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
+        self.str_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.dex_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.dex_stat} {self.dex_mod}")
+        self.dex_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.con_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.con_stat} {self.con_mod}")
+        self.con_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.int_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.int_stat} {self.int_mod}")
+        self.int_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.wis_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.wis_stat} {self.wis_mod}")
+        self.wis_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.cha_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.cha_stat} {self.cha_mod}")
+        self.cha_stat_label.grid(row = 0, column = 0, sticky = "ew")
+
+    def str_update(value):
+        stat_roll.str_stat = value
+        stat_roll.str_stat_label.configure(text = f"Str: {stat_roll.str_stat} {stat_roll.str_mod}")
+
+    
+
+        
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -75,14 +113,14 @@ class App(customtkinter.CTk):
         self.title("D&D 2024 Random Character Generator")
         self.geometry("950x425")
         self.grid_propagate(False)
-        self.grid_rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1)
-        self.grid_columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13), weight = 1)
+        
         
         
         self.char_roll_frame = char_roll(self)
-        self.char_roll_frame.grid(row = 0, column = 0, columnspan = 13, padx = 10, pady = 10, sticky = "nsew")
+        self.char_roll_frame.pack(fill = "x", padx = 5, pady = 5)
         
-   
+        self.stat_frame = stat_roll(self)
+        self.stat_frame.pack(fill = "x", padx = 5, pady = 5)
 
 app = App()
 app.mainloop()

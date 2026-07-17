@@ -1,4 +1,5 @@
 import random
+import math
 
 def tdsix():
     tds_list: list[int] = []
@@ -115,3 +116,9 @@ def hc_mdsix_set():
         i += 1
     hc_mdsix_set_list.append(sum)
     return hc_mdsix_set_list
+
+def modifier_calc(current_stat):
+        mod = math.floor((current_stat - 10) / 2)
+        if mod >= 0:
+            return f"+{mod}"
+        return mod
