@@ -72,7 +72,6 @@ class stat_roll(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
         self.rowconfigure((0, 1, 2, 3, 4, 5), uniform = "y")
-
         self.str_stat = 3
         self.str_mod = modifier_calc(self.str_stat)
         self.dex_stat = 3
@@ -85,42 +84,72 @@ class stat_roll(customtkinter.CTkFrame):
         self.wis_mod = modifier_calc(self.wis_stat)
         self.cha_stat = 3
         self.cha_mod = modifier_calc(self.cha_stat)
+        self.roll_values = ["1", "2", "3", "4", "5", "6"]
 
         self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
         self.str_stat_label.grid(row = 0, column = 0, padx = 10, sticky = "ew")
+        self.str_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.str_update(self.str_combobox.get()))
+        self.str_combobox.grid(row = 0, column = 1, padx = (0, 10), sticky = "w")
+        self.str_combobox.set(self.roll_values[0])
+
         self.dex_stat_label = customtkinter.CTkLabel(self, text = f"Dex: {self.dex_stat} {self.dex_mod}")
         self.dex_stat_label.grid(row = 1, column = 0, padx = 10, sticky = "ew")
+        self.dex_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.dex_update(self.dex_combobox.get()))
+        self.dex_combobox.grid(row = 1, column = 1, padx = (0, 10), sticky = "w")
+        self.dex_combobox.set(self.roll_values[1])
+
         self.con_stat_label = customtkinter.CTkLabel(self, text = f"Con: {self.con_stat} {self.con_mod}")
         self.con_stat_label.grid(row = 2, column = 0, padx = 10, sticky = "ew")
+        self.con_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.con_update(self.con_combobox.get()))
+        self.con_combobox.grid(row = 2, column = 1, padx = (0, 10), sticky = "w")
+        self.con_combobox.set(self.roll_values[2])
+
         self.int_stat_label = customtkinter.CTkLabel(self, text = f"Int: {self.int_stat} {self.int_mod}")
         self.int_stat_label.grid(row = 3, column = 0, padx = 10, sticky = "ew")
+        self.int_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.int_update(self.int_combobox.get()))
+        self.int_combobox.grid(row = 3, column = 1, padx = (0, 10), sticky = "w")
+        self.int_combobox.set(self.roll_values[3])
+
         self.wis_stat_label = customtkinter.CTkLabel(self, text = f"Wis: {self.wis_stat} {self.wis_mod}")
         self.wis_stat_label.grid(row = 4, column = 0, padx = 10, sticky = "ew")
+        self.wis_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.wis_update(self.wis_combobox.get()))
+        self.wis_combobox.grid(row = 4, column = 1, padx = (0, 10), sticky = "w")
+        self.wis_combobox.set(self.roll_values[4])
+
         self.cha_stat_label = customtkinter.CTkLabel(self, text = f"Cha: {self.cha_stat} {self.cha_mod}")
         self.cha_stat_label.grid(row = 5, column = 0, padx = 10, sticky = "ew")
+        self.cha_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.cha_update(self.cha_combobox.get()))
+        self.cha_combobox.grid(row = 5, column = 1, padx = (0, 10), sticky = "w")
+        self.cha_combobox.set(self.roll_values[5])
 
     def str_update(self, value):
-        self.str_stat = value
+        self.str_stat = int(value)
+        self.str_mod = modifier_calc(self.str_stat)
         self.str_stat_label.configure(text = f"Str: {self.str_stat} {self.str_mod}")
     
     def dex_update(self, value):
-        self.dex_stat = value
+        self.dex_stat = int(value)
+        self.dex_mod = modifier_calc(self.dex_stat)
         self.dex_stat_label.configure(text = f"Dex: {self.dex_stat} {self.dex_mod}")
 
     def con_update(self, value):
-        self.con_stat = value
+        self.con_stat = int(value)
+        self.con_mod = modifier_calc(self.con_stat)
         self.con_stat_label.configure(text = f"Con: {self.con_stat} {self.con_mod}")
 
     def int_update(self, value):
-        self.int_stat = value
+        self.int_stat = int(value)
+        self.int_mod = modifier_calc(self.int_stat)
         self.int_stat_label.configure(text = f"Int: {self.int_stat} {self.int_mod}")
 
     def wis_update(self, value):
-        self.wis_stat = value
+        self.wis_stat = int(value)
+        self.wis_mod = modifier_calc(self.wis_stat)
         self.wis_stat_label.configure(text = f"Wis: {self.wis_stat} {self.wis_mod}")
 
     def cha_update(self, value):
-        self.cha_stat = value
+        self.cha_stat = int(value)
+        self.cha_mod = modifier_calc(self.cha_stat)
         self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
     
 
