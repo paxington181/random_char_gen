@@ -14,7 +14,7 @@ class char_roll(customtkinter.CTkFrame):
         
         self.cha_class_label = customtkinter.CTkLabel(self, text = "Class: ")
         self.cha_class_label.grid(row = 0, column = 0, padx = (15, 5), sticky = "e")
-        self.cha_class = customtkinter.CTkLabel(self, text = "Snuffleupagus, friend of Large Bird the Yellow")
+        self.cha_class = customtkinter.CTkLabel(self, text = "Snuffleupagus, friend of Large Bird")
         self.cha_class.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
         self.cha_species_label = customtkinter.CTkLabel(self, text = "Species: ")
         self.cha_species_label.grid(row = 1, column = 0, padx = (15, 5), sticky = "e")
@@ -28,13 +28,13 @@ class char_roll(customtkinter.CTkFrame):
         self.randomize_button.grid(row = 3, column = 0, columnspan = 5, padx = 10, sticky = "ew")
 
         self.class_books = BooksFrame(self, "Class Books", books = ["2024 PHB", "Eberron"])
-        self.class_books.grid(row = 0, rowspan = 4, column = 6, columnspan =2, sticky = "ew")
+        self.class_books.grid(row = 0, rowspan = 4, column = 6, columnspan =2, padx = (15, 5), sticky = "ew")
         self.subclass_books = BooksFrame(self, "SubClass Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
-        self.subclass_books.grid(row = 0, rowspan = 4, column = 8, columnspan =2, padx = (10, 10), sticky = "ew")
+        self.subclass_books.grid(row = 0, rowspan = 4, column = 8, columnspan =2, padx = (5, 5), sticky = "ew")
         self.species_books = BooksFrame(self, "Species Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
-        self.species_books.grid(row = 0, rowspan = 4, column = 10, columnspan =2, padx = (10, 10), sticky = "ew")
+        self.species_books.grid(row = 0, rowspan = 4, column = 10, columnspan =2, padx = (5, 5), sticky = "ew")
         self.background_books = BooksFrame(self, "Background Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
-        self.background_books.grid(row = 0, rowspan = 4, column = 12, columnspan =2, padx = (10, 10), sticky = "ew")
+        self.background_books.grid(row = 0, rowspan = 4, column = 12, columnspan =2, padx = (5, 5), sticky = "ew")
 
 
     def randomize(self):
@@ -71,6 +71,7 @@ class BooksFrame(customtkinter.CTkFrame):
 class stat_roll(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
+        self.rowconfigure((0, 1, 2, 3, 4, 5), uniform = "y")
 
         self.str_stat = 3
         self.str_mod = modifier_calc(self.str_stat)
@@ -86,22 +87,41 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_mod = modifier_calc(self.cha_stat)
 
         self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
-        self.str_stat_label.grid(row = 0, column = 0, sticky = "ew")
-        self.dex_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.dex_stat} {self.dex_mod}")
-        self.dex_stat_label.grid(row = 0, column = 0, sticky = "ew")
-        self.con_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.con_stat} {self.con_mod}")
-        self.con_stat_label.grid(row = 0, column = 0, sticky = "ew")
-        self.int_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.int_stat} {self.int_mod}")
-        self.int_stat_label.grid(row = 0, column = 0, sticky = "ew")
-        self.wis_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.wis_stat} {self.wis_mod}")
-        self.wis_stat_label.grid(row = 0, column = 0, sticky = "ew")
-        self.cha_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.cha_stat} {self.cha_mod}")
-        self.cha_stat_label.grid(row = 0, column = 0, sticky = "ew")
+        self.str_stat_label.grid(row = 0, column = 0, padx = 10, sticky = "ew")
+        self.dex_stat_label = customtkinter.CTkLabel(self, text = f"Dex: {self.dex_stat} {self.dex_mod}")
+        self.dex_stat_label.grid(row = 1, column = 0, padx = 10, sticky = "ew")
+        self.con_stat_label = customtkinter.CTkLabel(self, text = f"Con: {self.con_stat} {self.con_mod}")
+        self.con_stat_label.grid(row = 2, column = 0, padx = 10, sticky = "ew")
+        self.int_stat_label = customtkinter.CTkLabel(self, text = f"Int: {self.int_stat} {self.int_mod}")
+        self.int_stat_label.grid(row = 3, column = 0, padx = 10, sticky = "ew")
+        self.wis_stat_label = customtkinter.CTkLabel(self, text = f"Wis: {self.wis_stat} {self.wis_mod}")
+        self.wis_stat_label.grid(row = 4, column = 0, padx = 10, sticky = "ew")
+        self.cha_stat_label = customtkinter.CTkLabel(self, text = f"Cha: {self.cha_stat} {self.cha_mod}")
+        self.cha_stat_label.grid(row = 5, column = 0, padx = 10, sticky = "ew")
 
-    def str_update(value):
-        stat_roll.str_stat = value
-        stat_roll.str_stat_label.configure(text = f"Str: {stat_roll.str_stat} {stat_roll.str_mod}")
+    def str_update(self, value):
+        self.str_stat = value
+        self.str_stat_label.configure(text = f"Str: {self.str_stat} {self.str_mod}")
+    
+    def dex_update(self, value):
+        self.dex_stat = value
+        self.dex_stat_label.configure(text = f"Dex: {self.dex_stat} {self.dex_mod}")
 
+    def con_update(self, value):
+        self.con_stat = value
+        self.con_stat_label.configure(text = f"Con: {self.con_stat} {self.con_mod}")
+
+    def int_update(self, value):
+        self.int_stat = value
+        self.int_stat_label.configure(text = f"Int: {self.int_stat} {self.int_mod}")
+
+    def wis_update(self, value):
+        self.wis_stat = value
+        self.wis_stat_label.configure(text = f"Wis: {self.wis_stat} {self.wis_mod}")
+
+    def cha_update(self, value):
+        self.cha_stat = value
+        self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
     
 
         
