@@ -152,8 +152,24 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_mod = modifier_calc(self.cha_stat)
         self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
     
-
+class stat_gen(customtkinter.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
         
+        
+
+
+class dice_block(customtkinter.CTkFrame):
+    def __init__(self, master, roll):
+        super().__init__(master)
+        self.roll = roll
+
+        if len(self.roll == 3):
+            for i, value in enumerate(self.roll):
+                label = customtkinter.CTkLabel(self, text = value)
+                label.grid(row = 0, column = i, padx = 5, sticky = "ew")
+
+
 
 class App(customtkinter.CTk):
     def __init__(self):
