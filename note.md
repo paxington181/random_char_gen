@@ -1,0 +1,1 @@
+source /home/paxington181/workspace/github.com/paxington181/random_char_gen/.venv/bin/activate

@@ -117,6 +117,9 @@ def hc_mdsix_set():
     hc_mdsix_set_list.append(sum)
     return hc_mdsix_set_list
 
+def standard():
+    return [[15, 5, 5, 5, 0], [14, 5, 5, 4, 0], [13, 5, 5, 3, 0], [12, 4, 4, 4, 0], [10, 4, 3, 3, 0], [8, 4, 2, 2, 0]]
+
 def modifier_calc(current_stat):
         mod = math.floor((current_stat - 10) / 2)
         if mod >= 0:

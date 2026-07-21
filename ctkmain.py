@@ -1,5 +1,5 @@
 import customtkinter
-from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set, modifier_calc
+from stat_rolling import standard, tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set, modifier_calc
 from species import species_roll
 from backgrounds import background_roll
 from char_class import class_roll
@@ -84,7 +84,8 @@ class stat_roll(customtkinter.CTkFrame):
         self.wis_mod = modifier_calc(self.wis_stat)
         self.cha_stat = 3
         self.cha_mod = modifier_calc(self.cha_stat)
-        self.roll_values = ["1", "2", "3", "4", "5", "6"]
+        self.roll_values = ["15", "14", "13", "12", "10", "8"]
+        self.rolling_method = ["Standard", "3d6", "4d6", "3 3d6, 3 4d6", "Random 3d6/4d6", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Random"]
 
         self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
         self.str_stat_label.grid(row = 0, column = 0, padx = 10, sticky = "ew")
@@ -122,6 +123,13 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_combobox.grid(row = 5, column = 1, padx = (0, 10), sticky = "w")
         self.cha_combobox.set(self.roll_values[5])
 
+        self.selected_method = customtkinter.CTkComboBox(self, values = self.rolling_method)
+        self.selected_method.grid(row = 5, column = 2, columnspan = 2, sticky = "ew")
+        self.selected_method.set("Standard")
+
+        self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats")
+        self.roll_stats.grid(row =5, column = 4, sticky = "ew")
+
     def str_update(self, value):
         self.str_stat = int(value)
         self.str_mod = modifier_calc(self.str_stat)
@@ -151,13 +159,6 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_stat = int(value)
         self.cha_mod = modifier_calc(self.cha_stat)
         self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
-    
-class stat_gen(customtkinter.CTkFrame):
-    def __init__(self, master):
-        super().__init__(master)
-        
-        
-
 
 class dice_block(customtkinter.CTkFrame):
     def __init__(self, master, roll):
