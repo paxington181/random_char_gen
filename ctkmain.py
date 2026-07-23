@@ -72,17 +72,17 @@ class stat_roll(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
         self.rowconfigure((0, 1, 2, 3, 4, 5), uniform = "y")
-        self.str_stat = 3
+        self.str_stat = 15
         self.str_mod = modifier_calc(self.str_stat)
-        self.dex_stat = 3
+        self.dex_stat = 14
         self.dex_mod = modifier_calc(self.dex_stat)
-        self.con_stat = 3
+        self.con_stat = 13
         self.con_mod = modifier_calc(self.con_stat)
-        self.int_stat = 3
+        self.int_stat = 12
         self.int_mod = modifier_calc(self.int_stat)
-        self.wis_stat = 3
+        self.wis_stat = 10
         self.wis_mod = modifier_calc(self.wis_stat)
-        self.cha_stat = 3
+        self.cha_stat = 8
         self.cha_mod = modifier_calc(self.cha_stat)
         self.roll_values = ["15", "14", "13", "12", "10", "8"]
         self.rolling_method = ["Standard", "3d6", "4d6", "3 3d6, 3 4d6", "Random 3d6/4d6", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Random"]
@@ -123,12 +123,33 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_combobox.grid(row = 5, column = 1, padx = (0, 10), sticky = "w")
         self.cha_combobox.set(self.roll_values[5])
 
-        self.selected_method = customtkinter.CTkComboBox(self, values = self.rolling_method)
+        self.selected_method = customtkinter.CTkComboBox(self, values = self.rolling_method, command = lambda val: self.roll_method_change(self.selected_method.get()))
         self.selected_method.grid(row = 5, column = 2, columnspan = 2, sticky = "ew")
         self.selected_method.set("Standard")
 
         self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats")
         self.roll_stats.grid(row =5, column = 4, sticky = "ew")
+
+    def roll_method_change(self, value):
+        selected = value
+        match selected.strip():
+            case "Standard":
+                self.roll_stats.configure(command = self.roll_stats_standard)
+            case "3d6":
+                self.roll_stats.configure(command = self.roll_stats_tdsix)
+            case "4d6":
+                self.roll_stats.configure(command = self.roll_stats_fdsix)
+            case "3 3d6 3 4d6":
+                self.roll_stats.configure(command = self.roll_stats_mdsix)
+            case "Mix d6 Shuffle":
+                self.roll_stats.configure(command = self.roll_stats_mdsix_shuffle)
+            case "Hardcore 3d6":
+                self.roll_stats.configure(command = self.roll_stats_hc_tdsix)
+            case "Hardcore 4d6":
+                self.roll_stats.configure(command = self.roll_stats_hc_fdsix)
+            case "Hardcore Mix":
+                self.roll_stats.configure(command = self.roll_stats_hc_mdsix) 
+        
 
     def str_update(self, value):
         self.str_stat = int(value)
