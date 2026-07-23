@@ -127,7 +127,7 @@ class stat_roll(customtkinter.CTkFrame):
         self.selected_method.grid(row = 5, column = 2, columnspan = 2, sticky = "ew")
         self.selected_method.set("Standard")
 
-        self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats")
+        self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats", command = self.roll_stats_standard)
         self.roll_stats.grid(row =5, column = 4, sticky = "ew")
 
     def roll_method_change(self, value):
@@ -150,6 +150,45 @@ class stat_roll(customtkinter.CTkFrame):
             case "Hardcore Mix":
                 self.roll_stats.configure(command = self.roll_stats_hc_mdsix) 
         
+    def combobox_update(self, rolls):
+        rolls = self.roll_values
+        self.str_combobox.configure(values = rolls)
+        self.str_combobox.set(rolls[0])
+        self.dex_combobox.configure(values = rolls)
+        self.dex_combobox.set(rolls[1])
+        self.con_combobox.configure(values = rolls)
+        self.con_combobox.set(rolls[2])
+        self.int_combobox.configure(values = rolls)
+        self.int_combobox.set(rolls[3])
+        self.wis_combobox.configure(values = rolls)
+        self.wis_combobox.set(rolls[4])
+        self.cha_combobox.configure(values = rolls)
+        self.cha_combobox.set(rolls[5])
+
+    def roll_stats_standard(self):
+        rolls = standard()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_tdsix(self):
+        rolls = tdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_fdsix(self):
+        rolls = fdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_mdsix(self):
+            rolls = mdsix_set()
+            self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+            self.combobox_update(rolls)
+
+    def roll_stats_mdsix_shuffle(self):
+            rolls = mdsix_set_shuffle()
+            self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+            self.combobox_update(rolls)
 
     def str_update(self, value):
         self.str_stat = int(value)
@@ -186,10 +225,9 @@ class dice_block(customtkinter.CTkFrame):
         super().__init__(master)
         self.roll = roll
 
-        if len(self.roll == 3):
-            for i, value in enumerate(self.roll):
-                label = customtkinter.CTkLabel(self, text = value)
-                label.grid(row = 0, column = i, padx = 5, sticky = "ew")
+        for i, value in enumerate(self.roll):
+            label = customtkinter.CTkLabel(self, text = value)
+            label.grid(row = 0, column = i, padx = 5, sticky = "ew")
 
 
 

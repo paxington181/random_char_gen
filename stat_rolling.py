@@ -118,7 +118,7 @@ def hc_mdsix_set():
     return hc_mdsix_set_list
 
 def standard():
-    return [[15, 5, 5, 5, 0], [14, 5, 5, 4, 0], [13, 5, 5, 3, 0], [12, 4, 4, 4, 0], [10, 4, 3, 3, 0], [8, 4, 2, 2, 0]]
+    return [[15, 5, 5, 5], [14, 5, 5, 4], [13, 5, 5, 3], [12, 4, 4, 4], [10, 4, 3, 3], [8, 4, 2, 2]]
 
 def modifier_calc(current_stat):
         mod = math.floor((current_stat - 10) / 2)
