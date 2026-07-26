@@ -27,7 +27,7 @@ class char_roll(customtkinter.CTkFrame):
         self.randomize_button = customtkinter.CTkButton(self, text = "Roll Character", command = self.randomize)
         self.randomize_button.grid(row = 3, column = 0, columnspan = 5, padx = 10, sticky = "ew")
 
-        self.class_books = BooksFrame(self, "Class Books", books = ["2024 PHB", "Eberron"])
+        self.class_books = BooksFrame(self, "Class Books", books = ["2024 PHB", "Eberron", "Future Update"])
         self.class_books.grid(row = 0, rowspan = 4, column = 6, columnspan =2, padx = (15, 5), sticky = "ew")
         self.subclass_books = BooksFrame(self, "SubClass Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
         self.subclass_books.grid(row = 0, rowspan = 4, column = 8, columnspan =2, padx = (5, 5), sticky = "ew")
@@ -165,6 +165,21 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_combobox.configure(values = rolls)
         self.cha_combobox.set(rolls[5])
 
+    def hc_combobox_update(self, rolls):
+            rolls = self.roll_values
+            self.str_combobox.configure(values = (rolls[0], rolls[0]))
+            self.str_combobox.set(rolls[0])
+            self.dex_combobox.configure(values = (rolls[1], rolls[1]))
+            self.dex_combobox.set(rolls[1])
+            self.con_combobox.configure(values = (rolls[2], rolls[2]))
+            self.con_combobox.set(rolls[2])
+            self.int_combobox.configure(values = (rolls[3], rolls[3]))
+            self.int_combobox.set(rolls[3])
+            self.wis_combobox.configure(values = (rolls[4], rolls[4]))
+            self.wis_combobox.set(rolls[4])
+            self.cha_combobox.configure(values = (rolls[5], rolls[5]))
+            self.cha_combobox.set(rolls[5])
+
     def roll_stats_standard(self):
         rolls = standard()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
@@ -181,14 +196,32 @@ class stat_roll(customtkinter.CTkFrame):
         self.combobox_update(rolls)
 
     def roll_stats_mdsix(self):
-            rolls = mdsix_set()
-            self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
-            self.combobox_update(rolls)
+        rolls = mdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
 
     def roll_stats_mdsix_shuffle(self):
-            rolls = mdsix_set_shuffle()
-            self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
-            self.combobox_update(rolls)
+        rolls = mdsix_set_shuffle()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_hc_tdsix(self):
+        rolls = hc_tdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
+
+    def roll_stats_hc_fdsix(self):
+        rolls = hc_fdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
+
+    def roll_stats_hc_mdsix(self):
+        rolls = hc_mdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
 
     def str_update(self, value):
         self.str_stat = int(value)
@@ -219,6 +252,15 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_stat = int(value)
         self.cha_mod = modifier_calc(self.cha_stat)
         self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
+
+    def hc_stat_update(self):
+        rolls = self.roll_values
+        self.str_update(rolls[0])
+        self.dex_update(rolls[1])
+        self.con_update(rolls[2])
+        self.int_update(rolls[3])
+        self.wis_update(rolls[4])
+        self.cha_update(rolls[5])
 
 class dice_block(customtkinter.CTkFrame):
     def __init__(self, master, roll):
