@@ -85,6 +85,7 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_stat = 8
         self.cha_mod = modifier_calc(self.cha_stat)
         self.roll_values = ["15", "14", "13", "12", "10", "8"]
+        self.rolls = [[5, 5, 5], [5, 5, 4], [5, 5, 3], [4, 4, 4], [4, 3, 3], [4, 2, 2]]
         self.rolling_method = ["Standard", "3d6", "4d6", "3 3d6, 3 4d6", "Random 3d6/4d6", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Random"]
 
         self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
