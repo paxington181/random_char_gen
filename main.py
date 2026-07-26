@@ -1,440 +1,293 @@
-import math
-import tkinter as tk
-from tkinter import *
-from tkinter import ttk
-from tkinter.ttk import *
-from stat_rolling import tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set
-from cssb import *
+import customtkinter
+from stat_rolling import standard, tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set, modifier_calc
+from species import species_roll
+from backgrounds import background_roll
+from char_class import class_roll
 
-background_color = "black"
-foreground_color = "white"
-selected_classes = base_classes + eberron_classes
-selected_species = base_species + eberron_species + ravenloft_species
-selected_backgrounds = base_background + eberron_background + ravenloft_background
+customtkinter.set_appearance_mode("dark")
 
-def modifier_update(current_stat):
-    current_stat = int(current_stat)
-    mod = int( math.floor((current_stat - 10) / 2))
-    if mod >= 0:
-        return f"+{mod}"
-    return f"{mod}"
+#Class/sub, background, species
+class char_roll(customtkinter.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.columnconfigure((0, 1, 2, 3), uniform = "a")
+        
+        self.cha_class_label = customtkinter.CTkLabel(self, text = "Class: ")
+        self.cha_class_label.grid(row = 0, column = 0, padx = (15, 5), sticky = "e")
+        self.cha_class = customtkinter.CTkLabel(self, text = "Snuffleupagus, friend of Large Bird")
+        self.cha_class.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
+        self.cha_species_label = customtkinter.CTkLabel(self, text = "Species: ")
+        self.cha_species_label.grid(row = 1, column = 0, padx = (15, 5), sticky = "e")
+        self.cha_species = customtkinter.CTkLabel(self, text = "Imaginary Friend")
+        self.cha_species.grid(row = 1, column = 1, columnspan = 3, sticky = "w")
+        self.cha_background_label = customtkinter.CTkLabel(self, text = "Background: ")
+        self.cha_background_label.grid(row = 2, column = 0, padx = (15, 5), sticky = "e")
+        self.cha_background = customtkinter.CTkLabel(self, text = "Dream of the Yellow Bird")
+        self.cha_background.grid(row = 2, column = 1, columnspan = 3, sticky = "w")
+        self.randomize_button = customtkinter.CTkButton(self, text = "Roll Character", command = self.randomize)
+        self.randomize_button.grid(row = 3, column = 0, columnspan = 5, padx = 10, sticky = "ew")
 
-def update_all():
-    class_randomized.configure(text = f"{class_roll(selected_classes)}")
-    rspec = species_roll(selected_species)
-    species_randomized.configure(text = f"{rspec}")
-    rback = background_roll(selected_backgrounds)
-    background_randomized.configure(text = f"{rback}")
+        self.class_books = BooksFrame(self, "Class Books", books = ["2024 PHB", "Eberron", "Future Update"])
+        self.class_books.grid(row = 0, rowspan = 4, column = 6, columnspan =2, padx = (15, 5), sticky = "ew")
+        self.subclass_books = BooksFrame(self, "SubClass Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
+        self.subclass_books.grid(row = 0, rowspan = 4, column = 8, columnspan =2, padx = (5, 5), sticky = "ew")
+        self.species_books = BooksFrame(self, "Species Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
+        self.species_books.grid(row = 0, rowspan = 4, column = 10, columnspan =2, padx = (5, 5), sticky = "ew")
+        self.background_books = BooksFrame(self, "Background Books", books = ["2024 PHB", "Eberron", "Ravenloft"])
+        self.background_books.grid(row = 0, rowspan = 4, column = 12, columnspan =2, padx = (5, 5), sticky = "ew")
 
-def stats_update(current_stats):
-    stats_rolls_one.configure(text = f"{current_stats[0][1:]}")
-    stats_sum_one.configure(text = f"{current_stats[0][0]}")
-    stats_rolls_two.configure(text = f"{current_stats[1][1:]}")
-    stats_sum_two.configure(text = f"{current_stats[1][0]}")
-    stats_rolls_three.configure(text = f"{current_stats[2][1:]}")
-    stats_sum_three.configure(text = f"{current_stats[2][0]}")
-    stats_rolls_four.configure(text = f"{current_stats[3][1:]}")
-    stats_sum_four.configure(text = f"{current_stats[3][0]}")
-    stats_rolls_five.configure(text = f"{current_stats[4][1:]}")
-    stats_sum_five.configure(text = f"{current_stats[4][0]}")
-    stats_rolls_six.configure(text = f"{current_stats[5][1:]}")
-    stats_sum_six.configure(text = f"{current_stats[5][0]}")
-    stats_total.configure(text = f" {current_stats[6]}")
-    stats_percent.configure(text = f" {int(round((current_stats[6] / 72), 2) * 100)}%")
 
-def str_update(stat):
-    str_stat.configure(text = f"{stat}")
-    str_modifier.configure(text = f"{modifier_update(stat)}")
+    def randomize(self):
+        class_rand = self.class_books.get()
+        subclass_rand = self.subclass_books.get()
+        self.cha_class.configure(text = f"{class_roll(class_rand, subclass_rand)}")
+        species_rand = self.species_books.get()
+        self.cha_species.configure(text = f"{species_roll(species_rand)}")
+        background_rand = self.background_books.get()
+        self.cha_background.configure(text = f"{background_roll(background_rand)}")
 
-def dex_update(stat):
-    dex_stat.configure(text = f"{stat}")
-    dex_modifier.configure(text = f"{modifier_update(stat)}")
+class BooksFrame(customtkinter.CTkFrame):
+    def __init__(self, master, title, books):
+        super().__init__(master)
+        self.title = title
+        self.books = books
+        self.checkboxes = []
 
-def con_update(stat):
-    con_stat.configure(text = f"{stat}")
-    con_modifier.configure(text = f"{modifier_update(stat)}")
+        self.title = customtkinter.CTkLabel(self, text = self.title, fg_color = "gray30", corner_radius = 6)
+        self.title.grid(row = 0, column = 0, columnspan = 2, padx = (10, 10), sticky = "nsew")
 
-def int_update(stat):
-    int_stat.configure(text = f"{stat}")
-    int_modifier.configure(text = f"{modifier_update(stat)}")
+        for i, books in enumerate(self.books):
+            checkbox = customtkinter.CTkCheckBox(self, text = books)
+            checkbox.grid(row = i + 1, column = 0, padx = 10, pady = (10, 0), sticky = "w")
+            self.checkboxes.append(checkbox)
 
-def wis_update(stat):
-    wis_stat.configure(text = f"{stat}")
-    wis_modifier.configure(text = f"{modifier_update(stat)}")
+    def get(self):
+        checked_checkboxes = []
+        for checkbox in self.checkboxes:
+            if checkbox.get() == 1:
+                checked_checkboxes.append(checkbox.cget("text"))
+        return checked_checkboxes
 
-def cha_update(stat):
-    cha_stat.configure(text = f"{stat}")
-    cha_modifier.configure(text = f"{modifier_update(stat)}")
+class stat_roll(customtkinter.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.rowconfigure((0, 1, 2, 3, 4, 5), uniform = "y")
+        self.str_stat = 15
+        self.str_mod = modifier_calc(self.str_stat)
+        self.dex_stat = 14
+        self.dex_mod = modifier_calc(self.dex_stat)
+        self.con_stat = 13
+        self.con_mod = modifier_calc(self.con_stat)
+        self.int_stat = 12
+        self.int_mod = modifier_calc(self.int_stat)
+        self.wis_stat = 10
+        self.wis_mod = modifier_calc(self.wis_stat)
+        self.cha_stat = 8
+        self.cha_mod = modifier_calc(self.cha_stat)
+        self.roll_values = ["15", "14", "13", "12", "10", "8"]
+        self.rolling_method = ["Standard", "3d6", "4d6", "3 3d6, 3 4d6", "Random 3d6/4d6", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Random"]
 
-def hc_update(current_stats):
-    str_update(current_stats[0][0])
-    dex_update(current_stats[1][0])
-    con_update(current_stats[2][0])
-    int_update(current_stats[3][0])
-    wis_update(current_stats[4][0])
-    cha_update(current_stats[5][0])
+        self.str_stat_label = customtkinter.CTkLabel(self, text = f"Str: {self.str_stat} {self.str_mod}")
+        self.str_stat_label.grid(row = 0, column = 0, padx = 10, sticky = "ew")
+        self.str_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.str_update(self.str_combobox.get()))
+        self.str_combobox.grid(row = 0, column = 1, padx = (0, 10), sticky = "w")
+        self.str_combobox.set(self.roll_values[0])
 
-def radio_stat_buttons(current_stats):
-    str_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: str_update(current_stats[0][0]), state = NORMAL)
-    dex_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: dex_update(current_stats[0][0]), state = NORMAL)
-    con_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: con_update(current_stats[0][0]), state = NORMAL)
-    int_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: int_update(current_stats[0][0]), state = NORMAL)
-    wis_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: wis_update(current_stats[0][0]), state = NORMAL)
-    cha_rad_1.configure(text = f"{current_stats[0][0]}", command = lambda: cha_update(current_stats[0][0]), state = NORMAL)
-    str_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: str_update(current_stats[1][0]), state = NORMAL)
-    dex_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: dex_update(current_stats[1][0]), state = NORMAL)
-    con_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: con_update(current_stats[1][0]), state = NORMAL)
-    int_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: int_update(current_stats[1][0]), state = NORMAL)
-    wis_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: wis_update(current_stats[1][0]), state = NORMAL)
-    cha_rad_2.configure(text = f"{current_stats[1][0]}", command = lambda: cha_update(current_stats[1][0]), state = NORMAL)
-    str_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: str_update(current_stats[2][0]), state = NORMAL)
-    dex_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: dex_update(current_stats[2][0]), state = NORMAL)
-    con_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: con_update(current_stats[2][0]), state = NORMAL)
-    int_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: int_update(current_stats[2][0]), state = NORMAL)
-    wis_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: wis_update(current_stats[2][0]), state = NORMAL)
-    cha_rad_3.configure(text = f"{current_stats[2][0]}", command = lambda: cha_update(current_stats[2][0]), state = NORMAL)
-    str_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: str_update(current_stats[3][0]), state = NORMAL)
-    dex_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: dex_update(current_stats[3][0]), state = NORMAL)
-    con_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: con_update(current_stats[3][0]), state = NORMAL)
-    int_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: int_update(current_stats[3][0]), state = NORMAL)
-    wis_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: wis_update(current_stats[3][0]), state = NORMAL)
-    cha_rad_4.configure(text = f"{current_stats[3][0]}", command = lambda: cha_update(current_stats[3][0]), state = NORMAL)
-    str_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: str_update(current_stats[4][0]), state = NORMAL)
-    dex_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: dex_update(current_stats[4][0]), state = NORMAL)
-    con_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: con_update(current_stats[4][0]), state = NORMAL)
-    int_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: int_update(current_stats[4][0]), state = NORMAL)
-    wis_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: wis_update(current_stats[4][0]), state = NORMAL)
-    cha_rad_5.configure(text = f"{current_stats[4][0]}", command = lambda: cha_update(current_stats[4][0]), state = NORMAL)
-    str_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: str_update(current_stats[5][0]), state = NORMAL)
-    dex_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: dex_update(current_stats[5][0]), state = NORMAL)
-    con_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: con_update(current_stats[5][0]), state = NORMAL)
-    int_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: int_update(current_stats[5][0]), state = NORMAL)
-    wis_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: wis_update(current_stats[5][0]), state = NORMAL)
-    cha_rad_6.configure(text = f"{current_stats[5][0]}", command = lambda: cha_update(current_stats[5][0]), state = NORMAL)
+        self.dex_stat_label = customtkinter.CTkLabel(self, text = f"Dex: {self.dex_stat} {self.dex_mod}")
+        self.dex_stat_label.grid(row = 1, column = 0, padx = 10, sticky = "ew")
+        self.dex_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.dex_update(self.dex_combobox.get()))
+        self.dex_combobox.grid(row = 1, column = 1, padx = (0, 10), sticky = "w")
+        self.dex_combobox.set(self.roll_values[1])
 
-def radio_disable():
-    str_rad_1.configure(state = DISABLED)
-    dex_rad_1.configure(state = DISABLED)
-    con_rad_1.configure(state = DISABLED)
-    int_rad_1.configure(state = DISABLED)
-    wis_rad_1.configure(state = DISABLED)
-    cha_rad_1.configure(state = DISABLED)
-    str_rad_2.configure(state = DISABLED)
-    dex_rad_2.configure(state = DISABLED)
-    con_rad_2.configure(state = DISABLED)
-    int_rad_2.configure(state = DISABLED)
-    wis_rad_2.configure(state = DISABLED)
-    cha_rad_2.configure(state = DISABLED)
-    str_rad_3.configure(state = DISABLED)
-    dex_rad_3.configure(state = DISABLED)
-    con_rad_3.configure(state = DISABLED)
-    int_rad_3.configure(state = DISABLED)
-    wis_rad_3.configure(state = DISABLED)
-    cha_rad_3.configure(state = DISABLED)
-    str_rad_4.configure(state = DISABLED)
-    dex_rad_4.configure(state = DISABLED)
-    con_rad_4.configure(state = DISABLED)
-    int_rad_4.configure(state = DISABLED)
-    wis_rad_4.configure(state = DISABLED)
-    cha_rad_4.configure(state = DISABLED)
-    str_rad_5.configure(state = DISABLED)
-    dex_rad_5.configure(state = DISABLED)
-    con_rad_5.configure(state = DISABLED)
-    int_rad_5.configure(state = DISABLED)
-    wis_rad_5.configure(state = DISABLED)
-    cha_rad_5.configure(state = DISABLED)
-    str_rad_6.configure(state = DISABLED)
-    dex_rad_6.configure(state = DISABLED)
-    con_rad_6.configure(state = DISABLED)
-    int_rad_6.configure(state = DISABLED)
-    wis_rad_6.configure(state = DISABLED)
-    cha_rad_6.configure(state = DISABLED)
+        self.con_stat_label = customtkinter.CTkLabel(self, text = f"Con: {self.con_stat} {self.con_mod}")
+        self.con_stat_label.grid(row = 2, column = 0, padx = 10, sticky = "ew")
+        self.con_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.con_update(self.con_combobox.get()))
+        self.con_combobox.grid(row = 2, column = 1, padx = (0, 10), sticky = "w")
+        self.con_combobox.set(self.roll_values[2])
+
+        self.int_stat_label = customtkinter.CTkLabel(self, text = f"Int: {self.int_stat} {self.int_mod}")
+        self.int_stat_label.grid(row = 3, column = 0, padx = 10, sticky = "ew")
+        self.int_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.int_update(self.int_combobox.get()))
+        self.int_combobox.grid(row = 3, column = 1, padx = (0, 10), sticky = "w")
+        self.int_combobox.set(self.roll_values[3])
+
+        self.wis_stat_label = customtkinter.CTkLabel(self, text = f"Wis: {self.wis_stat} {self.wis_mod}")
+        self.wis_stat_label.grid(row = 4, column = 0, padx = 10, sticky = "ew")
+        self.wis_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.wis_update(self.wis_combobox.get()))
+        self.wis_combobox.grid(row = 4, column = 1, padx = (0, 10), sticky = "w")
+        self.wis_combobox.set(self.roll_values[4])
+
+        self.cha_stat_label = customtkinter.CTkLabel(self, text = f"Cha: {self.cha_stat} {self.cha_mod}")
+        self.cha_stat_label.grid(row = 5, column = 0, padx = 10, sticky = "ew")
+        self.cha_combobox = customtkinter.CTkComboBox(self, values = self.roll_values, command = lambda val: self.cha_update(self.cha_combobox.get()))
+        self.cha_combobox.grid(row = 5, column = 1, padx = (0, 10), sticky = "w")
+        self.cha_combobox.set(self.roll_values[5])
+
+        self.selected_method = customtkinter.CTkComboBox(self, values = self.rolling_method, command = lambda val: self.roll_method_change(self.selected_method.get()))
+        self.selected_method.grid(row = 5, column = 2, columnspan = 2, sticky = "ew")
+        self.selected_method.set("Standard")
+
+        self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats", command = self.roll_stats_standard)
+        self.roll_stats.grid(row =5, column = 4, sticky = "ew")
+
+    def roll_method_change(self, value):
+        selected = value
+        match selected.strip():
+            case "Standard":
+                self.roll_stats.configure(command = self.roll_stats_standard)
+            case "3d6":
+                self.roll_stats.configure(command = self.roll_stats_tdsix)
+            case "4d6":
+                self.roll_stats.configure(command = self.roll_stats_fdsix)
+            case "3 3d6 3 4d6":
+                self.roll_stats.configure(command = self.roll_stats_mdsix)
+            case "Mix d6 Shuffle":
+                self.roll_stats.configure(command = self.roll_stats_mdsix_shuffle)
+            case "Hardcore 3d6":
+                self.roll_stats.configure(command = self.roll_stats_hc_tdsix)
+            case "Hardcore 4d6":
+                self.roll_stats.configure(command = self.roll_stats_hc_fdsix)
+            case "Hardcore Mix":
+                self.roll_stats.configure(command = self.roll_stats_hc_mdsix) 
+        
+    def combobox_update(self, rolls):
+        rolls = self.roll_values
+        self.str_combobox.configure(values = rolls)
+        self.str_combobox.set(rolls[0])
+        self.dex_combobox.configure(values = rolls)
+        self.dex_combobox.set(rolls[1])
+        self.con_combobox.configure(values = rolls)
+        self.con_combobox.set(rolls[2])
+        self.int_combobox.configure(values = rolls)
+        self.int_combobox.set(rolls[3])
+        self.wis_combobox.configure(values = rolls)
+        self.wis_combobox.set(rolls[4])
+        self.cha_combobox.configure(values = rolls)
+        self.cha_combobox.set(rolls[5])
+
+    def hc_combobox_update(self, rolls):
+            rolls = self.roll_values
+            self.str_combobox.configure(values = (rolls[0], rolls[0]))
+            self.str_combobox.set(rolls[0])
+            self.dex_combobox.configure(values = (rolls[1], rolls[1]))
+            self.dex_combobox.set(rolls[1])
+            self.con_combobox.configure(values = (rolls[2], rolls[2]))
+            self.con_combobox.set(rolls[2])
+            self.int_combobox.configure(values = (rolls[3], rolls[3]))
+            self.int_combobox.set(rolls[3])
+            self.wis_combobox.configure(values = (rolls[4], rolls[4]))
+            self.wis_combobox.set(rolls[4])
+            self.cha_combobox.configure(values = (rolls[5], rolls[5]))
+            self.cha_combobox.set(rolls[5])
+
+    def roll_stats_standard(self):
+        rolls = standard()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_tdsix(self):
+        rolls = tdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_fdsix(self):
+        rolls = fdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_mdsix(self):
+        rolls = mdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_mdsix_shuffle(self):
+        rolls = mdsix_set_shuffle()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.combobox_update(rolls)
+
+    def roll_stats_hc_tdsix(self):
+        rolls = hc_tdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
+
+    def roll_stats_hc_fdsix(self):
+        rolls = hc_fdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
+
+    def roll_stats_hc_mdsix(self):
+        rolls = hc_mdsix_set()
+        self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
+        self.hc_stat_update()
+        self.hc_combobox_update(rolls)
+
+    def str_update(self, value):
+        self.str_stat = int(value)
+        self.str_mod = modifier_calc(self.str_stat)
+        self.str_stat_label.configure(text = f"Str: {self.str_stat} {self.str_mod}")
     
-def roll_stats_standard():
-    current_stats = [[15, 15], [14, 14], [13, 13], [12, 12], [10, 10], [8, 8], 72]
-    stats_update(current_stats)
-    radio_stat_buttons(current_stats)
+    def dex_update(self, value):
+        self.dex_stat = int(value)
+        self.dex_mod = modifier_calc(self.dex_stat)
+        self.dex_stat_label.configure(text = f"Dex: {self.dex_stat} {self.dex_mod}")
 
-def roll_stats_tdsix():
-    current_stats = tdsix_set()
-    stats_update(current_stats)
-    radio_stat_buttons(current_stats)
+    def con_update(self, value):
+        self.con_stat = int(value)
+        self.con_mod = modifier_calc(self.con_stat)
+        self.con_stat_label.configure(text = f"Con: {self.con_stat} {self.con_mod}")
 
-def roll_stats_fdsix():
-    current_stats = fdsix_set()
-    stats_update(current_stats)
-    radio_stat_buttons(current_stats)
+    def int_update(self, value):
+        self.int_stat = int(value)
+        self.int_mod = modifier_calc(self.int_stat)
+        self.int_stat_label.configure(text = f"Int: {self.int_stat} {self.int_mod}")
 
-def roll_stats_mdsix():
-    current_stats = mdsix_set()
-    stats_update(current_stats)
-    radio_stat_buttons(current_stats)
+    def wis_update(self, value):
+        self.wis_stat = int(value)
+        self.wis_mod = modifier_calc(self.wis_stat)
+        self.wis_stat_label.configure(text = f"Wis: {self.wis_stat} {self.wis_mod}")
 
-def roll_stats_mdsix_shuffle():
-    current_stats = mdsix_set_shuffle()
-    stats_update(current_stats)
-    radio_stat_buttons(current_stats)
+    def cha_update(self, value):
+        self.cha_stat = int(value)
+        self.cha_mod = modifier_calc(self.cha_stat)
+        self.cha_stat_label.configure(text = f"Cha: {self.cha_stat} {self.cha_mod}")
 
-def roll_stats_hc_tdsix():
-    current_stats = hc_tdsix_set()
-    stats_update(current_stats)
-    hc_update(current_stats)
-    radio_disable()
+    def hc_stat_update(self):
+        rolls = self.roll_values
+        self.str_update(rolls[0])
+        self.dex_update(rolls[1])
+        self.con_update(rolls[2])
+        self.int_update(rolls[3])
+        self.wis_update(rolls[4])
+        self.cha_update(rolls[5])
 
-def roll_stats_hc_fdsix():
-    current_stats = hc_fdsix_set()
-    stats_update(current_stats)
-    hc_update(current_stats)
-    radio_disable()
+class dice_block(customtkinter.CTkFrame):
+    def __init__(self, master, roll):
+        super().__init__(master)
+        self.roll = roll
 
-def roll_stats_hc_mdsix():
-    current_stats = hc_mdsix_set()
-    stats_update(current_stats)
-    hc_update(current_stats)
-    radio_disable()
-
-def roll_method_change(event):
-    selection = stats_gen_selector.get()
-    match selection.strip():
-        case "Standard":
-            roll_stats_button.configure(command = roll_stats_standard)
-        case "3d6":
-            roll_stats_button.configure(command = roll_stats_tdsix)
-        case "4d6":
-            roll_stats_button.configure(command = roll_stats_fdsix)
-        case "3 3d6 3 4d6":
-            roll_stats_button.configure(command = roll_stats_mdsix)
-        case "Mix d6 Shuffle":
-            roll_stats_button.configure(command = roll_stats_mdsix_shuffle)
-        case "Hardcore 3d6":
-            roll_stats_button.configure(command = roll_stats_hc_tdsix)
-        case "Hardcore 4d6":
-            roll_stats_button.configure(command = roll_stats_hc_fdsix)
-        case "Hardcore Mix":
-            roll_stats_button.configure(command = roll_stats_hc_mdsix) 
-
-#main window organization
-main = tk.Tk()
-main.title("D&D Character Randomizer")
-main.geometry('900x425') #425 with 14 columns
-main.configure(bg = background_color)
-
-#geometry control
-main.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), weight = 1, uniform = "a")
-main.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), weight = 1, uniform = "a")
-
-#widget creation
-class_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
-class_label = ttk.Label(main, text = "Class:", anchor = "e", background = background_color, foreground = foreground_color)
-
-species_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
-species_label = ttk.Label(main, text = "Species:", anchor = "e", background = background_color, foreground = foreground_color)
-
-background_randomized = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
-background_label = ttk.Label(main, text = "Background:", anchor = "e", background = background_color, foreground = foreground_color)
-
-stats_gen_label = ttk.Label(main, text = "Stat Gen Selection", anchor = "center", background = background_color, foreground = foreground_color)
-stats_gen_selector = ttk.Combobox(main, values = ["Standard", "3d6", "4d6", "3 3d6 3 4d6", "Mix d6 Shuffle", "Hardcore 3d6", "Hardcore 4d6", "Hardcore Mix"], state = "readonly", justify = "left", background = background_color, foreground = background_color)
-stats_gen_selector.set("Standard")
-
-stats_dice_rolls = ttk.Label(main, text = "Dice Rolls", anchor = "e", background = background_color, foreground = foreground_color)
-stats_to_assign = ttk.Label(main, text = "Stats", anchor = "e", background = background_color, foreground = foreground_color)
-
-stats_rolls_one = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_one = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_rolls_two = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_two = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_rolls_three = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_three = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_rolls_four = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_four = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_rolls_five = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_five = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_rolls_six = ttk.Label(main, text = "[1, 1, 1]", anchor = "center", background = background_color, foreground = foreground_color)
-stats_sum_six = ttk.Label(main, text = "3", anchor = "center", background = background_color, foreground = foreground_color)
-
-stats_total = ttk.Label(main, text = "", anchor = "w", background = background_color, foreground = foreground_color)
-stats_total_label = ttk.Label(main, text = "Total", anchor = "e", background = background_color, foreground = foreground_color)
-
-stats_percent = ttk.Label(main, text = "%", anchor = "center", background = background_color, foreground = foreground_color)
-stats_percent_label = ttk.Label(main, text = "of standard set", anchor = "w", background = background_color, foreground = foreground_color)
-
-str_label = ttk.Label(main, text = "Str", anchor = "e", background = background_color, foreground = foreground_color)
-str_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-str_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-str_rad_1 = Radiobutton(main, text = "3", variable = "str", value = 1)
-str_rad_2 = Radiobutton(main, text = "3", variable = "str", value = 2)
-str_rad_3 = Radiobutton(main, text = "3", variable = "str", value = 3)
-str_rad_4 = Radiobutton(main, text = "3", variable = "str", value = 4)
-str_rad_5 = Radiobutton(main, text = "3", variable = "str", value = 5)
-str_rad_6 = Radiobutton(main, text = "3", variable = "str", value = 6)
-
-dex_label = ttk.Label(main, text = "Dex", anchor = "e", background = background_color, foreground = foreground_color)
-dex_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-dex_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-dex_rad_1 = Radiobutton(main, text = "3", variable = "dex", value = 1)
-dex_rad_2 = Radiobutton(main, text = "3", variable = "dex", value = 2)
-dex_rad_3 = Radiobutton(main, text = "3", variable = "dex", value = 3)
-dex_rad_4 = Radiobutton(main, text = "3", variable = "dex", value = 4)
-dex_rad_5 = Radiobutton(main, text = "3", variable = "dex", value = 5)
-dex_rad_6 = Radiobutton(main, text = "3", variable = "dex", value = 6)
-
-con_label = ttk.Label(main, text = "Con", anchor = "e", background = background_color, foreground = foreground_color)
-con_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-con_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-con_rad_1 = Radiobutton(main, text = "3", variable = "con", value = 1)
-con_rad_2 = Radiobutton(main, text = "3", variable = "con", value = 2)
-con_rad_3 = Radiobutton(main, text = "3", variable = "con", value = 3)
-con_rad_4 = Radiobutton(main, text = "3", variable = "con", value = 4)
-con_rad_5 = Radiobutton(main, text = "3", variable = "con", value = 5)
-con_rad_6 = Radiobutton(main, text = "3", variable = "con", value = 6)
-
-int_label = ttk.Label(main, text = "Int", anchor = "e", background = background_color, foreground = foreground_color)
-int_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-int_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-int_rad_1 = Radiobutton(main, text = "3", variable = "int", value = 1)
-int_rad_2 = Radiobutton(main, text = "3", variable = "int", value = 2)
-int_rad_3 = Radiobutton(main, text = "3", variable = "int", value = 3)
-int_rad_4 = Radiobutton(main, text = "3", variable = "int", value = 4)
-int_rad_5 = Radiobutton(main, text = "3", variable = "int", value = 5)
-int_rad_6 = Radiobutton(main, text = "3", variable = "int", value = 6)
-
-wis_label = ttk.Label(main, text = "Wis", anchor = "e", background = background_color, foreground = foreground_color)
-wis_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-wis_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-wis_rad_1 = Radiobutton(main, text = "3", variable = "wis", value = 1)
-wis_rad_2 = Radiobutton(main, text = "3", variable = "wis", value = 2)
-wis_rad_3 = Radiobutton(main, text = "3", variable = "wis", value = 3)
-wis_rad_4 = Radiobutton(main, text = "3", variable = "wis", value = 4)
-wis_rad_5 = Radiobutton(main, text = "3", variable = "wis", value = 5)
-wis_rad_6 = Radiobutton(main, text = "3", variable = "wis", value = 6)
-
-cha_label = ttk.Label(main, text = "Cha", anchor = "e", background = background_color, foreground = foreground_color)
-cha_stat = ttk.Label(main, text = 10, anchor = "center", background = background_color, foreground = foreground_color)
-cha_modifier = ttk.Label(main, text = "+0", background = background_color, foreground = foreground_color)
-cha_rad_1 = Radiobutton(main, text = "3", variable = "cha", value = 1)
-cha_rad_2 = Radiobutton(main, text = "3", variable = "cha", value = 2)
-cha_rad_3 = Radiobutton(main, text = "3", variable = "cha", value = 3)
-cha_rad_4 = Radiobutton(main, text = "3", variable = "cha", value = 4)
-cha_rad_5 = Radiobutton(main, text = "3", variable = "cha", value = 5)
-cha_rad_6 = Radiobutton(main, text = "3", variable = "cha", value = 6)
-
-stat_reset = tk.Button(main, text = "Reset Stats", command = None)
-randomize_button = ttk.Button(main, text = "Randomize", command = update_all)
-roll_stats_button = ttk.Button(main, text = "Roll Stats", command = roll_stats_standard)
-
-#widget placement
-
-class_randomized.grid(row = 0, column = 1, columnspan = 4, sticky = "nwe")
-class_label.grid(row = 0, column = 0, sticky = "nwe")
-
-species_randomized.grid(row = 1, column = 1, columnspan = 3, sticky = "nwe")
-species_label.grid(row = 1, column = 0, sticky = "nwe")
-
-background_randomized.grid(row = 0, column = 6, columnspan = 3, sticky = "nwe")
-background_label.grid(row = 0, column = 4, columnspan = 2, sticky = "nwe")
-
-str_label.grid(row = 2, column = 0, sticky = "nwe")
-str_stat.grid(row = 2, column = 1, sticky = "nwe")
-str_modifier.grid(row = 2, column = 2, sticky = "nwe")
-str_rad_1.grid(row = 2, column = 3, sticky = "we")
-str_rad_2.grid(row = 2, column = 4, sticky = "we")
-str_rad_3.grid(row = 2, column = 5, sticky = "we")
-str_rad_4.grid(row = 2, column = 6, sticky = "we")
-str_rad_5.grid(row = 2, column = 7, sticky = "we")
-str_rad_6.grid(row = 2, column = 8, sticky = "we")
-
-dex_label.grid(row = 3, column = 0, sticky = "nwe")
-dex_stat.grid(row = 3, column = 1, sticky = "nwe")
-dex_modifier.grid(row = 3, column = 2, sticky = "nwe")
-dex_rad_1.grid(row = 3, column = 3, sticky = "we")
-dex_rad_2.grid(row = 3, column = 4, sticky = "we")
-dex_rad_3.grid(row = 3, column = 5, sticky = "we")
-dex_rad_4.grid(row = 3, column = 6, sticky = "we")
-dex_rad_5.grid(row = 3, column = 7, sticky = "we")
-dex_rad_6.grid(row = 3, column = 8, sticky = "we")
-
-con_label.grid(row = 4, column = 0, sticky = "nwe")
-con_stat.grid(row = 4, column = 1, sticky = "nwe")
-con_modifier.grid(row = 4, column = 2, sticky = "nwe")
-con_rad_1.grid(row = 4, column = 3, sticky = "we")
-con_rad_2.grid(row = 4, column = 4, sticky = "we")
-con_rad_3.grid(row = 4, column = 5, sticky = "we")
-con_rad_4.grid(row = 4, column = 6, sticky = "we")
-con_rad_5.grid(row = 4, column = 7, sticky = "we")
-con_rad_6.grid(row = 4, column = 8, sticky = "we")
-
-int_label.grid(row = 5, column = 0, sticky = "nwe")
-int_stat.grid(row = 5, column = 1, sticky = "nwe")
-int_modifier.grid(row = 5, column = 2, sticky = "nwe")
-int_rad_1.grid(row = 5, column = 3, sticky = "we")
-int_rad_2.grid(row = 5, column = 4, sticky = "we")
-int_rad_3.grid(row = 5, column = 5, sticky = "we")
-int_rad_4.grid(row = 5, column = 6, sticky = "we")
-int_rad_5.grid(row = 5, column = 7, sticky = "we")
-int_rad_6.grid(row = 5, column = 8, sticky = "we")
-
-wis_label.grid(row = 6, column = 0, sticky = "nwe")
-wis_stat.grid(row = 6, column = 1, sticky = "nwe")
-wis_modifier.grid(row = 6, column = 2, sticky = "nwe")
-wis_rad_1.grid(row = 6, column = 3, sticky = "we")
-wis_rad_2.grid(row = 6, column = 4, sticky = "we")
-wis_rad_3.grid(row = 6, column = 5, sticky = "we")
-wis_rad_4.grid(row = 6, column = 6, sticky = "we")
-wis_rad_5.grid(row = 6, column = 7, sticky = "we")
-wis_rad_6.grid(row = 6, column = 8, sticky = "we")
-
-cha_label.grid(row = 7, column = 0, sticky = "nwe")
-cha_stat.grid(row = 7, column = 1, sticky = "nwe")
-cha_modifier.grid(row = 7, column = 2, sticky = "nwe")
-cha_rad_1.grid(row = 7, column = 3, sticky = "we")
-cha_rad_2.grid(row = 7, column = 4, sticky = "we")
-cha_rad_3.grid(row = 7, column = 5, sticky = "we")
-cha_rad_4.grid(row = 7, column = 6, sticky = "we")
-cha_rad_5.grid(row = 7, column = 7, sticky = "we")
-cha_rad_6.grid(row = 7, column = 8, sticky = "we")
-
-stats_gen_label.grid(row = 9, column = 0, columnspan = 2, sticky = "nswe")
-stats_gen_selector.grid(row = 9, column = 2, columnspan = 2, sticky = "nswe")
-
-stats_dice_rolls.grid(row = 10, column = 0, sticky = "nsew")
-stats_to_assign.grid(row = 11, column = 0, sticky = "nswe")
-
-stats_rolls_one.grid(row  = 10, column = 1, sticky = "nswe")
-stats_sum_one.grid(row = 11, column = 1, sticky = "nswe")
-
-stats_rolls_two.grid(row = 10, column = 2, sticky = "nswe")
-stats_sum_two.grid(row = 11, column = 2, sticky = "nswe")
-
-stats_rolls_three.grid(row = 10, column = 3, sticky = "nswe")
-stats_sum_three.grid(row = 11, column = 3, sticky = "nswe")
-
-stats_rolls_four.grid(row = 10, column = 4, sticky = "nswe")
-stats_sum_four.grid(row = 11, column = 4, sticky = "nswe")
-
-stats_rolls_five.grid(row = 10, column = 5, sticky = "nswe")
-stats_sum_five.grid(row = 11, column = 5, sticky = "nswe")
-
-stats_rolls_six.grid(row = 10, column = 6, sticky = "nswe")
-stats_sum_six.grid(row = 11, column = 6, sticky = "nswe")
-
-stats_total_label.grid(row = 12, column = 0, sticky = "nswe")
-stats_total.grid(row = 12, column = 1, sticky = "nswe")
-
-stats_percent_label.grid(row = 13, column = 1, columnspan = 2, sticky = "nswe")
-stats_percent.grid(row = 13, column = 0, sticky = "nswe")
-
-randomize_button.grid(row = 9, column = 10,  columnspan = 2, sticky = "nwe")
-roll_stats_button.grid(row = 9, column = 8,  columnspan = 2, sticky = "nwe")
-stat_reset.grid(row = 11, column = 8, columnspan = 2, sticky = "nwe")
-
-#binds
-stats_gen_selector.bind("<<ComboboxSelected>>", roll_method_change)
+        for i, value in enumerate(self.roll):
+            label = customtkinter.CTkLabel(self, text = value)
+            label.grid(row = 0, column = i, padx = 5, sticky = "ew")
 
 
-main.mainloop()
+
+class App(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
+
+        self.title("D&D 2024 Random Character Generator")
+        self.geometry("950x425")
+        self.grid_propagate(False)
+        
+        
+        
+        self.char_roll_frame = char_roll(self)
+        self.char_roll_frame.pack(fill = "x", padx = 5, pady = 5)
+        
+        self.stat_frame = stat_roll(self)
+        self.stat_frame.pack(fill = "x", padx = 5, pady = 5)
+
+app = App()
+app.mainloop()
