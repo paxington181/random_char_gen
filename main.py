@@ -131,7 +131,19 @@ class stat_roll(customtkinter.CTkFrame):
         self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats", command = self.roll_stats_standard)
         self.roll_stats.grid(row =5, column = 4, sticky = "ew")
 
-        self.block_place(self.rolls)
+        self.dice1 = dice_block(self, self.rolls[0])
+        self.dice1.grid(row = 0, column = 7, sticky = "ew")
+        self.dice2 = dice_block(self, self.rolls[1])
+        self.dice2.grid(row = 2, column = 7, sticky = "ew")
+        self.dice3 = dice_block(self, self.rolls[2])
+        self.dice3.grid(row = 4, column = 7, sticky = "ew")
+
+        self.dice4 = dice_block(self, self.rolls[3])
+        self.dice4.grid(row = 0, column = 10, sticky = "ew")
+        self.dice5 = dice_block(self, self.rolls[4])
+        self.dice5.grid(row = 2, column = 10, sticky = "ew")
+        self.dice6 = dice_block(self, self.rolls[5])
+        self.dice6.grid(row = 4, column = 10, sticky = "ew")
 
     def roll_method_change(self, value):
         selected = value
@@ -187,13 +199,13 @@ class stat_roll(customtkinter.CTkFrame):
         rolls = standard()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
-        self.block_place(rolls)
+        
 
     def roll_stats_tdsix(self):
         rolls = tdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
-        self.block_place(rolls)
+        self.dice_update()
 
     def roll_stats_fdsix(self):
         rolls = fdsix_set()
@@ -267,13 +279,6 @@ class stat_roll(customtkinter.CTkFrame):
         self.wis_update(rolls[4])
         self.cha_update(rolls[5])
 
-    def block_place(self, rolls):
-        roll = rolls
-        for i, value in enumerate(roll):
-            frame = dice_block(self, value)
-            frame.grid(row = i, column = 7, sticky = "ew")
-
-
 class dice_block(customtkinter.CTkFrame):
     def __init__(self, master, roll):
         super().__init__(master)
@@ -282,8 +287,6 @@ class dice_block(customtkinter.CTkFrame):
         for i, value in enumerate(roll):
             label = customtkinter.CTkLabel(self, text = value)
             label.grid(row = 0, column = i, padx = 5, sticky = "ew")
-
-
 
 class App(customtkinter.CTk):
     def __init__(self):
