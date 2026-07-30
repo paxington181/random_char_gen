@@ -181,76 +181,94 @@ class stat_roll(customtkinter.CTkFrame):
         rolls = self.roll_values
         self.str_combobox.configure(values = rolls)
         self.str_combobox.set(rolls[0])
+        self.dice1_sum.configure(text = rolls[0])
         self.dex_combobox.configure(values = rolls)
         self.dex_combobox.set(rolls[1])
+        self.dice2_sum.configure(text = rolls[1])
         self.con_combobox.configure(values = rolls)
         self.con_combobox.set(rolls[2])
+        self.dice3_sum.configure(text = rolls[2])
         self.int_combobox.configure(values = rolls)
         self.int_combobox.set(rolls[3])
+        self.dice4_sum.configure(text = rolls[3])
         self.wis_combobox.configure(values = rolls)
         self.wis_combobox.set(rolls[4])
+        self.dice5_sum.configure(text = rolls[4])
         self.cha_combobox.configure(values = rolls)
         self.cha_combobox.set(rolls[5])
+        self.dice6_sum.configure(text = rolls[5])
 
     def hc_combobox_update(self, rolls):
-            rolls = self.roll_values
-            self.str_combobox.configure(values = (rolls[0], rolls[0]))
-            self.str_combobox.set(rolls[0])
-            self.dex_combobox.configure(values = (rolls[1], rolls[1]))
-            self.dex_combobox.set(rolls[1])
-            self.con_combobox.configure(values = (rolls[2], rolls[2]))
-            self.con_combobox.set(rolls[2])
-            self.int_combobox.configure(values = (rolls[3], rolls[3]))
-            self.int_combobox.set(rolls[3])
-            self.wis_combobox.configure(values = (rolls[4], rolls[4]))
-            self.wis_combobox.set(rolls[4])
-            self.cha_combobox.configure(values = (rolls[5], rolls[5]))
-            self.cha_combobox.set(rolls[5])
+        rolls = self.roll_values
+        self.str_combobox.configure(values = (rolls[0], rolls[0]))
+        self.str_combobox.set(rolls[0])
+        self.dice1_sum.configure(text = rolls[0])
+        self.dex_combobox.configure(values = (rolls[1], rolls[1]))
+        self.dex_combobox.set(rolls[1])
+        self.dice2_sum.configure(text = rolls[1])
+        self.con_combobox.configure(values = (rolls[2], rolls[2]))
+        self.con_combobox.set(rolls[2])
+        self.dice3_sum.configure(text = rolls[2])
+        self.int_combobox.configure(values = (rolls[3], rolls[3]))
+        self.int_combobox.set(rolls[3])
+        self.dice4_sum.configure(text = rolls[3])
+        self.wis_combobox.configure(values = (rolls[4], rolls[4]))
+        self.wis_combobox.set(rolls[4])
+        self.dice5_sum.configure(text = rolls[4])
+        self.cha_combobox.configure(values = (rolls[5], rolls[5]))
+        self.cha_combobox.set(rolls[5])
+        self.dice6_sum.configure(text = rolls[5])
 
     def roll_stats_standard(self):
         rolls = standard()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
+        self.frame_updates(rolls)
         
-
     def roll_stats_tdsix(self):
         rolls = tdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
-        self.dice_update()
-
+        self.frame_updates(rolls)
+        
     def roll_stats_fdsix(self):
         rolls = fdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def roll_stats_mdsix(self):
         rolls = mdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def roll_stats_mdsix_shuffle(self):
         rolls = mdsix_set_shuffle()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def roll_stats_hc_tdsix(self):
         rolls = hc_tdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.hc_stat_update()
         self.hc_combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def roll_stats_hc_fdsix(self):
         rolls = hc_fdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.hc_stat_update()
         self.hc_combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def roll_stats_hc_mdsix(self):
         rolls = hc_mdsix_set()
         self.roll_values = [str(rolls[0][0]), str(rolls[1][0]), str(rolls[2][0]), str(rolls[3][0]), str(rolls[4][0]), str(rolls[5][0])]
         self.hc_stat_update()
         self.hc_combobox_update(rolls)
+        self.frame_updates(rolls)
 
     def str_update(self, value):
         self.str_stat = int(value)
@@ -291,6 +309,33 @@ class stat_roll(customtkinter.CTkFrame):
         self.wis_update(rolls[4])
         self.cha_update(rolls[5])
 
+    def frame_updates(self, rolls):
+        self.dice1.destroy()
+        self.dice1 = None
+        self.dice1 = dice_block(self, rolls[0][1::])
+        self.dice1.grid(row = 1, column = 7, sticky = "ew")
+        self.dice2.destroy()
+        self.dice2 = None
+        self.dice2 = dice_block(self, rolls[1][1::])
+        self.dice2.grid(row = 3, column = 7, sticky = "ew")
+        self.dice3.destroy()
+        self.dice3 = None
+        self.dice3 = dice_block(self, rolls[2][1::])
+        self.dice3.grid(row = 5, column = 7, sticky = "ew")
+        self.dice4.destroy()
+        self.dice4 = None
+        self.dice4 = dice_block(self, rolls[3][1::])
+        self.dice4.grid(row = 1, column = 10, sticky = "ew")
+        self.dice5.destroy()
+        self.dice5 = None
+        self.dice5 = dice_block(self, rolls[4][1::])
+        self.dice5.grid(row = 3, column = 10, sticky = "ew")
+        self.dice6.destroy()
+        self.dice6 = None
+        self.dice6 = dice_block(self, rolls[5][1::])
+        self.dice6.grid(row = 5, column = 10, sticky = "ew")
+
+    
 class dice_block(customtkinter.CTkFrame):
     def __init__(self, master, roll):
         super().__init__(master)
