@@ -5,6 +5,13 @@ from species import species_roll
 from backgrounds import background_roll
 from char_class import class_roll
 
+d6_1 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_1.bmp"), dark_image = Image.open("dice_images/d6_1.bmp"), size = (16, 16))
+d6_2 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_2.bmp"), dark_image = Image.open("dice_images/d6_2.bmp"), size = (16, 16))
+d6_3 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_3.bmp"), dark_image = Image.open("dice_images/d6_3.bmp"), size = (16, 16))
+d6_4 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_4.bmp"), dark_image = Image.open("dice_images/d6_4.bmp"), size = (16, 16))
+d6_5 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_5.bmp"), dark_image = Image.open("dice_images/d6_5.bmp"), size = (16, 16))
+d6_6 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_6.bmp"), dark_image = Image.open("dice_images/d6_6.bmp"), size = (16, 16))
+
 customtkinter.set_appearance_mode("dark")
 
 #Class/sub, background, species
