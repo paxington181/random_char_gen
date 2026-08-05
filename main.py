@@ -1,4 +1,5 @@
 import customtkinter
+from PIL import Image
 from stat_rolling import standard, tdsix_set, fdsix_set, mdsix_set, mdsix_set_shuffle, hc_tdsix_set, hc_fdsix_set, hc_mdsix_set, modifier_calc
 from species import species_roll
 from backgrounds import background_roll
