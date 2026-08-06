@@ -347,11 +347,24 @@ class stat_roll(customtkinter.CTkFrame):
 class dice_block(customtkinter.CTkFrame):
     def __init__(self, master, roll):
         super().__init__(master)
-    
 
-        for i, value in enumerate(roll):
-            label = customtkinter.CTkLabel(self, text = value)
-            label.grid(row = 0, column = i, padx = 5, sticky = "ew")
+        for i, r in enumerate(roll):
+            self.label = customtkinter.CTkLabel(self, text = "")
+            match r:
+                case 1:
+                    self.label.configure(image = d6_1)
+                case 2:
+                    self.label.configure(image = d6_2)
+                case 3:
+                    self.label.configure(image = d6_3)
+                case 4:
+                    self.label.configure(image = d6_4)
+                case 5:
+                    self.label.configure(image = d6_5)
+                case 6:
+                    self.label.configure(image = d6_6)
+            self.label.grid(row = 0, column = i)
+
 
 class App(customtkinter.CTk):
     def __init__(self):
