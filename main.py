@@ -5,12 +5,12 @@ from species import species_roll
 from backgrounds import background_roll
 from char_class import class_roll
 
-d6_1 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_1.bmp"), dark_image = Image.open("dice_images/d6_1.bmp"), size = (16, 16))
-d6_2 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_2.bmp"), dark_image = Image.open("dice_images/d6_2.bmp"), size = (16, 16))
-d6_3 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_3.bmp"), dark_image = Image.open("dice_images/d6_3.bmp"), size = (16, 16))
-d6_4 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_4.bmp"), dark_image = Image.open("dice_images/d6_4.bmp"), size = (16, 16))
-d6_5 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_5.bmp"), dark_image = Image.open("dice_images/d6_5.bmp"), size = (16, 16))
-d6_6 = customtkinter.CTkImage(light_image = Image.open("dice_images/d6_6.bmp"), dark_image = Image.open("dice_images/d6_6.bmp"), size = (16, 16))
+d6_1 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_1.bmp"), dark_image = Image.open("dice_images/32d6_1.bmp"), size = (32, 32))
+d6_2 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_2.bmp"), dark_image = Image.open("dice_images/32d6_2.bmp"), size = (32, 32))
+d6_3 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_3.bmp"), dark_image = Image.open("dice_images/32d6_3.bmp"), size = (32, 32))
+d6_4 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_4.bmp"), dark_image = Image.open("dice_images/32d6_4.bmp"), size = (32, 32))
+d6_5 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_5.bmp"), dark_image = Image.open("dice_images/32d6_5.bmp"), size = (32, 32))
+d6_6 = customtkinter.CTkImage(light_image = Image.open("dice_images/32d6_6.bmp"), dark_image = Image.open("dice_images/32d6_6.bmp"), size = (32, 32))
 
 customtkinter.set_appearance_mode("dark")
 
@@ -133,37 +133,38 @@ class stat_roll(customtkinter.CTkFrame):
         self.cha_combobox.set(self.roll_values[5])
 
         self.selected_method = customtkinter.CTkComboBox(self, values = self.rolling_method, command = lambda val: self.roll_method_change(self.selected_method.get()))
-        self.selected_method.grid(row = 5, column = 2, columnspan = 2, sticky = "ew")
+        self.selected_method.grid(row = 0, column = 2, columnspan = 2, sticky = "ew")
         self.selected_method.set("Standard")
 
         self.roll_stats = customtkinter.CTkButton(self, text = "Randomize Stats", command = self.roll_stats_standard)
-        self.roll_stats.grid(row =5, column = 4, sticky = "ew")
+        self.roll_stats.grid(row = 5, column = 2, sticky = "ew")
 
         self.dice1_sum = customtkinter.CTkLabel(self, text = self.roll_values[0])
-        self.dice1_sum.grid(row = 0, column = 7)
+        self.dice1_sum.grid(row = 1, column = 7)
         self.dice1 = dice_block(self, self.rolls[0])
-        self.dice1.grid(row = 1, column = 7, sticky = "ew")
+        self.dice1.grid(row = 2, column = 7, padx = 5, sticky = "ew")
         self.dice2_sum = customtkinter.CTkLabel(self, text = self.roll_values[1])
-        self.dice2_sum.grid(row = 2, column = 7)
+        self.dice2_sum.grid(row = 3, column = 7)
         self.dice2 = dice_block(self, self.rolls[1])
-        self.dice2.grid(row = 3, column = 7, sticky = "ew")
-        self.dice3_sum = customtkinter.CTkLabel(self, text = self.roll_values[2])
-        self.dice3_sum.grid(row = 4, column = 7)
-        self.dice3 = dice_block(self, self.rolls[2])
-        self.dice3.grid(row = 5, column = 7, sticky = "ew")
+        self.dice2.grid(row = 4, column = 7, padx = 5, sticky = "ew")
 
+        self.dice3_sum = customtkinter.CTkLabel(self, text = self.roll_values[2])
+        self.dice3_sum.grid(row = 1, column = 10)
+        self.dice3 = dice_block(self, self.rolls[2])
+        self.dice3.grid(row = 2, column = 10, padx = 5, sticky = "ew")
         self.dice4_sum = customtkinter.CTkLabel(self, text = self.roll_values[3])
-        self.dice4_sum.grid(row = 0, column = 10)
+        self.dice4_sum.grid(row = 3, column = 10)
         self.dice4 = dice_block(self, self.rolls[3])
-        self.dice4.grid(row = 1, column = 10, sticky = "ew")
+        self.dice4.grid(row = 4, column = 10, padx = 5, sticky = "ew")
+
         self.dice5_sum = customtkinter.CTkLabel(self, text = self.roll_values[4])
-        self.dice5_sum.grid(row = 2, column = 10)
+        self.dice5_sum.grid(row = 1, column = 13)
         self.dice5 = dice_block(self, self.rolls[4])
-        self.dice5.grid(row = 3, column = 10, sticky = "ew")
+        self.dice5.grid(row = 2, column = 13, padx = 5, sticky = "ew")
         self.dice6_sum = customtkinter.CTkLabel(self, text = self.roll_values[5])
-        self.dice6_sum.grid(row = 4, column = 10)
+        self.dice6_sum.grid(row = 3, column = 13)
         self.dice6 = dice_block(self, self.rolls[5])
-        self.dice6.grid(row = 5, column = 10, sticky = "ew")
+        self.dice6.grid(row = 4, column = 13, padx = 5, sticky = "ew")
 
     def roll_method_change(self, value):
         selected = value
@@ -321,27 +322,27 @@ class stat_roll(customtkinter.CTkFrame):
         self.dice1.destroy()
         self.dice1 = None
         self.dice1 = dice_block(self, rolls[0][1::])
-        self.dice1.grid(row = 1, column = 7, sticky = "ew")
+        self.dice1.grid(row = 2, column = 7, padx = 5, sticky = "ew")
         self.dice2.destroy()
         self.dice2 = None
         self.dice2 = dice_block(self, rolls[1][1::])
-        self.dice2.grid(row = 3, column = 7, sticky = "ew")
+        self.dice2.grid(row = 4, column = 7, padx = 5, sticky = "ew")
         self.dice3.destroy()
         self.dice3 = None
         self.dice3 = dice_block(self, rolls[2][1::])
-        self.dice3.grid(row = 5, column = 7, sticky = "ew")
+        self.dice3.grid(row = 2, column = 10, padx = 5, sticky = "ew")
         self.dice4.destroy()
         self.dice4 = None
         self.dice4 = dice_block(self, rolls[3][1::])
-        self.dice4.grid(row = 1, column = 10, sticky = "ew")
+        self.dice4.grid(row = 4, column = 10, padx = 5, sticky = "ew")
         self.dice5.destroy()
         self.dice5 = None
         self.dice5 = dice_block(self, rolls[4][1::])
-        self.dice5.grid(row = 3, column = 10, sticky = "ew")
+        self.dice5.grid(row = 2, column = 13, padx = 5, sticky = "ew")
         self.dice6.destroy()
         self.dice6 = None
         self.dice6 = dice_block(self, rolls[5][1::])
-        self.dice6.grid(row = 5, column = 10, sticky = "ew")
+        self.dice6.grid(row = 4, column = 13, padx = 5, sticky = "ew")
 
     
 class dice_block(customtkinter.CTkFrame):
@@ -371,7 +372,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("D&D 2024 Random Character Generator")
-        self.geometry("950x425")
+        self.geometry("940x375")
         self.grid_propagate(False)
         
         
