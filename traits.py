@@ -15,7 +15,7 @@ bond: list[str] = ["self", "familial", "organizational", "community", "region", 
 flaw: list[str] = ["prideful", "greedy", "wrathful", "envious", "lustful", "gluttonous", "slothful"]
 
 family: list[str] = ["child", "children", "sister", "brother", "multiple siblings", "parent", "both parents"]
-mentor: list[str] = ["relative", "wandering stranger", "school", "family", "military"]
+mentor: list[str] = ["relative", "stranger", "school", "family", "military"]
 mentor_attitude: list[str] = ["friendly", "neutral", "hostile"]
 
 
@@ -28,7 +28,8 @@ generic_events: list[str] = ["party member death",
                              "overshadowed by others", 
                              "backstory plothook used", 
                              "player changes character", 
-                             "major character injury"
+                             "major character injury",
+                             "betrayal"
                              ]
 tier_one_events: list[str] = ["character idea doesn't fit campaign"]
 tier_two_events: list[str] = []
